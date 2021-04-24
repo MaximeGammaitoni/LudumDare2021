@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public EventsManager EventsManager { get; set; }
     [HideInInspector] public PlayerEvents PlayerEvents { get; set; }
     
-    [HideInInspector] public ScoreManager ScoreManager { get; set; }
+    [HideInInspector] public TimerManager TimerManager { get; set; }
 
     public void Awake()
     {
@@ -39,10 +39,10 @@ public class GameManager : MonoBehaviour
         try
         {
             ResourcesLoaderManager = transform.GetComponentInChildren<ResourcesLoaderManager>();
-
+            ResourcesLoaderManager.Init();
             EventsManager = new EventsManager();
-            ScoreManager = new ScoreManager();
             PlayerEvents = new PlayerEvents();
+            TimerManager = new TimerManager();
         }
         catch (Exception e)
         {
