@@ -55,7 +55,7 @@ public class EventsManager
         UnityCustomEvents<Args> thisEvent = null;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
-            thisEvent.Invoke(args);
+            thisEvent?.Invoke(args);
         }
     }
 
