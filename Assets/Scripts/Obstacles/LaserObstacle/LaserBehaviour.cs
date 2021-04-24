@@ -8,7 +8,7 @@ public class LaserBehaviour : MonoBehaviour
     // Inspector
     public Material _LaserMaterial;
     public ILaserType _LaserType;
-    public int _WallLayerMask;
+    public LayerMask _WallLayerMask;
     public UnityEvent _OnPlayerHit;
 
     // Variables
@@ -41,7 +41,7 @@ public class LaserBehaviour : MonoBehaviour
     private void GenerateRaycasts()
     {
         RaycastHit[] hits;
-        int mask = ~(2 << _WallLayerMask);
+        int mask = _WallLayerMask.value;
 
         hits = Physics.RaycastAll(this.transform.position, this.transform.forward, Mathf.Infinity, mask);
         for (int i = 0; i < hits.Length; i++)
