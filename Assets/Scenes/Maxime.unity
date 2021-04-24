@@ -811,6 +811,7 @@ MonoBehaviour:
   Canvas: {fileID: 973389959}
   TopPanel: {fileID: 1774513045}
   TimerPanel: {fileID: 1755960276}
+  TimerText: {fileID: 1464039263}
 --- !u!1 &1464039261
 GameObject:
   m_ObjectHideFlags: 0
