@@ -33,7 +33,7 @@ public class LevelLoader : MonoBehaviour
 
     #region private methods
 
-    void Awake()
+    void OnEnable()
     {
         // Load 1st level.
         _currentLevelIndex = 0;
