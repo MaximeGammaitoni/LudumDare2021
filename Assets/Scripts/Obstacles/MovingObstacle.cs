@@ -14,6 +14,9 @@ public class MovingObstacle : MonoBehaviour
     [SerializeField]
     bool _isLoop = true;
 
+    [SerializeField]
+    bool _IsSnappingToWall = false;
+
     #endregion
 
     #region private members
@@ -64,7 +67,15 @@ public class MovingObstacle : MonoBehaviour
             {
                 float t = time / _segmentDuration;
                 transform.position = Vector3.Lerp(from.position, to.position, t);
-                transform.rotation = Quaternion.Lerp(from.rotation, to.rotation, t);
+                
+                if(!_IsSnappingToWall)
+                {
+                    transform.rotation = Quaternion.Lerp(from.rotation, to.rotation, t);
+                }
+                else
+                {
+                    transform.rotation = to.rotation;
+                }
                 yield return null;
                 time += Time.deltaTime;
             }
