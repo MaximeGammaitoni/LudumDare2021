@@ -21,6 +21,8 @@ public class LevelLoader : MonoBehaviour
 
     #region private members
 
+    bool _mustDestroyPreviousLevel = false;
+
     int _currentLevelIndex = 0;
 
     GameObject _currentLevelInstance = null;
@@ -55,7 +57,9 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator DestroyPreviousLevelCoroutine(GameObject previousLevel)
     {
-        yield return new WaitForSeconds(_timeBeforePreviousLevelDestroy);
+        // yield return new WaitUntil(() => _mustDestroyPreviousLevel); // À décommenter.
+        _mustDestroyPreviousLevel = false;
+        yield return new WaitForSeconds(_timeBeforePreviousLevelDestroy); // À retirer.
         Destroy(previousLevel);
     }
 
