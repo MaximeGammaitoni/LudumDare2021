@@ -400,7 +400,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424276241}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e13fa7b94ebdd242b76d5fd0fa45aef, type: 3}
   m_Name: 
@@ -410,7 +410,7 @@ MonoBehaviour:
   - {fileID: 1631338554}
   - {fileID: 1397862897}
   - {fileID: 312118687}
-  _segmentDuration: 1
+  _segmentDuration: 2
   _isLoop: 1
 --- !u!1 &1471859313
 GameObject:
