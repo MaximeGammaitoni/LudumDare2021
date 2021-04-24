@@ -1,13 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using MyBox;
 using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
     // Public declaration
-    public float TimeToTrigger = 2f;
     public bool NoPause = false;
+    [ConditionalField(nameof(NoPause), true)]  public float TimeToTrigger = 2f;
+    
 
     // Private declaration
     private Animator TrapAnimator;
@@ -19,6 +19,8 @@ public class Spike : MonoBehaviour
     {
         TrapAnimator = this.GetComponent<Animator>();
         _TrapCollider = this.GetComponent<Collider>();
+        if (NoPause)
+            TimeToTrigger = 0;
         StartCoroutine(WaitBeforeTrigger());
     }
 
@@ -67,6 +69,7 @@ public class Spike : MonoBehaviour
             }
             else
             {
+                TrapAnimator.SetBool("NoPause", false);
                 if (TrapAnimator.GetCurrentAnimatorStateInfo(0).IsName("Spike_trap"))
                 {
                     _TrapCollider.enabled = true;
