@@ -16,8 +16,6 @@ public class Trap_needle : MonoBehaviour
     private Coroutine _InProgress = null;
     private Coroutine _Waiting = null;
     private bool _CanWait = true;
-    //private PlayerEvents _PlayerEvents;
-    // private PlayerEvents.PlayerDeathArgs _PlayerDeathArgs;
 
     // Update is called once per frame
     void Update()
@@ -44,9 +42,10 @@ public class Trap_needle : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // TODO Wait More information before implement player death
-        //if (_PlayerDeathArgs.PlayerGo.GetComponent<Collider>() == other) {\
-            //GameManager.singleton.PlayerEvents.PlayerIsDead();
-        //}
+        if (other.tag == "Player")
+        {
+            GameManager.singleton.PlayerEvents.PlayerIsDead();
+        }
     }
 
     IEnumerator WaitBeforeTrigger()
