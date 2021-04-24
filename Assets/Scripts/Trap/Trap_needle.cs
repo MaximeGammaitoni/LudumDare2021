@@ -32,9 +32,9 @@ public class Trap_needle : MonoBehaviour
             }
 
         }
-        else
+        else if (_Waiting == null)
         {
-            if(_Waiting == null) { _Waiting = StartCoroutine(WaitBeforeTrigger());}
+             _Waiting = StartCoroutine(WaitBeforeTrigger());
             
         }
 
