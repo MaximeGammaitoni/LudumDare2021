@@ -23,8 +23,14 @@ public class LaserBehaviour : MonoBehaviour
             _laserRenderer = GetComponent<LineRenderer>();
 
         }
-
-        _laserRenderer.material = _LaserMaterial;
+        if (_LaserMaterial != null)
+        {
+            _laserRenderer.material = _LaserMaterial;
+        }
+        else
+        {
+            Debug.Log("LaserMaterial is null on " + transform.gameObject.name);
+        }
     }
 
     private void FixedUpdate()

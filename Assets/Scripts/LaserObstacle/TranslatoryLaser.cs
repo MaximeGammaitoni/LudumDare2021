@@ -18,10 +18,17 @@ public class TranslatoryLaser : MonoBehaviour, ILaserType
     // Start is called before the first frame update
     void Start()
     {
-        _distance = Vector3.Distance(_StartObject.position, _TargetObject.position);
-        this.transform.position = _StartObject.position;
+        if(_StartObject != null || _TargetObject != null)
+        {
+            _distance = Vector3.Distance(_StartObject.position, _TargetObject.position);
+            this.transform.position = _StartObject.position;
 
-        InitializeList();
+            InitializeList();
+        }
+        else
+        {
+            Debug.LogWarning("StartObject or TargetObject is null on " + transform.gameObject.name);
+        }
     }
 
     private void InitializeList()

@@ -8,6 +8,7 @@ public class RotationalLaser : MonoBehaviour, ILaserType
     public float _Offset;
     public float _RotationalSpeed;
     public Vector3 _RotationAxis;
+    public Vector3 _OffsetAxis;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +28,15 @@ public class RotationalLaser : MonoBehaviour, ILaserType
 
     public void InitializeLaserPosition()
     {
-        this.transform.position = _RotationCenter.transform.position;
-        this.transform.position += new Vector3(_Offset, 0, 0);
+        if (_RotationCenter != null)
+        {
+            this.transform.position = _RotationCenter.transform.position;
+        }
+        else
+        {
+            Debug.LogWarning("RotationCenter missing for " + this.transform.gameObject.name);
+        }
+        this.transform.position += _Offset * _OffsetAxis;
     }
 }
 
