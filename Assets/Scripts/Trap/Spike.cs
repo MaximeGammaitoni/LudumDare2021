@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap_needle : MonoBehaviour
+public class Spike : MonoBehaviour
 {
     // Public declaration
     public float TimeToTrigger = 2f;
@@ -86,6 +86,7 @@ public class Trap_needle : MonoBehaviour
             {
                 new_y_position = destination_position.y;
             }
+
             Needle.position = new Vector3(Needle.position.x, new_y_position, Needle.position.z);
             yield return null;
 
