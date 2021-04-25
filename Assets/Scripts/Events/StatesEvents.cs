@@ -24,6 +24,13 @@ public class StatesEvents
 
     public UnityAction<Args> OnPauseIn;
     public UnityAction<Args> OnPauseOut;
+
+    public UnityAction<Args> OnFallingIn;
+    public UnityAction<Args> OnFallingOut;
+
+    public UnityAction<Args> OnLandingIn;
+    public UnityAction<Args> OnLandingOut;
+    
     public class StatesEventArgs : Args
     {
         

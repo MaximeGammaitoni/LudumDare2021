@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public TimerManager TimerManager { get; set; }
     [HideInInspector] public StatesManager StatesManager { get; set; }
     [HideInInspector] public StatesEvents StatesEvents { get; set; }
+    [HideInInspector] public PauseManager PauseManager { get; set; }
     public void Awake()
     {
         GameUpdateHandler = null;
@@ -49,11 +50,14 @@ public class GameManager : MonoBehaviour
             EventsManager.StartListening(nameof(StatesEvents.OnBeginIn), args => { Debug.Log("BEGIN GAME IN"); });
             EventsManager.StartListening(nameof(StatesEvents.OnBeginOut), args => { Debug.Log("BEGIN GAME OUT"); });
             EventsManager.StartListening(nameof(StatesEvents.OnRunIn), args => { Debug.Log("RUN IN"); });
-            EventsManager.StartListening(nameof(StatesEvents.OnRunIn), args => { Debug.Log("RUN OUT"); });
+            EventsManager.StartListening(nameof(StatesEvents.OnRunOut), args => { Debug.Log("RUN OUT"); });
+
+
             StatesManager.ChangeCurrentState(new Begin());
             StatesManager.ChangeCurrentState(new Run());
             PlayerEvents = new PlayerEvents();
             TimerManager = new TimerManager();
+            PauseManager = new PauseManager();
         }
         catch (Exception e)
         {
