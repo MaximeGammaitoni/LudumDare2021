@@ -1,12 +1,14 @@
 using System.Collections;
 using MyBox;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Spike : MonoBehaviour
 {
     // Public declaration
     public bool NoPause = false;
     [ConditionalField(nameof(NoPause), true)]  public float TimeToTrigger = 2f;
+    public UnityEvent OPD;
     
 
     // Private declaration
@@ -27,9 +29,12 @@ public class Spike : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        Debug.Log("Box Collider");
         // TODO Wait More information before implement player death
         if (other.tag == "Player")
         {
+            OPD?.Invoke();
             GameManager.singleton.PlayerEvents.PlayerIsDead();
         }
     }
@@ -70,14 +75,9 @@ public class Spike : MonoBehaviour
             else
             {
                 TrapAnimator.SetBool("NoPause", false);
-                if (TrapAnimator.GetCurrentAnimatorStateInfo(0).IsName("Spike_trap"))
-                {
-                    _TrapCollider.enabled = true;
-                }
                 if (TrapAnimator.GetCurrentAnimatorStateInfo(0).IsName("Spike_trap") &&
                     TrapAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
-                    _TrapCollider.enabled = false;
                     TrapAnimator.SetBool("Play", false);
                     StartCoroutine(WaitBeforeTrigger());
                 }

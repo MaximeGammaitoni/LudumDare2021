@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
         GameUpdateHandler = null;
         GameFixedUpdateHandler = null;
         singleton = this;
-        Debug.Log("singleton:" + singleton.ToString() + " is created");
         StartGameManager();
     }
     private void StartGameManager()
