@@ -125,6 +125,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
+        {
+            return;
+        }
         if (!_isDashing)
         {
             Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
@@ -133,12 +137,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
             }
-        }
-        if (!GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
-        {
-            return;
-        }
-        
+        } 
     }
 
     IEnumerator FallThroughGroundCoroutine()
