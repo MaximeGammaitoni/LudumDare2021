@@ -20,7 +20,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""39f9bbe9-2e58-4c3e-aac3-0d1bff4acdcf"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -41,7 +41,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""e0ce7bfc-b440-4224-8054-4b3f00a144a1"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
