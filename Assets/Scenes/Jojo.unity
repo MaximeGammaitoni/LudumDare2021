@@ -824,10 +824,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestLevel1
       objectReference: {fileID: 0}
-    - target: {fileID: 905392732269695037, guid: 5c858963fdddc13439914cfa936cea0c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3991853594142882539, guid: 5c858963fdddc13439914cfa936cea0c, type: 3}
       propertyPath: m_RootOrder
       value: 6

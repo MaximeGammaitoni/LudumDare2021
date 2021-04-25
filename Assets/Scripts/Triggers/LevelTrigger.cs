@@ -16,8 +16,6 @@ public class LevelTrigger : MonoBehaviour
     
     LevelExit _exit = null;
 
-    Animator _animator = null;
-
     bool _triggered = false;
 
     #endregion
@@ -34,12 +32,12 @@ public class LevelTrigger : MonoBehaviour
         {
             _exit.triggerCount++;
         }
-        _animator = GetComponent<Animator>();
     }
-    
-    void OnTriggerEnter(Collider other)
+
+    void OnCollisionEnter(Collision other)
     {
-        if (!_triggered && other.tag == "Player")
+        if (!_triggered && other.transform.tag == "Player" && 
+            PlayerMovement.player != null && PlayerMovement.player.isDashing)
         {
             _triggered = true;
             OnTriggered();
@@ -49,7 +47,6 @@ public class LevelTrigger : MonoBehaviour
     void OnTriggered()
     {
         // Trigger animation.
-        _animator?.SetTrigger("Pressed");
         _onTriggered?.Invoke();
         if (_exit != null)
         {

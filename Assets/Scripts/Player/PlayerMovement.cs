@@ -39,18 +39,26 @@ public class PlayerMovement : MonoBehaviour
 
     #region public members
 
+    public static PlayerMovement player {get; private set;} = null;
+
+    public bool isDashing => _isDashing;
+
     #endregion
 
     #region private methods
 
     void Awake()
     {
+        if (player == null)
+        {
+            player = this;
+        }
         _collider = GetComponent<Collider>();
         _playerControls = new PlayerControls();
-       _playerControls.Enable();
-       _playerControls.Main.Movement.performed += OnAxesChanged;
-       _playerControls.Main.Movement.canceled += OnAxesChanged;
-       _playerControls.Main.Dash.performed += OnDash;
+        _playerControls.Enable();
+        _playerControls.Main.Movement.performed += OnAxesChanged;
+        _playerControls.Main.Movement.canceled += OnAxesChanged;
+        _playerControls.Main.Dash.started += OnDash;
 
         DashReponse = GetComponent<IDashResponse>();
         if (DashReponse == null)
@@ -61,6 +69,10 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDestroy()
     {
+        if (player == this)
+        {
+            player = null;
+        }
         _playerControls.Main.Movement.performed -= OnAxesChanged;
         _playerControls.Main.Movement.canceled -= OnAxesChanged;
         _playerControls.Main.Dash.performed -= OnDash;
@@ -103,14 +115,15 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDash(CallbackContext ctx)
     {
-        _isDashing = true;
+        if (_isDashing)
+        {
+            return;
+        }
+
         if (DashReponse != null)
         {
+            _isDashing = true;
             StartCoroutine(DashCoroutine());
-        }
-        else
-        {
-            _isDashing = false;
         }
 
     }
