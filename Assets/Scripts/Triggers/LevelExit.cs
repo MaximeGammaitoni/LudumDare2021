@@ -52,7 +52,7 @@ public class LevelExit : MonoBehaviour
         if (_opened && !_exited && other.tag == "Player")
         {
             _exited = true;
-            Exit(other.gameObject);
+            Exit();
         }
     }
 
@@ -67,8 +67,9 @@ public class LevelExit : MonoBehaviour
         _collider.enabled = true;
     }
 
-    void Exit(GameObject player)
+    void Exit()
     {
+        GameManager.singleton.StatesManager.CurrentState = new States.Falling();
         GameManager.singleton.ResourcesLoaderManager.LevelLoader.MoveToNextLevel();
     }
 
