@@ -11,7 +11,6 @@ public class AnusDoorBehaviour : MonoBehaviour
     private void Start()
     {
         _anusAnimator = GetComponent<Animator>();
-
     }
 
     private void Update()

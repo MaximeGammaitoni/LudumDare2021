@@ -826,7 +826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 905392732269695037, guid: 5c858963fdddc13439914cfa936cea0c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3991853594142882539, guid: 5c858963fdddc13439914cfa936cea0c, type: 3}
       propertyPath: m_RootOrder
@@ -1075,6 +1075,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameConfig: {fileID: 11400000, guid: 81146bea9ce8f9947b811a7a50176fc7, type: 2}
+  LeaderBoardLine: {fileID: 0}
+  LeaderBoardTable: {fileID: 0}
   VFXLoader: {fileID: 11400000, guid: 1b2699281fba4034cbd8ee981a0eb09b, type: 2}
   EnnemiesLoader: {fileID: 11400000, guid: 35920113fb12fec428a244567540df52, type: 2}
   CanvasElements: {fileID: 0}
@@ -1086,7 +1088,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516997145}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 704253598ad7f594db98d75bad37ec69, type: 3}
   m_Name: 

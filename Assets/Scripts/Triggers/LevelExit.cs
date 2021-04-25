@@ -1,15 +1,21 @@
 using UnityEngine;
+using UnityEngine.Events;
+
+public class Lol
+{
+    public void Test(){}
+}
 
 public class LevelExit : MonoBehaviour
 {
     #region inspector
+
+    [SerializeField]
+    UnityEvent _onOpened = null;
+
     #endregion
 
     #region private members
-
-    Collider _collider = null;
-
-    Animator _animator = null;
 
     int _triggerPushedCount = 0;
 
@@ -39,13 +45,6 @@ public class LevelExit : MonoBehaviour
     #endregion
 
     #region private methods
-
-    void Awake()
-    {
-        _animator = GetComponent<Animator>();
-        _collider = GetComponent<Collider>();
-        _collider.enabled = false;
-    }
     
     void OnTriggerEnter(Collider other)
     {
@@ -63,8 +62,7 @@ public class LevelExit : MonoBehaviour
             return;
         }
         _opened = true;
-        _animator?.SetTrigger("Opened");
-        _collider.enabled = true;
+        _onOpened?.Invoke();
     }
 
     void Exit()

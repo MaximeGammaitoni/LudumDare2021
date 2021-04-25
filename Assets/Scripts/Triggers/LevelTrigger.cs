@@ -8,18 +8,17 @@ public class LevelTrigger : MonoBehaviour
     #region inspector
 
     [SerializeField]
-    LevelExit _exit = null;
-
-    [SerializeField]
-    UnityEvent _onPressed = null;
+    UnityEvent _onTriggered = null;
 
     #endregion
 
     #region private members
+    
+    LevelExit _exit = null;
 
     Animator _animator = null;
 
-    bool _pressed = false;
+    bool _triggered = false;
 
     #endregion
 
@@ -30,6 +29,7 @@ public class LevelTrigger : MonoBehaviour
 
     void Awake()
     {
+        _exit = transform.root?.GetComponentInChildren<LevelExit>();
         if (_exit != null)
         {
             _exit.triggerCount++;
@@ -39,18 +39,18 @@ public class LevelTrigger : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        if (!_pressed && other.tag == "Player")
+        if (!_triggered && other.tag == "Player")
         {
-            _pressed = true;
-            OnPressed();
+            _triggered = true;
+            OnTriggered();
         }
     }
 
-    void OnPressed()
+    void OnTriggered()
     {
         // Trigger animation.
         _animator?.SetTrigger("Pressed");
-        _onPressed?.Invoke();
+        _onTriggered?.Invoke();
         if (_exit != null)
         {
             _exit.triggerPushedCount++;

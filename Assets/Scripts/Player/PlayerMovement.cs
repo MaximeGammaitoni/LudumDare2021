@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (_falling)
+        if (_falling && Mathf.Approximately(_collider.attachedRigidbody.velocity.y, 0f))
         {
             _landing = true;
         }
@@ -149,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         _falling = true;
         _landing = false;
         float playerHeight = _collider.bounds.size.y;
-        float targetHeight = transform.position.y - playerHeight;
+        float targetHeight = transform.position.y - playerHeight - Mathf.Epsilon;
         Rigidbody rb = _collider.attachedRigidbody;
         bool oldGravityState = rb.useGravity;
         // Make sure that gravity is enabled.
@@ -160,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
         _collider.enabled = true;
         // Wait for the player to fall on the ground.
         yield return new WaitUntil(() => _landing);
+        Debug.Log("LANDING");
         _falling = false;
         _landing = false;
         rb.useGravity = oldGravityState;
