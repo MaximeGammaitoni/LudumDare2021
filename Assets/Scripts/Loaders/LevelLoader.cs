@@ -14,9 +14,6 @@ public class LevelLoader : MonoBehaviour
     [SerializeField]
     float _heightBetweenLevels = 5f;
 
-    [SerializeField]
-    float _timeBeforePreviousLevelDestroy = 5f;
-
     #endregion
 
     #region private members
@@ -33,13 +30,24 @@ public class LevelLoader : MonoBehaviour
 
     #region private methods
 
-    void Awake()
+    void OnEnable()
     {
+        EventsManager.StartListening(nameof(StatesEvents.OnLandingIn), TriggerPreviousLevelDestruction);
         // Load 1st level.
         _currentLevelIndex = 0;
         Vector3 position = _firstLevelOrigin?.position ?? Vector3.zero;
         _currentLevelInstance = Instantiate(_levelPrefabs[_currentLevelIndex], position, Quaternion.identity);
         LoadNextLevel();
+    }
+
+    void OnDisable()
+    {
+        EventsManager.StopListening(nameof(StatesEvents.OnLandingIn), TriggerPreviousLevelDestruction);
+    }
+
+    void TriggerPreviousLevelDestruction(Args args)
+    {
+        _mustDestroyPreviousLevel = true;
     }
 
     void LoadNextLevel()
@@ -57,9 +65,9 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator DestroyPreviousLevelCoroutine(GameObject previousLevel)
     {
-        // yield return new WaitUntil(() => _mustDestroyPreviousLevel); // À décommenter.
+        yield return new WaitUntil(() => _mustDestroyPreviousLevel); // À décommenter.
         _mustDestroyPreviousLevel = false;
-        yield return new WaitForSeconds(_timeBeforePreviousLevelDestroy); // À retirer.
+        //yield return new WaitForSeconds(_timeBeforePreviousLevelDestroy); // À retirer.
         Destroy(previousLevel);
     }
 
