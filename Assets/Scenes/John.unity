@@ -1262,6 +1262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameConfig: {fileID: 11400000, guid: 81146bea9ce8f9947b811a7a50176fc7, type: 2}
+  LeaderBoardLine: {fileID: 8287456446812612689, guid: 0de7435550114457face8994c5f645c3, type: 3}
+  LeaderBoardTable: {fileID: 859538350789650838, guid: 4e9b21c6826d841df814cc1d1d5fc896, type: 3}
   VFXLoader: {fileID: 11400000, guid: 1b2699281fba4034cbd8ee981a0eb09b, type: 2}
   EnnemiesLoader: {fileID: 11400000, guid: 35920113fb12fec428a244567540df52, type: 2}
   CanvasElements: {fileID: 0}
@@ -2684,7 +2686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2052576790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2914,7 +2916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 860209524099949203, guid: f0836b5286a5444199a955bc54f3cf45, type: 3}
       propertyPath: NoPause
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 860209524099949203, guid: f0836b5286a5444199a955bc54f3cf45, type: 3}
       propertyPath: OPD.m_PersistentCalls.m_Calls.Array.data[0].m_Target

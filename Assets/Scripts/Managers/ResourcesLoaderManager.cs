@@ -6,6 +6,10 @@ public class ResourcesLoaderManager : MonoBehaviour
     [Header("GameConfig")]
     public GameConfig GameConfig;
 
+    [Header("DataTemplate")]
+    public GameObject LeaderBoardLine;
+    public GameObject LeaderBoardTable;
+
     [Header("ScriptableObjects")]
     public VFXLoader VFXLoader;
     public EnnemiesLoader EnnemiesLoader;
