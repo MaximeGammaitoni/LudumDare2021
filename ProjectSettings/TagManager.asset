@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LaserObstacle
   - LeaderLine
+  - Interrupteur
   layers:
   - Default
   - TransparentFX
