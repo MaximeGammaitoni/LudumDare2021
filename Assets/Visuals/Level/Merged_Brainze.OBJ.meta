@@ -1,29 +1,9 @@
 fileFormatVersion: 2
-guid: 18c7ba8450d7c484ea3a99cd1161a3c2
+guid: f8474b92b0bcb8a429a9d95ee57501ab
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Emissive
-    second: {fileID: 2100000, guid: 0348c9073aa2b8c40ad9a5d17ded8d5b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Spike_Monster_Main
-    second: {fileID: -3132935297824217956, guid: 39f7dd88725d7a745a634b6489314443, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tooth
-    second: {fileID: 2100000, guid: 11b94ed64c9c968498ec8663c3cee830, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Trap_Spike_Core
-    second: {fileID: -3682039499008682431, guid: 63aa4fea05b27f1408e458b95bb7a2a6, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

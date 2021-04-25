@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 18c7ba8450d7c484ea3a99cd1161a3c2
+guid: 7e8e72112b966ae4f82afa58e36552df
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,23 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Emissive
-    second: {fileID: 2100000, guid: 0348c9073aa2b8c40ad9a5d17ded8d5b, type: 2}
+      name: Body
+    second: {fileID: 7790904239449478938, guid: a13f32c84a6b1344eab945ca1bf5e99d, type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Spike_Monster_Main
-    second: {fileID: -3132935297824217956, guid: 39f7dd88725d7a745a634b6489314443, type: 3}
+      name: Brain
+    second: {fileID: -2535287561770744442, guid: 8a5f22a6954113d4f9f747ed89475959, type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Tooth
-    second: {fileID: 2100000, guid: 11b94ed64c9c968498ec8663c3cee830, type: 2}
+      name: Couille
+    second: {fileID: 7790904239449478938, guid: a13f32c84a6b1344eab945ca1bf5e99d, type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Trap_Spike_Core
-    second: {fileID: -3682039499008682431, guid: 63aa4fea05b27f1408e458b95bb7a2a6, type: 3}
+      name: Glass
+    second: {fileID: 2100000, guid: 795856bd4566a764da99fc7f5f65c79a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Socle
+    second: {fileID: 7778954126355188551, guid: 6d0cdecc5a3efe24daee869f29392716, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

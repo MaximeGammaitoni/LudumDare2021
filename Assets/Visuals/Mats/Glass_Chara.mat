@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fresnel
+  m_Name: Glass_Chara
   m_Shader: {fileID: -6465566751694194690, guid: 7b45651c5cea5fd409c73b84f48cb3a3, type: 3}
   m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
@@ -133,10 +133,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_896104e3006c47bbb437b5988863f957: 0
-    - Vector1_57650ea22428480d9b57e02138345bff: 0.2
-    - Vector1_9168d6477a9f4f66b4e1805fa19b882f: 8.28
-    - Vector1_e7fd8fc0ecbe4d05a8974205f675e78c: 4.13
-    - Vector1_f9612d09f29246a9ad41fa322b6083a4: 1.9
+    - Vector1_57650ea22428480d9b57e02138345bff: 0.13
+    - Vector1_9168d6477a9f4f66b4e1805fa19b882f: 1
+    - Vector1_e7fd8fc0ecbe4d05a8974205f675e78c: 1
+    - Vector1_f9612d09f29246a9ad41fa322b6083a4: 0.9
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -250,7 +250,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - Color_8717f9213fe841c9a2ba21e2ee11c911: {r: 0, g: 1, b: 0.4281311, a: 0}
+    - Color_8717f9213fe841c9a2ba21e2ee11c911: {r: 1, g: 0, b: 0.561501, a: 0}
     - Vector2_16c70cbe38ca474eaea0d2b234f72264: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.122063, g: 0.12253066, b: 0.122641504, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}

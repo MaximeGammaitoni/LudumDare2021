@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8323edc134845ea8c01449fb3f1449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NoPause: 0
   TimeToTrigger: 5
 --- !u!1001 &2955540427084447987
 PrefabInstance:
@@ -144,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3254998928728122008, guid: 393fe455cfd72fa4cadd8b682b752450, type: 3}
       propertyPath: m_Name
-      value: Spike_Trap
+      value: Spike_Trap Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5041876108608680530, guid: 393fe455cfd72fa4cadd8b682b752450, type: 3}
       propertyPath: m_PlayAutomatically
@@ -154,6 +155,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 119.869995
       objectReference: {fileID: 0}
+    - target: {fileID: 8547444987570301753, guid: 393fe455cfd72fa4cadd8b682b752450, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -3682039499008682431, guid: 63aa4fea05b27f1408e458b95bb7a2a6, type: 3}
     - target: {fileID: 8841519876517612496, guid: 393fe455cfd72fa4cadd8b682b752450, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 89.98

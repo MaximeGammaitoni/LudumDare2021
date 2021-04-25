@@ -24,7 +24,8 @@ ScriptedImporter:
       uid=\"3736990487\" type=\"2\" value=\"0.283019,0.148184,0.148184\" />\n  <presetinput
       identifier=\"tips_color\" uid=\"3744116979\" type=\"2\" value=\"0.811321,0.539605,0.539605\"
       />\n  <presetinput identifier=\"roughness\" uid=\"3747199264\" type=\"0\" value=\"0\"
-      />\n </sbspreset>\n"
+      />\n  <presetinput identifier=\"height_range\" uid=\"3355450946\" type=\"0\"
+      value=\"0\" />\n </sbspreset>\n"
     shaderName: HDRP/LitTessellation
     materialProperties:
       shader: {fileID: 4800000, guid: 756bac9090102564582875f4c7e30202, type: 3}

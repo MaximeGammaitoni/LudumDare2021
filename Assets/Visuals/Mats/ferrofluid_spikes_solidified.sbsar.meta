@@ -20,7 +20,11 @@ ScriptedImporter:
       >\n  <presetinput identifier=\"$outputsize\" uid=\"3160737251\" type=\"8\"
       value=\"9,9\" />\n  <presetinput identifier=\"tile\" uid=\"3407206382\" type=\"4\"
       value=\"11\" />\n  <presetinput identifier=\"color\" uid=\"3421335487\" type=\"2\"
-      value=\"0.424528,0.424528,0.424528\" />\n </sbspreset>\n"
+      value=\"0.424528,0.424528,0.424528\" />\n  <presetinput identifier=\"disorder\"
+      uid=\"3421338722\" type=\"0\" value=\"0.843\" />\n  <presetinput identifier=\"peak_height\"
+      uid=\"3421338626\" type=\"0\" value=\"0.732\" />\n  <presetinput identifier=\"channel_height\"
+      uid=\"3221431647\" type=\"4\" value=\"0\" />\n  <presetinput identifier=\"normal_intensity\"
+      uid=\"3107472185\" type=\"0\" value=\"0.505\" />\n </sbspreset>\n"
     shaderName: HDRP/LitTessellation
     materialProperties:
       shader: {fileID: 4800000, guid: 756bac9090102564582875f4c7e30202, type: 3}
@@ -29,7 +33,7 @@ ScriptedImporter:
       lightmapFlags: 4
       enableInstancingVariants: 0
       doubleSidedGI: 0
-      customRenderQueue: -1
+      customRenderQueue: 2225
       texEnvs:
       - name: _AnisotropyMap
         texture: {instanceID: 0}
@@ -277,19 +281,19 @@ ScriptedImporter:
       - name: _StencilRef
         float: 0
       - name: _StencilRefDepth
-        float: 0
+        float: 8
       - name: _StencilRefGBuffer
-        float: 2
+        float: 10
       - name: _StencilRefMV
-        float: 32
+        float: 40
       - name: _StencilWriteMask
-        float: 3
+        float: 6
       - name: _StencilWriteMaskDepth
         float: 8
       - name: _StencilWriteMaskGBuffer
-        float: 3
+        float: 14
       - name: _StencilWriteMaskMV
-        float: 32
+        float: 40
       - name: _SubsurfaceMask
         float: 1
       - name: _SupportDecals
@@ -297,9 +301,9 @@ ScriptedImporter:
       - name: _SurfaceType
         float: 0
       - name: _TessellationBackFaceCullEpsilon
-        float: -0.25
+        float: -0.62
       - name: _TessellationFactor
-        float: 4
+        float: 0
       - name: _TessellationFactorMaxDistance
         float: 50
       - name: _TessellationFactorMinDistance
@@ -345,7 +349,7 @@ ScriptedImporter:
       - name: _UseShadowThreshold
         float: 0
       - name: _ZTestDepthEqualForOpaque
-        float: 4
+        float: 3
       - name: _ZTestGBuffer
         float: 4
       - name: _ZTestTransparent
