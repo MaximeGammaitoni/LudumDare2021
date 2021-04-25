@@ -310,6 +310,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         private @PlayerControls m_Wrapper;
         public MainActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Main_Movement;
+        public InputAction @Dash => m_Wrapper.m_Main_Dash;
         public InputAction @Pause => m_Wrapper.m_Main_Pause;
         public InputAction @Dash => m_Wrapper.m_Main_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
