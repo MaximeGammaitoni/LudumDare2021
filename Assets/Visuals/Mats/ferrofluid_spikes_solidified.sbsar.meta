@@ -17,14 +17,7 @@ ScriptedImporter:
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://ferrofluid_spikes_solidified\" label=\"\"
-      >\n  <presetinput identifier=\"$outputsize\" uid=\"3160737251\" type=\"8\"
-      value=\"9,9\" />\n  <presetinput identifier=\"tile\" uid=\"3407206382\" type=\"4\"
-      value=\"11\" />\n  <presetinput identifier=\"color\" uid=\"3421335487\" type=\"2\"
-      value=\"0.424528,0.424528,0.424528\" />\n  <presetinput identifier=\"disorder\"
-      uid=\"3421338722\" type=\"0\" value=\"0.843\" />\n  <presetinput identifier=\"peak_height\"
-      uid=\"3421338626\" type=\"0\" value=\"0.732\" />\n  <presetinput identifier=\"channel_height\"
-      uid=\"3221431647\" type=\"4\" value=\"0\" />\n  <presetinput identifier=\"normal_intensity\"
-      uid=\"3107472185\" type=\"0\" value=\"0.505\" />\n </sbspreset>\n"
+      >\n </sbspreset>\n"
     shaderName: HDRP/LitTessellation
     materialProperties:
       shader: {fileID: 4800000, guid: 756bac9090102564582875f4c7e30202, type: 3}
