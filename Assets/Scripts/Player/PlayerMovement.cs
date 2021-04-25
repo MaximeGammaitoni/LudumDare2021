@@ -14,9 +14,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float _speed = 2f;
 
-    [SerializeField]
-    RectTransform _debugStickTr = null;
-
     #endregion
 
     #region private members
@@ -81,11 +78,6 @@ public class PlayerMovement : MonoBehaviour
         if (ctx.performed)
         {
             _movementDirection = ctx.ReadValue<Vector2>();
-            if (_debugStickTr != null)
-            {
-                //Debug.Log(_movementDirection);
-                _debugStickTr.localPosition = new Vector2(-50,50) + _movementDirection * 50;
-            }
         }
         else if (ctx.canceled)
         {
