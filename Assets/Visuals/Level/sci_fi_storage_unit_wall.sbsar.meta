@@ -20,7 +20,8 @@ ScriptedImporter:
       <presetinput identifier=\"$outputsize\" uid=\"3108416346\" type=\"8\" value=\"9,9\"
       />\n  <presetinput identifier=\"door_paint_color\" uid=\"3454536265\" type=\"2\"
       value=\"0.654902,0.654902,0.654902\" />\n  <presetinput identifier=\"age\"
-      uid=\"3447154794\" type=\"0\" value=\"0.96\" />\n </sbspreset>\n"
+      uid=\"3447154794\" type=\"0\" value=\"0.96\" />\n  <presetinput identifier=\"height_range\"
+      uid=\"3292258721\" type=\"0\" value=\"0\" />\n </sbspreset>\n"
     shaderName: HDRP/LitTessellation
     materialProperties:
       shader: {fileID: 4800000, guid: 756bac9090102564582875f4c7e30202, type: 3}
@@ -37,7 +38,7 @@ ScriptedImporter:
         offset: {x: 0, y: 0}
       - name: _BaseColorMap
         texture: {fileID: -2510146422115936203, guid: 63aa4fea05b27f1408e458b95bb7a2a6, type: 3}
-        scale: {x: 4, y: 4}
+        scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _BentNormalMap
         texture: {instanceID: 0}
@@ -223,7 +224,7 @@ ScriptedImporter:
       - name: _HeightTessCenter
         float: 0.5
       - name: _InvTilingScale
-        float: 0.25
+        float: 1
       - name: _Ior
         float: 1
       - name: _IridescenceMask
