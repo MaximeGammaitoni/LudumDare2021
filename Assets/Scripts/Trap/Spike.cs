@@ -30,11 +30,8 @@ public class Spike : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("Box Collider");
-        // TODO Wait More information before implement player death
         if (other.tag == "Player")
         {
-            OPD?.Invoke();
             GameManager.singleton.PlayerEvents.PlayerIsDead();
         }
     }

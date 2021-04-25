@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using States;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,8 +24,6 @@ public class PlayerEvents
         if (args.GetType() != typeof(PlayerEvents.PlayerDeathArgs))
             throw new Exception("argument must be a PlayerDeathArgs");
         PlayerEvents.PlayerDeathArgs _args = ((PlayerEvents.PlayerDeathArgs)args);
-        Debug.Log("lolilolk");
-
     }
     private static void Test(Args args)
     {
@@ -35,7 +34,18 @@ public class PlayerEvents
     }
     public void PlayerIsDead()
     {
-        EventsManager.TriggerEvent("OnPlayerDeath", new PlayerDeathArgs { PlayerGo = new GameObject("test") });
+        // not False  or not False
+        if (!(GameManager.singleton.StatesManager.CurrentState is End) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Win) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Pause) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Landing) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Falling))
+        {
+            EventsManager.TriggerEvent("OnPlayerDeath", new PlayerDeathArgs());
+            GameManager.singleton.StatesManager.CurrentState = new States.End();
+            GameManager.singleton.OnDefeat();
+        }
+        
     }
     public void test(Args args)
     {

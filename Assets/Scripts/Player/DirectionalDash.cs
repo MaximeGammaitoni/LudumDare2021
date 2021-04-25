@@ -14,9 +14,13 @@ public class DirectionalDash : MonoBehaviour, IDashResponse
     }
     public IEnumerator Dash( Vector2 playerMovement)
     {
+        Vector3 movement = (Vector3.right * playerMovement.x + Vector3.forward * playerMovement.y).normalized;
+        if (movement == Vector3.zero)
+        {
+            movement = transform.forward;
+        }
         while (_dashTime > 0)
         {
-            Vector3 movement = Vector3.right * playerMovement.x + Vector3.forward * playerMovement.y;
             transform.position += _SpeedDash * movement * Time.fixedDeltaTime;
             _dashTime -= Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();

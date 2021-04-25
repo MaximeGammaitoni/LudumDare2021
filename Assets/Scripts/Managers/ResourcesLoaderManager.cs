@@ -13,7 +13,8 @@ public class ResourcesLoaderManager : MonoBehaviour
     [Header("ScriptableObjects")]
     public VFXLoader VFXLoader;
     public EnnemiesLoader EnnemiesLoader;
-    
+    public UIElementsLoader UIElementsLoader;
+
     [HideInInspector] public CanvasElements CanvasElements;
     [HideInInspector] public LevelLoader LevelLoader;
 

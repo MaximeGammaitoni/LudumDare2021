@@ -48,18 +48,26 @@ public class PlayerMovement : MonoBehaviour
 
     #region public members
 
+    public static PlayerMovement player {get; private set;} = null;
+
+    public bool isDashing => _isDashing;
+
     #endregion
 
     #region private methods
 
     void Awake()
     {
+        if (player == null)
+        {
+            player = this;
+        }
         _collider = GetComponent<Collider>();
         _playerControls = new PlayerControls();
-       _playerControls.Enable();
-       _playerControls.Main.Movement.performed += OnAxesChanged;
-       _playerControls.Main.Movement.canceled += OnAxesChanged;
-       _playerControls.Main.Dash.performed += OnDash;
+        _playerControls.Enable();
+        _playerControls.Main.Movement.performed += OnAxesChanged;
+        _playerControls.Main.Movement.canceled += OnAxesChanged;
+        _playerControls.Main.Dash.started += OnDash;
 
         DashReponse = GetComponent<IDashResponse>();
         if (DashReponse == null)
@@ -70,6 +78,10 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDestroy()
     {
+        if (player == this)
+        {
+            player = null;
+        }
         _playerControls.Main.Movement.performed -= OnAxesChanged;
         _playerControls.Main.Movement.canceled -= OnAxesChanged;
         _playerControls.Main.Dash.performed -= OnDash;
@@ -112,6 +124,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDash(CallbackContext ctx)
     {
+        if (_isDashing)
+        {
+            return;
+        }
+
+
         if (_isDashable)
         {
             _isDashing = true;
@@ -131,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (_falling)
+        if (_falling && Mathf.Approximately(_collider.attachedRigidbody.velocity.y, 0f))
         {
             _landing = true;
         }
@@ -168,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
         _falling = true;
         _landing = false;
         float playerHeight = _collider.bounds.size.y;
-        float targetHeight = transform.position.y - playerHeight;
+        float targetHeight = transform.position.y - playerHeight - Mathf.Epsilon;
         Rigidbody rb = _collider.attachedRigidbody;
         bool oldGravityState = rb.useGravity;
         // Make sure that gravity is enabled.
@@ -179,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
         _collider.enabled = true;
         // Wait for the player to fall on the ground.
         yield return new WaitUntil(() => _landing);
+        Debug.Log("LANDING");
         _falling = false;
         _landing = false;
         rb.useGravity = oldGravityState;
