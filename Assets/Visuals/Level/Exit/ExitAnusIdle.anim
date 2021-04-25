@@ -51,7 +51,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.Up
-    path: Dighole
+    path: 
     classID: 137
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -63,7 +63,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1615370582
+      path: 0
       attribute: 3591424722
       script: {fileID: 0}
       typeID: 137
@@ -125,7 +125,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.Up
-    path: Dighole
+    path: 
     classID: 137
     script: {fileID: 0}
   m_EulerEditorCurves: []

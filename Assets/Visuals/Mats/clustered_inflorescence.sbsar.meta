@@ -20,7 +20,9 @@ ScriptedImporter:
       <presetinput identifier=\"$outputsize\" uid=\"2411986825\" type=\"8\" value=\"9,9\"
       />\n  <presetinput identifier=\"secondary_color\" uid=\"3842458225\" type=\"3\"
       value=\"0.518868,0.425752,0.320621,0.72\" />\n  <presetinput identifier=\"secondary_color_mix\"
-      uid=\"3842457705\" type=\"0\" value=\"0.372\" />\n </sbspreset>\n"
+      uid=\"3842457705\" type=\"0\" value=\"0.372\" />\n  <presetinput identifier=\"height_range\"
+      uid=\"4072584562\" type=\"0\" value=\"0\" />\n  <presetinput identifier=\"height_position\"
+      uid=\"4072584451\" type=\"0\" value=\"0\" />\n </sbspreset>\n"
     shaderName: HDRP/LitTessellation
     materialProperties:
       shader: {fileID: 4800000, guid: 756bac9090102564582875f4c7e30202, type: 3}

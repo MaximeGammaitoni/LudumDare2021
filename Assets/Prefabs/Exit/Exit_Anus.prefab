@@ -91,6 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2150029665530163814}
   - component: {fileID: 7608549965353655037}
+  - component: {fileID: 2050079983057418916}
+  - component: {fileID: 3225278890437802229}
   m_Layer: 0
   m_Name: Dighole
   m_TagString: Untagged
@@ -158,12 +160,46 @@ SkinnedMeshRenderer:
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -3191687858960746275, guid: cd4f75591bf337c4e99e4e0b53bef867, type: 3}
   m_Bones: []
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
+  - 0
   m_RootBone: {fileID: 0}
   m_AABB:
     m_Center: {x: -0.053566456, y: -0.42837596, z: 0.0035095215}
     m_Extent: {x: 1.0540836, y: 0.7307136, z: 1.0042554}
   m_DirtyAABB: 0
+--- !u!114 &2050079983057418916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122718575499788285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3289811c67da5764dae51ee0bcbf7bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isOpened: 0
+--- !u!95 &3225278890437802229
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122718575499788285}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b9654b52c0d9684dbbfee19eb4fa834, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2646601552388553165
 GameObject:
   m_ObjectHideFlags: 0

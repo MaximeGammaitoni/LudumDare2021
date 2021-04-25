@@ -19,6 +19,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Tooth
     second: {fileID: 2100000, guid: 11b94ed64c9c968498ec8663c3cee830, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trap_Spike_Core
+    second: {fileID: -3682039499008682431, guid: 63aa4fea05b27f1408e458b95bb7a2a6, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
