@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float _speed = 2f;
 
+    [SerializeField]
+    bool _isDashable = true;
+
     #endregion
 
     #region private members
@@ -28,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     bool _landing = false;
 
+    bool _isDashing = false;
+
+    private IDashResponse DashReponse;
+
     #endregion
 
     #region public members
@@ -40,15 +47,24 @@ public class PlayerMovement : MonoBehaviour
     {
         _collider = GetComponent<Collider>();
         _playerControls = new PlayerControls();
-        _playerControls.Enable();
-        _playerControls.Main.Movement.performed += OnAxesChanged;
-        _playerControls.Main.Movement.canceled += OnAxesChanged;
+       _playerControls.Enable();
+       _playerControls.Main.Movement.performed += OnAxesChanged;
+       _playerControls.Main.Movement.canceled += OnAxesChanged;
+       _playerControls.Main.Dash.performed += OnDash;
+
+        DashReponse = GetComponent<IDashResponse>();
+        if (DashReponse == null)
+        {
+            Debug.LogError("Dash Response missing in PlayerMovement");
+        }
     }
 
     void OnDestroy()
     {
         _playerControls.Main.Movement.performed -= OnAxesChanged;
         _playerControls.Main.Movement.canceled -= OnAxesChanged;
+        _playerControls.Main.Dash.performed -= OnDash;
+
     }
 
     void OnEnable()
@@ -85,6 +101,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnDash(CallbackContext ctx)
+    {
+        _isDashing = true;
+        if (DashReponse != null)
+        {
+            StartCoroutine(DashCoroutine());
+        }
+        else
+        {
+            _isDashing = false;
+        }
+
+    }
+
     void OnCollisionEnter(Collision other)
     {
         if (_falling)
@@ -99,14 +129,17 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
-        transform.position += _speed * movement * Time.fixedDeltaTime;
-        if (movement != Vector3.zero)
+        if (!_isDashing)
         {
-            transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
-        }
+            Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
+            transform.position += _speed * movement * Time.fixedDeltaTime;
+            if (movement != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
+            }
+        } 
     }
-    
+
     IEnumerator FallThroughGroundCoroutine()
     {
         if (_falling)
@@ -135,9 +168,22 @@ public class PlayerMovement : MonoBehaviour
         GameManager.singleton.StatesManager.CurrentState = new Run();
     }
 
+
+
+    IEnumerator DashCoroutine()
+    {
+        yield return DashReponse.Dash(_movementDirection);
+        _isDashing = false;
+    }
+
     #endregion
 
     #region public methods
 
     #endregion
+}
+
+public interface IDashResponse
+{
+    IEnumerator Dash(Vector2 playerMovement);
 }
