@@ -14,4 +14,8 @@ public class CanvasElements : MonoBehaviour
     public GameObject PausePanel;
     public Button QuitGameButton;
     public Button ResumeGameButton;
+    public GameObject DefeatPanel;
+    public Button DefeatPanelQuitButton;
+    public Button DefeatPanelRetryButton;
+    public Button DefeatPanelMainMenuButton;
 }
