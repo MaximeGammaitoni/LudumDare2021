@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool _isDashing = false;
 
-    private IDashResponse Dashresponse;
+    private IDashResponse DashReponse;
 
     #endregion
 
@@ -52,7 +52,11 @@ public class PlayerMovement : MonoBehaviour
        _playerControls.Main.Movement.canceled += OnAxesChanged;
        _playerControls.Main.Dash.performed += OnDash;
 
-        Dashresponse = GetComponent<IDashResponse>();
+        DashReponse = GetComponent<IDashResponse>();
+        if (DashReponse == null)
+        {
+            Debug.LogError("Dash Response missing in PlayerMovement");
+        }
     }
 
     void OnDestroy()
@@ -100,7 +104,14 @@ public class PlayerMovement : MonoBehaviour
     void OnDash(CallbackContext ctx)
     {
         _isDashing = true;
-        StartCoroutine(DashCoroutine());
+        if (DashReponse != null)
+        {
+            StartCoroutine(DashCoroutine());
+        }
+        else
+        {
+            _isDashing = false;
+        }
 
     }
 
@@ -162,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashCoroutine()
     {
-        yield return Dashresponse.Dash(_movementDirection);
+        yield return DashReponse.Dash(_movementDirection);
         _isDashing = false;
     }
 
