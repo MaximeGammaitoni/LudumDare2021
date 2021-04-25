@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< ours
-guid: a06edab1b49b24667831fe0ff2dac695
-=======
 guid: d5220b8164bdb5e478ce104bf28ff0c0
->>>>>>> theirs
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
