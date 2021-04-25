@@ -36,7 +36,10 @@ public class PlayerEvents
     {
         // not False  or not False
         if (!(GameManager.singleton.StatesManager.CurrentState is End) &&
-            !(GameManager.singleton.StatesManager.CurrentState is Win))
+            !(GameManager.singleton.StatesManager.CurrentState is Win) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Pause) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Landing) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Falling))
         {
             EventsManager.TriggerEvent("OnPlayerDeath", new PlayerDeathArgs());
             GameManager.singleton.StatesManager.CurrentState = new States.End();
