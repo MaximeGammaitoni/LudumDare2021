@@ -312,6 +312,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Main_Movement;
         public InputAction @Dash => m_Wrapper.m_Main_Dash;
         public InputAction @Pause => m_Wrapper.m_Main_Pause;
+        public InputAction @Dash => m_Wrapper.m_Main_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }

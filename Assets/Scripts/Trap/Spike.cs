@@ -79,7 +79,6 @@ public class Spike : MonoBehaviour
                     TrapAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                 {
                     TrapAnimator.SetBool("Play", false);
-                    StartCoroutine(WaitBeforeTrigger());
                 }
             }
             yield return null;
