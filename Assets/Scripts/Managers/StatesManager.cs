@@ -1,11 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using States;
 
 public class StatesManager
 {
     BaseState currentState;
+
+    public UnityAction<StateChangedArgs> OnStateChanged;
+
     public BaseState CurrentState { 
         get
         {
@@ -13,9 +18,14 @@ public class StatesManager
         }
         set
         {
+            var oldState = currentState;
             currentState?.Out();
             currentState = value;
             currentState.In();
+            EventsManager.TriggerEvent(nameof(OnStateChanged), new StateChangedArgs() {
+                oldState = oldState,
+                newState = currentState
+            });
         }
     }
 
@@ -23,4 +33,10 @@ public class StatesManager
     {
         CurrentState = state;
     }
+}
+
+public class StateChangedArgs : Args
+{
+    public BaseState oldState;
+    public BaseState newState;
 }

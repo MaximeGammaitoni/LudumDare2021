@@ -6,7 +6,7 @@ using System;
 
 public static class EventsManager
 {
-    private static Dictionary<string, UnityCustomEvents<Args>> eventDictionary;
+    private static Dictionary<string, UnityCustomEvents<Args>> eventDictionary = new Dictionary<string, UnityCustomEvents<Args>>();
 
     public static void Init()
     {

@@ -76,17 +76,14 @@ public class PauseManager
     {
         if (SelectedButton == null)
         {
-            Debug.Log("resume");
             SelectedButton = ResumeButton;
             ResumeButton.Select();
         }
         else if(SelectedButton == ResumeButton)
         {
-            Debug.Log("quit");
             SelectedButton = QuitButton;
             QuitButton.Select();
         }
-        Debug.Log("resume");
         SelectedButton = ResumeButton;
         ResumeButton.Select();
     }
