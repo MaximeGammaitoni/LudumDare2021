@@ -21,6 +21,10 @@ public class TimerManager
     {
         timer -= Time.deltaTime * Time.timeScale;
         var ts = TimeSpan.FromSeconds(timer);
+        if (timer <= 0f)
+        {
+            GameManager.singleton.PlayerEvents.PlayerIsDead();
+        }
         timerText.text = string.Format("{0:D2}:{1:D2}",
                 ts.Minutes,
                 ts.Seconds);
