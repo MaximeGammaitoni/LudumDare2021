@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         if (_isDashable)
         {
             _isDashing = true;
-            Debug.Log("is Dashing" + _isDashing);
+            //Debug.Log("is Dashing" + _isDashing);
             if (DashReponse != null)
             {
                 StartCoroutine(DashCoroutine());
@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log("is dashing is " + _isDashing);
+        //Debug.Log("is dashing is " + _isDashing);
         if (!GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
         {
             return;
@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
             if (!_MovementChecker.CheckMovement(_movementDirection, _speed * movement.magnitude * Time.fixedDeltaTime, _WallLayerMask).HasValue)
             {
-                Debug.Log("Moving");
+                //Debug.Log("Moving");
                 transform.position += _speed * movement * Time.fixedDeltaTime;
             }
             if (movement != Vector3.zero)

@@ -1690,6 +1690,7 @@ MonoBehaviour:
   LeaderBoardTable: {fileID: 0}
   VFXLoader: {fileID: 11400000, guid: 1b2699281fba4034cbd8ee981a0eb09b, type: 2}
   EnnemiesLoader: {fileID: 11400000, guid: 35920113fb12fec428a244567540df52, type: 2}
+  UIElementsLoader: {fileID: 0}
   CanvasElements: {fileID: 0}
   LevelLoader: {fileID: 0}
 --- !u!114 &1066510838
@@ -1707,10 +1708,15 @@ MonoBehaviour:
   Canvas: {fileID: 2052576789}
   TopPanel: {fileID: 1619493608}
   TimerPanel: {fileID: 1097911852}
+  LeaderBoardContent: {fileID: 0}
   TimerText: {fileID: 2065212878}
   PausePanel: {fileID: 2005195776}
   QuitGameButton: {fileID: 1282039027}
   ResumeGameButton: {fileID: 1646484071}
+  DefeatPanel: {fileID: 0}
+  DefeatPanelQuitButton: {fileID: 0}
+  DefeatPanelRetryButton: {fileID: 0}
+  DefeatPanelMainMenuButton: {fileID: 0}
 --- !u!1 &1097911852
 GameObject:
   m_ObjectHideFlags: 0
@@ -4541,6 +4547,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser_Moove
       objectReference: {fileID: 0}
+    - target: {fileID: 7669924760169284247, guid: 5cdd6b5fdee21b74c977097aa18fd78f, type: 3}
+      propertyPath: m_TagString
+      value: Interrupteur
+      objectReference: {fileID: 0}
     - target: {fileID: 7886777688759949113, guid: 5cdd6b5fdee21b74c977097aa18fd78f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -4710,3 +4720,21 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+--- !u!1 &7399522210986762048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7669924760169284247, guid: 5cdd6b5fdee21b74c977097aa18fd78f, type: 3}
+  m_PrefabInstance: {fileID: 7399522210986762045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7399522210986762049
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399522210986762048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.6058033, z: 1}
+  m_Center: {x: 0, y: 0.68891805, z: 0}

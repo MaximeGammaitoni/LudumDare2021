@@ -37,6 +37,15 @@ public class ForwardDash : MonoBehaviour, IDashResponse
         {
             maxDistance = hit.distance - 0.1f;
         }
+        else if (Physics.Raycast(_playerMovement.RaycastOrigin.position, transform.forward, out hit, _dashDistance))
+        {
+            if (hit.collider.CompareTag("Interrupteur"))
+            {
+                maxDistance = Vector3.Distance(_playerMovement.RaycastOrigin.position, hit.transform.position);
+                Debug.Log("Interrupteur Hit");
+                hit.collider.GetComponentInChildren<MeshRenderer>().enabled = false;
+            }
+        }
         Vector3 initialPos = transform.position;
        
         while (_dashTime > 0)
@@ -52,7 +61,7 @@ public class ForwardDash : MonoBehaviour, IDashResponse
         }
         _dashTime = _DashTime;
         _playerMovement._isDashing = false;
-        Debug.Log("is not Dashing " + _playerMovement._isDashing);
+        //Debug.Log("is not Dashing " + _playerMovement._isDashing);
 
         yield return null;
     }
