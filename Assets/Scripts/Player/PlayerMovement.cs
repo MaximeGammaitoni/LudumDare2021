@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float _speed = 2f;
 
+    [SerializeField]
+    bool _isDashable = true;
+
     #endregion
 
     #region private members
@@ -19,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     PlayerControls _playerControls = null;
 
     Vector2 _movementDirection = Vector2.zero;
+
+    bool _isDashing = false;
+
+    private IDashResponse Dashresponse;
 
     #endregion
 
@@ -34,12 +41,17 @@ public class PlayerMovement : MonoBehaviour
        _playerControls.Enable();
        _playerControls.Main.Movement.performed += OnAxesChanged;
        _playerControls.Main.Movement.canceled += OnAxesChanged;
+       _playerControls.Main.Dash.performed += OnDash;
+
+        Dashresponse = GetComponent<IDashResponse>();
     }
 
     void OnDestroy()
     {
         _playerControls.Main.Movement.performed -= OnAxesChanged;
         _playerControls.Main.Movement.canceled -= OnAxesChanged;
+        _playerControls.Main.Dash.performed -= OnDash;
+
     }
 
     void OnEnable()
@@ -64,14 +76,31 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnDash(CallbackContext ctx)
+    {
+        _isDashing = true;
+        StartCoroutine(DashCoroutine());
+
+    }
+
     void FixedUpdate()
     {
-        Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
-        transform.position += _speed * movement * Time.fixedDeltaTime;
-        if (movement != Vector3.zero)
+        if (!_isDashing)
         {
-            transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
+            Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
+            transform.position += _speed * movement * Time.fixedDeltaTime;
+            if (movement != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
+            }
         }
+       
+    }
+
+    IEnumerator DashCoroutine()
+    {
+        yield return Dashresponse.Dash(_movementDirection);
+        _isDashing = false;
     }
 
     #endregion
@@ -79,4 +108,9 @@ public class PlayerMovement : MonoBehaviour
     #region public methods
 
     #endregion
+}
+
+public interface IDashResponse
+{
+    IEnumerator Dash(Vector2 playerMovement);
 }

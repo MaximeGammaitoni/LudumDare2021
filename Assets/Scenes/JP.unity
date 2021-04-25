@@ -473,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8985092941400187736, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.26
+      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 8985092941400187736, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1125,7 +1125,7 @@ Transform:
   m_GameObject: {fileID: 939049163}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 193.59, y: 193.59, z: 193.59}
   m_Children: []
   m_Father: {fileID: 1273492503}
   m_RootOrder: 0
@@ -1241,6 +1241,7 @@ MonoBehaviour:
   VFXLoader: {fileID: 11400000, guid: 1b2699281fba4034cbd8ee981a0eb09b, type: 2}
   EnnemiesLoader: {fileID: 11400000, guid: 35920113fb12fec428a244567540df52, type: 2}
   CanvasElements: {fileID: 0}
+  LevelLoader: {fileID: 0}
 --- !u!114 &1066510838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1292,7 +1293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.42882586, y: 0.24080107}
   m_AnchorMax: {x: 0.5672936, y: 0.8563979}
-  m_AnchoredPosition: {x: 1.4999695, y: -0.24500275}
+  m_AnchoredPosition: {x: 1.4999695, y: -0.24500084}
   m_SizeDelta: {x: 0.099998474, y: 0.9000015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1097911854
@@ -1912,6 +1913,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8985092941400187739, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
   m_PrefabInstance: {fileID: 352156359}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1896123032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896123031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8993212dbd0d59d448b55af03c54fdc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SpeedDash: 20
+  _DashTime: 0.05
 --- !u!4 &1896123035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8985092941400187736, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
