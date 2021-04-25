@@ -28,7 +28,7 @@ namespace UnityStandardAssets._2D
 
 
         // Update is called once per frame
-        private void Update()
+        private void FixedUpdate()
         {
             var offset = new Vector3(0, offsetY, offsetZ);
             // only update lookahead pos if accelerating or changed direction
