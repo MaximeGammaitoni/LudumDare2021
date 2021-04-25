@@ -1,56 +1,47 @@
 using System.Collections;
-using System.Collections.Generic;
+using MyBox;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Spike : MonoBehaviour
 {
     // Public declaration
-    public float TimeToTrigger = 2f;
-    public Transform Needle;
-    public float TimeTriggered = 2f;
-    public float NeedleFaster = 0.03f;
+    public bool NoPause = false;
+    [ConditionalField(nameof(NoPause), true)]  public float TimeToTrigger = 2f;
+    public UnityEvent OPD;
+    
 
     // Private declaration
-    private bool _CanBeTrigger = false;
+    private Animator TrapAnimator;
     private float _TimeRemaining = 0;
-    private Coroutine _InProgress = null;
-    private Coroutine _Waiting = null;
-    private bool _CanWait = true;
+    private Collider _TrapCollider;
 
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-
-        if (_CanBeTrigger)
-        {
-            if (_InProgress == null)
-            {
-
-                _InProgress = StartCoroutine(Animation());
-            }
-
-        }
-        else if (_Waiting == null)
-        {
-             _Waiting = StartCoroutine(WaitBeforeTrigger());
-            
-        }
-
+        TrapAnimator = this.GetComponent<Animator>();
+        _TrapCollider = this.GetComponent<Collider>();
+        if (NoPause)
+            TimeToTrigger = 0;
+        StartCoroutine(WaitBeforeTrigger());
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
+
+        Debug.Log("Box Collider");
         // TODO Wait More information before implement player death
         if (other.tag == "Player")
         {
+            OPD?.Invoke();
             GameManager.singleton.PlayerEvents.PlayerIsDead();
         }
     }
 
     IEnumerator WaitBeforeTrigger()
     {
-        while (_CanWait)
+        while (!TrapAnimator.GetBool("Play"))
         {
             if (TimeToTrigger > _TimeRemaining)
             {
@@ -59,53 +50,43 @@ public class Spike : MonoBehaviour
             else
             {
                 _TimeRemaining = 0;
-                _CanBeTrigger = true;
+                TrapAnimator.SetBool("Play", true);
+                StartCoroutine(Animation());
             }
             yield return new WaitForSeconds(1);
+
         }
-        _CanWait = false;
-        _Waiting = null;
 
     }
-
 
     IEnumerator Animation()
     {
-        float new_y_position;
-        Vector3 initial_position = Needle.transform.position;
-        Vector3 destination_position = new Vector3(
-            Needle.transform.position.x + Needle.transform.lossyScale.x,
-            Needle.transform.position.y + Needle.transform.lossyScale.y,
-            Needle.transform.position.z + Needle.transform.lossyScale.z);
-
-        
-        while (Needle.position.y < destination_position.y)
-        {
-            new_y_position = Needle.position.y + NeedleFaster;
-            if (new_y_position > destination_position.y)
+        while (TrapAnimator.GetBool("Play")) {
+            if (NoPause)
             {
-                new_y_position = destination_position.y;
+                TrapAnimator.SetBool("NoPause", true);
+                TrapAnimator.SetBool("EndAnimation", false);
+                if (TrapAnimator.GetCurrentAnimatorStateInfo(0).IsName("Spike_trap") &&
+                    TrapAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    TrapAnimator.SetBool("EndAnimation", true);
+                }
             }
-
-            Needle.position = new Vector3(Needle.position.x, new_y_position, Needle.position.z);
+            else
+            {
+                TrapAnimator.SetBool("NoPause", false);
+                if (TrapAnimator.GetCurrentAnimatorStateInfo(0).IsName("Spike_trap") &&
+                    TrapAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    TrapAnimator.SetBool("Play", false);
+                    StartCoroutine(WaitBeforeTrigger());
+                }
+            }
             yield return null;
 
         }
-        yield return new WaitForSeconds(TimeTriggered);
+       
 
-        while (Needle.position.y > initial_position.y)
-        {
-            new_y_position = Needle.position.y - NeedleFaster;
-            if (new_y_position < initial_position.y)
-            {
-                new_y_position = initial_position.y;
-            }
-            Needle.position = new Vector3(Needle.position.x, new_y_position, Needle.position.z);
-            yield return null;
-
-        }
-        _CanWait = true;
-        _CanBeTrigger = false;
-        _InProgress = null;
     }
 }
+

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using States;
 
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
@@ -19,9 +21,15 @@ public class PlayerMovement : MonoBehaviour
 
     #region private members
 
+    Collider _collider = null;
+
     PlayerControls _playerControls = null;
 
     Vector2 _movementDirection = Vector2.zero;
+
+    bool _falling = false;
+
+    bool _landing = false;
 
     bool _isDashing = false;
 
@@ -37,7 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-       _playerControls = new PlayerControls();
+        _collider = GetComponent<Collider>();
+        _playerControls = new PlayerControls();
        _playerControls.Enable();
        _playerControls.Main.Movement.performed += OnAxesChanged;
        _playerControls.Main.Movement.canceled += OnAxesChanged;
@@ -57,11 +66,23 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         _playerControls?.Enable();
+        // Suscribe to state events.
+        EventsManager.StartListening(nameof(StatesManager.OnStateChanged), OnStateChanged);
     }
 
     void OnDisable()
     {
         _playerControls?.Disable();
+        // unsuscribe to state events.
+        EventsManager.StopListening(nameof(StatesManager.OnStateChanged), OnStateChanged);
+    }
+
+    void OnStateChanged(Args args)
+    {
+        if (args is StateChangedArgs stateArgs && stateArgs.newState is Falling)
+        {
+            StartCoroutine(FallThroughGroundCoroutine());
+        }
     }
 
     void OnAxesChanged(CallbackContext ctx)
@@ -83,6 +104,14 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if (_falling)
+        {
+            _landing = true;
+        }
+    }
+
     void FixedUpdate()
     {
         if (!_isDashing)
@@ -94,8 +123,42 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
             }
         }
-       
+        if (!GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
+        {
+            return;
+        }
+        
     }
+
+    IEnumerator FallThroughGroundCoroutine()
+    {
+        if (_falling)
+        {
+            yield break;
+        }
+        _falling = true;
+        _landing = false;
+        float playerHeight = _collider.bounds.size.y;
+        float targetHeight = transform.position.y - playerHeight;
+        Rigidbody rb = _collider.attachedRigidbody;
+        bool oldGravityState = rb.useGravity;
+        // Make sure that gravity is enabled.
+        rb.useGravity = true;
+        _collider.enabled = false;
+        // With that we make sure that the player has fallen through the ground.
+        yield return new WaitUntil(() => transform.position.y <= targetHeight);
+        _collider.enabled = true;
+        // Wait for the player to fall on the ground.
+        yield return new WaitUntil(() => _landing);
+        _falling = false;
+        _landing = false;
+        rb.useGravity = oldGravityState;
+        GameManager.singleton.StatesManager.CurrentState = new Landing();
+        // Immediately regain movement (?)
+        GameManager.singleton.StatesManager.CurrentState = new Run();
+    }
+
+
 
     IEnumerator DashCoroutine()
     {
