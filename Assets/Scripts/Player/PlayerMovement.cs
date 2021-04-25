@@ -17,6 +17,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     bool _isDashable = true;
 
+    [SerializeField]
+    MovementChecker _MovementChecker;
+
+    public LayerMask _WallLayerMask;
+
+    public Transform RaycastOrigin;
+
+    public float DashCooldownTime;
+
     #endregion
 
     #region private members
@@ -31,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool _landing = false;
 
-    bool _isDashing = false;
+    public bool _isDashing = false;
 
     private IDashResponse DashReponse;
 
@@ -120,11 +129,21 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (DashReponse != null)
+
+        if (_isDashable)
         {
             _isDashing = true;
-            StartCoroutine(DashCoroutine());
+            Debug.Log("is Dashing" + _isDashing);
+            if (DashReponse != null)
+            {
+                StartCoroutine(DashCoroutine());
+            }
+            else
+            {
+                _isDashing = false;
+            }
         }
+        
 
     }
 
@@ -138,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log("is dashing is " + _isDashing);
         if (!GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
         {
             return;
@@ -145,7 +165,11 @@ public class PlayerMovement : MonoBehaviour
         if (!_isDashing)
         {
             Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
-            transform.position += _speed * movement * Time.fixedDeltaTime;
+            if (!_MovementChecker.CheckMovement(_movementDirection, _speed * movement.magnitude * Time.fixedDeltaTime, _WallLayerMask).HasValue)
+            {
+                Debug.Log("Moving");
+                transform.position += _speed * movement * Time.fixedDeltaTime;
+            }
             if (movement != Vector3.zero)
             {
                 transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
@@ -186,9 +210,13 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashCoroutine()
     {
+        _isDashable = false;
         yield return DashReponse.Dash(_movementDirection);
-        _isDashing = false;
+        //_isDashing = false;
+        yield return new WaitForSeconds(DashCooldownTime);
+        _isDashable = true;
     }
+
 
     #endregion
 
