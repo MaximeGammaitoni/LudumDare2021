@@ -8,12 +8,9 @@ public class PlayerEvents
 {
     public PlayerEvents()
     {
-        //OnPlayerDeath += PlayerDeath;
-        //OnPlayerDeath += Test;
-        GameManager.singleton.EventsManager.StartListening(nameof(OnPlayerDeath), PlayerDeathHandler);
-        Debug.Log(GameManager.singleton.ScoreManager?.MyString);
-        GameManager.GameUpdateHandler += PlayerUpdate;
-        PlayerIsDead();
+        PlayerDeathHandler += OnPlayerDeath;
+        EventsManager.StartListening("OnPlayerDeath", PlayerDeathHandler);
+        GameManager.singleton.StatesEvents.OnBeginIn += test;
     }
 
     public UnityAction<Args> PlayerDeathHandler;
@@ -38,10 +35,11 @@ public class PlayerEvents
     }
     public void PlayerIsDead()
     {
-        GameManager.singleton.EventsManager.TriggerEvent("OnPlayerDeath", new PlayerDeathArgs { PlayerGo = new GameObject("test") });
+        EventsManager.TriggerEvent("OnPlayerDeath", new PlayerDeathArgs { PlayerGo = new GameObject("test") });
     }
-    public void PlayerUpdate()
+    public void test(Args args)
     {
+        Debug.Log("fsedfsdfs");
     }
 
 }

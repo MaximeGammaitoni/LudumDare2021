@@ -1,4 +1,5 @@
-﻿using System;
+﻿using States;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,17 +22,17 @@ public class GameManager : MonoBehaviour
 
     // Declare all your service here
     [HideInInspector] public ResourcesLoaderManager ResourcesLoaderManager;
-    [HideInInspector] public EventsManager EventsManager { get; set; }
     [HideInInspector] public PlayerEvents PlayerEvents { get; set; }
     
-    [HideInInspector] public ScoreManager ScoreManager { get; set; }
-
+    [HideInInspector] public TimerManager TimerManager { get; set; }
+    [HideInInspector] public StatesManager StatesManager { get; set; }
+    [HideInInspector] public StatesEvents StatesEvents { get; set; }
+    [HideInInspector] public PauseManager PauseManager { get; set; }
     public void Awake()
     {
         GameUpdateHandler = null;
         GameFixedUpdateHandler = null;
         singleton = this;
-        Debug.Log("singleton:" + singleton.ToString() + " is created");
         StartGameManager();
     }
     private void StartGameManager()
@@ -39,10 +40,23 @@ public class GameManager : MonoBehaviour
         try
         {
             ResourcesLoaderManager = transform.GetComponentInChildren<ResourcesLoaderManager>();
+            ResourcesLoaderManager.Init();
+            EventsManager.Init();
 
-            EventsManager = new EventsManager();
-            ScoreManager = new ScoreManager();
+            StatesEvents = new StatesEvents();
+            StatesManager = new StatesManager();
+
+            EventsManager.StartListening(nameof(StatesEvents.OnBeginIn), args => { Debug.Log("BEGIN GAME IN"); });
+            EventsManager.StartListening(nameof(StatesEvents.OnBeginOut), args => { Debug.Log("BEGIN GAME OUT"); });
+            EventsManager.StartListening(nameof(StatesEvents.OnRunIn), args => { Debug.Log("RUN IN"); });
+            EventsManager.StartListening(nameof(StatesEvents.OnRunOut), args => { Debug.Log("RUN OUT"); });
+
+
+            StatesManager.ChangeCurrentState(new Begin());
+            StatesManager.ChangeCurrentState(new Run());
             PlayerEvents = new PlayerEvents();
+            TimerManager = new TimerManager();
+            PauseManager = new PauseManager();
         }
         catch (Exception e)
         {
