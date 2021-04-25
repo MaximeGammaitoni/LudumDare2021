@@ -5,10 +5,11 @@ using UnityEngine;
 public class RotationalLaser : MonoBehaviour, ILaserType
 {
     public Transform _RotationCenter;
-    public float _Offset;
+    //public float _Offset;
+    public float _Range;
     public float _RotationalSpeed;
     public Vector3 _RotationAxis;
-    public Vector3 _OffsetAxis;
+    //public Vector3 _OffsetAxis;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,9 @@ public class RotationalLaser : MonoBehaviour, ILaserType
 
     public void LaserMovement()
     {
-        this.transform.RotateAround(_RotationCenter.position, _RotationAxis, _RotationalSpeed * Time.deltaTime);
+        float angle = Mathf.Sin(Time.time * _RotationalSpeed / (2 * Mathf.PI)) * _Range;
+        transform.rotation = Quaternion.AngleAxis(angle, _RotationAxis);
+        //this.transform.RotateAround(_RotationCenter.position, _RotationAxis, _RotationalSpeed * Time.deltaTime);
     }
 
     public void InitializeLaserPosition()
@@ -36,7 +39,7 @@ public class RotationalLaser : MonoBehaviour, ILaserType
         {
             Debug.LogWarning("RotationCenter missing for " + this.transform.gameObject.name);
         }
-        this.transform.position += _Offset * _OffsetAxis;
+        //this.transform.position += _Offset * _OffsetAxis;
     }
 }
 
