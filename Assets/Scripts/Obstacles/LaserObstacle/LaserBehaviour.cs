@@ -40,18 +40,14 @@ public class LaserBehaviour : MonoBehaviour
 
     private void GenerateRaycasts()
     {
-        RaycastHit[] hits;
+       
         int mask = _WallLayerMask.value;
 
-        hits = Physics.RaycastAll(this.transform.position, this.transform.forward, Mathf.Infinity, mask);
-        for (int i = 0; i < hits.Length; i++)
+        RaycastHit hit;
+        if(Physics.Raycast(this.transform.position, this.transform.forward,out hit, Mathf.Infinity, mask))
         {
-            RaycastHit hit = hits[i];
-
-            hit = CheckPlayerHit(hit);
-
+            CheckPlayerHit(hit);
             GenerateLaser(hit);
-
         }
     }
 

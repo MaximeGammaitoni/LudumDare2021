@@ -66,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
+        {
+            return;
+        }
         Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
         transform.position += _speed * movement * Time.fixedDeltaTime;
         if (movement != Vector3.zero)

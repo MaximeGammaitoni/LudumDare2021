@@ -224,7 +224,7 @@ Material:
     - _SurfaceType: 0
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
-    - _Thickness: 0.316
+    - _Thickness: 0.268
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
