@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static event GameEventManager GameUpdateHandler;
     [HideInInspector] public static event GameEventManager GameFixedUpdateHandler;
 
+    [HideInInspector] public static event GameEventManager DeafetUiHandler;
 
     // Declare all your service here
     [HideInInspector] public ResourcesLoaderManager ResourcesLoaderManager;
@@ -28,9 +29,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public StatesManager StatesManager { get; set; }
     [HideInInspector] public StatesEvents StatesEvents { get; set; }
     [HideInInspector] public PauseManager PauseManager { get; set; }
+    [HideInInspector] public DefeatUIManager DefeatUIManager { get; set; }
     public void Awake()
     {
         GameUpdateHandler = null;
+        DeafetUiHandler = null;
         GameFixedUpdateHandler = null;
         singleton = this;
         StartGameManager();
@@ -57,11 +60,17 @@ public class GameManager : MonoBehaviour
             PlayerEvents = new PlayerEvents();
             TimerManager = new TimerManager();
             PauseManager = new PauseManager();
+            DefeatUIManager = new DefeatUIManager();
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
+    }
+
+    public void OnDefeat()
+    {
+        DeafetUiHandler?.Invoke();
     }
     public void OnDisable()
     {

@@ -43,7 +43,7 @@ public class PlayerEvents
         {
             EventsManager.TriggerEvent("OnPlayerDeath", new PlayerDeathArgs());
             GameManager.singleton.StatesManager.CurrentState = new States.End();
-            Debug.Log("Player is dead");
+            GameManager.singleton.OnDefeat();
         }
         
     }
