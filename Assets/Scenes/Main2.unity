@@ -573,7 +573,7 @@ MonoBehaviour:
   MainSFX: {fileID: 1563164554}
   Dash: {fileID: 8300000, guid: c1d3f81738c826c44abba1800c0e16b5, type: 3}
   Boom: {fileID: 8300000, guid: 906b9baafbaba3643981cde7f79edf77, type: 3}
-  Win: {fileID: 8300000, guid: ceaf10a7ea87c4ec781d76a64f8c0093, type: 3}
+  Win: {fileID: 8300000, guid: 67547020a031a4340b800ee5e1f8c9b7, type: 3}
   Lose: {fileID: 8300000, guid: 79762c46ff58242cf969e2a194b44b72, type: 3}
   ExitOpen: {fileID: 8300000, guid: d66f7178fff5d4f43943b1232941802d, type: 3}
   ExitEnter: {fileID: 8300000, guid: 98c40e1cb3afd43e98e54b17124653e4, type: 3}
