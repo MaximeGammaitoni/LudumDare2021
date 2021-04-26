@@ -456,12 +456,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 3944559642964887604}
     m_Modifications:
     - target: {fileID: 4670940860534735385, guid: 6f3a28282d1ae584ca2f57144975bac1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670940860534735385, guid: 6f3a28282d1ae584ca2f57144975bac1, type: 3}
       propertyPath: m_LocalPosition.y
       value: 11.89
       objectReference: {fileID: 0}
     - target: {fileID: 4670940860534735386, guid: 6f3a28282d1ae584ca2f57144975bac1, type: 3}
       propertyPath: m_Intensity
-      value: 7049.998
+      value: 2461.9658
       objectReference: {fileID: 0}
     - target: {fileID: 4670940860534735387, guid: 6f3a28282d1ae584ca2f57144975bac1, type: 3}
       propertyPath: m_Range
@@ -469,7 +473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4670940860534735387, guid: 6f3a28282d1ae584ca2f57144975bac1, type: 3}
       propertyPath: m_Intensity
-      value: 12925.29
+      value: 11348.508
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670940860534735387, guid: 6f3a28282d1ae584ca2f57144975bac1, type: 3}
+      propertyPath: m_SpotAngle
+      value: 30.2
       objectReference: {fileID: 0}
     - target: {fileID: 4670940860620926834, guid: 6f3a28282d1ae584ca2f57144975bac1, type: 3}
       propertyPath: m_Name
@@ -1569,6 +1577,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Out (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8202765441665458012, guid: 11837e18db31ed349a7a5c050dbc38e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 113e5997cf27d1f46ac8f94155eb835c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11837e18db31ed349a7a5c050dbc38e9, type: 3}
 --- !u!4 &6278259162366871623 stripped
@@ -1829,6 +1841,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Out (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8202765441665458012, guid: 11837e18db31ed349a7a5c050dbc38e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 113e5997cf27d1f46ac8f94155eb835c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11837e18db31ed349a7a5c050dbc38e9, type: 3}
 --- !u!4 &6278259162579197859 stripped
@@ -2263,6 +2279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Out
       objectReference: {fileID: 0}
+    - target: {fileID: 8202765441665458012, guid: 11837e18db31ed349a7a5c050dbc38e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 113e5997cf27d1f46ac8f94155eb835c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11837e18db31ed349a7a5c050dbc38e9, type: 3}
 --- !u!4 &3546405922178931806 stripped
