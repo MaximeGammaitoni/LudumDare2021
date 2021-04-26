@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IDashResponse DashReponse;
 
+    private PlayerAnimationHandling animationHandler;
     #endregion
 
     #region public members
@@ -74,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogError("Dash Response missing in PlayerMovement");
         }
+
+        animationHandler = GetComponent<PlayerAnimationHandling>();
     }
 
     void OnDestroy()
@@ -165,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
         if (!_isDashing)
         {
             Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
+            animationHandler.speedMotion = movement.magnitude;
             if (!_MovementChecker.CheckMovement(_movementDirection, _speed * movement.magnitude * Time.fixedDeltaTime, _WallLayerMask).HasValue)
             {
                 //Debug.Log("Moving");
