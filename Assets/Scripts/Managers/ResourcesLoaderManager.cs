@@ -22,6 +22,7 @@ public class ResourcesLoaderManager : MonoBehaviour
     public AudioClip Win;
     public AudioClip Lose;
     public AudioClip ExitOpen;
+    public AudioClip ExitEnter;
     public AudioClip PlayerHit;
 
 

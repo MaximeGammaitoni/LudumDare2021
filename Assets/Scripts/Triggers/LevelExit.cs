@@ -82,7 +82,7 @@ public class LevelExit : MonoBehaviour
         {
             _exited = true;
             Exit();
-            GameManager.singleton.SfxManager.PlayExitOpen();
+            GameManager.singleton.SfxManager.PlayExitEnter();
         }
     }
 
@@ -95,6 +95,7 @@ public class LevelExit : MonoBehaviour
         _opened = true;
         doorBehaviour._isOpened = true;
         _onOpened?.Invoke();
+        GameManager.singleton.SfxManager.PlayExitOpen();
     }
 
     void Exit()

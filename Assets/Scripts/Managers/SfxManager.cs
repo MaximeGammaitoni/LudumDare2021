@@ -9,6 +9,7 @@ public class SfxManager
     private AudioClip _boom;
     private AudioClip _win;
     private AudioClip _lose;
+    private AudioClip _exitEnter;
     private AudioClip _exitOpen;
     private AudioClip _playerHit;
 
@@ -17,8 +18,9 @@ public class SfxManager
         _mainSfx = GameManager.singleton.ResourcesLoaderManager.MainSFX;
         _dash = GameManager.singleton.ResourcesLoaderManager.Dash;
         _boom = GameManager.singleton.ResourcesLoaderManager.Boom;
-        _boom = GameManager.singleton.ResourcesLoaderManager.Win;
+        _win = GameManager.singleton.ResourcesLoaderManager.Win;
         _lose = GameManager.singleton.ResourcesLoaderManager.Lose;
+        _exitEnter = GameManager.singleton.ResourcesLoaderManager.ExitEnter;
         _exitOpen = GameManager.singleton.ResourcesLoaderManager.ExitOpen;
         _playerHit = GameManager.singleton.ResourcesLoaderManager.PlayerHit;
     }
@@ -42,10 +44,17 @@ public class SfxManager
         _mainSfx.PlayOneShot(_lose);
     }
 
+    public void PlayExitEnter()
+    {
+        _mainSfx.Stop();
+        _mainSfx.PlayOneShot(_exitEnter);
+    }
+
     public void PlayExitOpen()
     {
         _mainSfx.PlayOneShot(_exitOpen);
     }
+
 
     public void Playhit()
     {

@@ -575,7 +575,8 @@ MonoBehaviour:
   Boom: {fileID: 8300000, guid: 906b9baafbaba3643981cde7f79edf77, type: 3}
   Win: {fileID: 8300000, guid: ceaf10a7ea87c4ec781d76a64f8c0093, type: 3}
   Lose: {fileID: 8300000, guid: 79762c46ff58242cf969e2a194b44b72, type: 3}
-  ExitOpen: {fileID: 8300000, guid: 98c40e1cb3afd43e98e54b17124653e4, type: 3}
+  ExitOpen: {fileID: 8300000, guid: d66f7178fff5d4f43943b1232941802d, type: 3}
+  ExitEnter: {fileID: 8300000, guid: 98c40e1cb3afd43e98e54b17124653e4, type: 3}
   PlayerHit: {fileID: 8300000, guid: 43a18eec3a7138247acad45eebefe368, type: 3}
   CanvasElements: {fileID: 0}
   LevelLoader: {fileID: 0}
