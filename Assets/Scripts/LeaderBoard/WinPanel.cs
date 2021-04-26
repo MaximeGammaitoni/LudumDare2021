@@ -8,7 +8,6 @@ public class WinPanel : MonoBehaviour
     void Awake()
     {
         EventsManager.StartListening(nameof(StatesEvents.OnWinIn), OnWin);
-        
     }
     
     void OnDestroy()

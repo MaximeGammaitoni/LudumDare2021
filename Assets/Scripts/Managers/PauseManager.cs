@@ -19,6 +19,7 @@ public class PauseManager
         playerControls = new PlayerControls();
         playerControls.Enable();
         playerControls.Main.Pause.performed += cb => PauseGame();
+        EventsManager.StartListening(nameof(LevelLoader.OnGameFinished), DisableWASD);
 
         QuitButton = GameManager.singleton.ResourcesLoaderManager.CanvasElements.QuitGameButton;
         ResumeButton = GameManager.singleton.ResourcesLoaderManager.CanvasElements.ResumeGameButton;
@@ -29,6 +30,16 @@ public class PauseManager
         GameManager.singleton.ResourcesLoaderManager.CanvasElements.PausePanel.SetActive(false);
         ResumeButton.onClick.AddListener(delegate {PauseGame();});
         QuitButton.onClick.AddListener(delegate { QuitGame();});
+    }
+
+    ~PauseManager()
+    {
+        EventsManager.StopListening(nameof(LevelLoader.OnGameFinished), DisableWASD);
+    }
+
+    void DisableWASD(Args args = null)
+    {
+        playerControls.MenuNavigation.Movement.Disable();
     }
 
     private void QuitGame()

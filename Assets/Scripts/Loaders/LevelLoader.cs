@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using States;
 
 public class LevelLoader : MonoBehaviour
@@ -38,6 +39,8 @@ public class LevelLoader : MonoBehaviour
     public static int levelCount { get; private set; }
 
     public static bool isInit { get; private set; }
+
+    public UnityAction<Args> OnGameFinished;
 
     #endregion
 
@@ -108,7 +111,8 @@ public class LevelLoader : MonoBehaviour
 
     void FinishGame()
     {
-        StartCoroutine(FinishGameCoroutine(5f));
+        EventsManager.TriggerEvent(nameof(OnGameFinished));
+        StartCoroutine(FinishGameCoroutine(2f));
     }
 
     #endregion

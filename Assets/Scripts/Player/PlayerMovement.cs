@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDash(CallbackContext ctx)
     {
-        if (_isDashing)
+        if (_isDashing || !GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
         {
             return;
         }

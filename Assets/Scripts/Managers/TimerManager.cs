@@ -15,6 +15,17 @@ public class TimerManager
         remainingTime = GameManager.singleton.ResourcesLoaderManager.GameConfig.RemainingTime;
         timer = remainingTime;
         GameManager.GameUpdateHandler += UpdateTimer;
+        EventsManager.StartListening(nameof(LevelLoader.OnGameFinished), StopUpdate);
+    }
+
+    ~TimerManager()
+    {
+        EventsManager.StopListening(nameof(LevelLoader.OnGameFinished), StopUpdate);
+    }
+
+    void StopUpdate(Args args = null)
+    {
+        GameManager.GameUpdateHandler -= UpdateTimer;
     }
 
     private void UpdateTimer()
@@ -28,6 +39,7 @@ public class TimerManager
         var ts = TimeSpan.FromSeconds(timer);
         if (timer <= 0f)
         {
+            StopUpdate();
             timer = 0f;
             GameManager.singleton.PlayerEvents.PlayerIsDead();
         }

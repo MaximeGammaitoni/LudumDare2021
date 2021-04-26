@@ -66,7 +66,6 @@ public class EnterName : MonoBehaviour
             name = name
         });
         _onConfirmed?.Invoke();
-        gameObject.SetActive(false);
     }
 
     #endregion
