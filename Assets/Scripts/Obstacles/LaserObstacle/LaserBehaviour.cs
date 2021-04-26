@@ -68,7 +68,7 @@ public class LaserBehaviour : MonoBehaviour
     {
         if (hit.transform.gameObject.CompareTag("Player"))
         {
-            GameManager.singleton.PlayerEvents.PlayerIsDead();
+            GameManager.singleton.PlayerEvents.PlayerHit();
         }
 
         return hit;
