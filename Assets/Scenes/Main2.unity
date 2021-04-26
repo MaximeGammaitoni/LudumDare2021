@@ -572,11 +572,11 @@ MonoBehaviour:
   UIElementsLoader: {fileID: 11400000, guid: bd26be7971873c64398540b9314aa19b, type: 2}
   MainSFX: {fileID: 1563164554}
   Dash: {fileID: 8300000, guid: c1d3f81738c826c44abba1800c0e16b5, type: 3}
-  Boom: {fileID: 0}
-  Win: {fileID: 0}
-  Lose: {fileID: 0}
-  ExitOpen: {fileID: 0}
-  PlayerHit: {fileID: 0}
+  Boom: {fileID: 8300000, guid: 906b9baafbaba3643981cde7f79edf77, type: 3}
+  Win: {fileID: 8300000, guid: ceaf10a7ea87c4ec781d76a64f8c0093, type: 3}
+  Lose: {fileID: 8300000, guid: 79762c46ff58242cf969e2a194b44b72, type: 3}
+  ExitOpen: {fileID: 8300000, guid: 98c40e1cb3afd43e98e54b17124653e4, type: 3}
+  PlayerHit: {fileID: 8300000, guid: 43a18eec3a7138247acad45eebefe368, type: 3}
   CanvasElements: {fileID: 0}
   LevelLoader: {fileID: 0}
 --- !u!114 &1066510838
