@@ -60,6 +60,7 @@ public class LevelTrigger : MonoBehaviour
         {
             _triggered = true;
             OnTriggered();
+            GameManager.singleton.SfxManager.PlayBoom();
         }
     }
 

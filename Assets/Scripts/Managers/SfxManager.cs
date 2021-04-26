@@ -17,7 +17,7 @@ public class SfxManager
         _mainSfx = GameManager.singleton.ResourcesLoaderManager.MainSFX;
         _dash = GameManager.singleton.ResourcesLoaderManager.Dash;
         _boom = GameManager.singleton.ResourcesLoaderManager.Boom;
-        _boom = GameManager.singleton.ResourcesLoaderManager.Win;
+        _win = GameManager.singleton.ResourcesLoaderManager.Win;
         _lose = GameManager.singleton.ResourcesLoaderManager.Lose;
         _exitOpen = GameManager.singleton.ResourcesLoaderManager.ExitOpen;
         _playerHit = GameManager.singleton.ResourcesLoaderManager.PlayerHit;
