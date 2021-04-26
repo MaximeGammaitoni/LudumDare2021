@@ -8,12 +8,14 @@ public class RotationalLaser : BaseObstacle, ILaserType
     //public float _Offset;
     public float _Range;
     public float _RotationalSpeed;
+    public float originalRotation;
     public Vector3 _RotationAxis;
     //public Vector3 _OffsetAxis;
     // Start is called before the first frame update
     void Start()
     {
         InitializeLaserPosition();
+        originalRotation = transform.rotation.eulerAngles.y;
     }
 
     // Update is called once per frame
@@ -24,8 +26,11 @@ public class RotationalLaser : BaseObstacle, ILaserType
 
     public void LaserMovement()
     {
-        float angle = Mathf.Sin(Time.time * _RotationalSpeed / (2 * Mathf.PI)) * _Range;
-        transform.rotation = Quaternion.AngleAxis(angle, _RotationAxis);
+        float angle = Mathf.Sin(Time.time * _RotationalSpeed) * _Range + originalRotation;
+        Debug.Log("angle is = " +angle);
+        transform.rotation = Quaternion.identity;
+        //transform.rotation =  Quaternion.AngleAxis(angle * Mathf.Deg2Rad, _RotationAxis) * transform.rotation;
+        transform.Rotate(_RotationAxis, angle);
         //this.transform.RotateAround(_RotationCenter.position, _RotationAxis, _RotationalSpeed * Time.deltaTime);
     }
 
