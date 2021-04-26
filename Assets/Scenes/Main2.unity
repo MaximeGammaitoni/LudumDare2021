@@ -543,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8985092941400187736, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.9
       objectReference: {fileID: 0}
     - target: {fileID: 8985092941400187736, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1305,8 +1305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelPrefabs:
   - {fileID: 5767270109181791514, guid: e9f32f967c7971246acf6d570e4b78f0, type: 3}
-  - {fileID: 4904295406102130743, guid: fe231ef7e301c2145b97bf4d98bfb489, type: 3}
-  - {fileID: 1607498000467189036, guid: 39423b1791f122b4ba17769175abe2ce, type: 3}
+  - {fileID: 3944559642964887607, guid: 1a96ede78eb3b7a4a8397d6b4d40d6c0, type: 3}
+  - {fileID: 8003346944951677055, guid: c3752f63b7582114eb9dac82e308a642, type: 3}
   _firstLevelOrigin: {fileID: 1247628245}
   _heightBetweenLevels: 15
 --- !u!1 &1097911852
@@ -1344,7 +1344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.42882586, y: 0.24080107}
   m_AnchorMax: {x: 0.5672936, y: 0.8563979}
-  m_AnchoredPosition: {x: 1.4999695, y: -0.24500275}
+  m_AnchoredPosition: {x: 1.4999695, y: -0.24500084}
   m_SizeDelta: {x: 0.099998474, y: 0.9000015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1097911854
@@ -2526,6 +2526,14 @@ PrefabInstance:
     - target: {fileID: 5333306100199011931, guid: 26085dd4cd7530046bc718274fe9ea86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333306101263257425, guid: 26085dd4cd7530046bc718274fe9ea86, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333306101263257427, guid: 26085dd4cd7530046bc718274fe9ea86, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26085dd4cd7530046bc718274fe9ea86, type: 3}

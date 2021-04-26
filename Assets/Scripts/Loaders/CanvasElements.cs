@@ -9,6 +9,7 @@ public class CanvasElements : MonoBehaviour
     public GameObject Canvas;
     public GameObject TopPanel;
     public GameObject TimerPanel;
+    public GameObject LeaderBoardPanel;
     public GameObject LeaderBoardContent;
     public TextMeshProUGUI TimerText;
     public GameObject PausePanel;
