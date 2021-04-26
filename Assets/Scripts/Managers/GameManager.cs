@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public PauseManager PauseManager { get; set; }
     [HideInInspector] public DefeatUIManager DefeatUIManager { get; set; }
     [HideInInspector] public LeaderBoardManager LeaderBoardManager { get; set; }
+    [HideInInspector] public LevelsManager LevelsManager { get; set; }
     public void Awake()
     {
         GameUpdateHandler = null;
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
             PauseManager = new PauseManager();
             DefeatUIManager = new DefeatUIManager();
             LeaderBoardManager = new LeaderBoardManager();
+            LevelsManager = new LevelsManager();
             //test
             LeaderBoardManager.GetRequestAndInstantiateIntoCanvas();
         }

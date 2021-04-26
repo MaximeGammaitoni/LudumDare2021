@@ -37,6 +37,7 @@ public class LevelLoader : MonoBehaviour
         _currentLevelIndex = 0;
         Vector3 position = _firstLevelOrigin?.position ?? Vector3.zero;
         _currentLevelInstance = Instantiate(_levelPrefabs[_currentLevelIndex], position, Quaternion.identity);
+        GameManager.singleton.LevelsManager.CurrentLevel = _currentLevelInstance;
         LoadNextLevel();
     }
 
@@ -80,6 +81,7 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(DestroyPreviousLevelCoroutine(_currentLevelInstance));
         _currentLevelIndex++;
         _currentLevelInstance = _nextLevelInstance;
+        GameManager.singleton.LevelsManager.CurrentLevel = _currentLevelInstance;
         LoadNextLevel();
     }
 
