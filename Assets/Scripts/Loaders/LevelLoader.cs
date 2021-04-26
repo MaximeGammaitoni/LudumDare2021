@@ -24,8 +24,6 @@ public class LevelLoader : MonoBehaviour
 
     bool _mustDestroyPreviousLevel = false;
 
-    int _currentLevelIndex = 0;
-
     GameObject _currentLevelInstance = null;
 
     GameObject _nextLevelInstance = null;
@@ -35,7 +33,7 @@ public class LevelLoader : MonoBehaviour
 
     #region public members
 
-    public static int currentLevelIndex => GameManager.singleton.ResourcesLoaderManager.LevelLoader._currentLevelIndex;
+    public static int currentLevelIndex { get; private set; }
 
     public static bool isInit { get; private set; }
 
@@ -47,18 +45,19 @@ public class LevelLoader : MonoBehaviour
     {
         EventsManager.StartListening(nameof(StatesEvents.OnLandingIn), TriggerPreviousLevelDestruction);
         // Load 1st level.
-        _currentLevelIndex = 0;
+        currentLevelIndex = 0;
         isInit = true;
         Vector3 position = _firstLevelOrigin?.position ?? Vector3.zero;
-        _currentLevelInstance = Instantiate(_levelPrefabs[_currentLevelIndex], position, Quaternion.identity);
+        _currentLevelInstance = Instantiate(_levelPrefabs[currentLevelIndex], position, Quaternion.identity);
+        Debug.Log($"GameManager.singleton == null : {GameManager.singleton == null}");
         GameManager.singleton.LevelsManager.CurrentLevel = _currentLevelInstance;
-        _playerGo = GameObject.Find("Player");
+        _playerGo = GameObject.FindGameObjectWithTag("Player");
         _playerGo.transform.position = _playerOriginPosition;
         isInit = false;
         LoadNextLevel();
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         EventsManager.StopListening(nameof(StatesEvents.OnLandingIn), TriggerPreviousLevelDestruction);
     }
@@ -70,7 +69,7 @@ public class LevelLoader : MonoBehaviour
 
     void LoadNextLevel()
     {
-        if (_currentLevelIndex >= _levelPrefabs.Length - 1)
+        if (currentLevelIndex >= _levelPrefabs.Length - 1)
         {
             _nextLevelInstance = null;
             Debug.Log("No more level to load.");
@@ -78,7 +77,7 @@ public class LevelLoader : MonoBehaviour
         }
         
         Vector3 position = _currentLevelInstance.transform.position - Vector3.up * _heightBetweenLevels;
-        _nextLevelInstance = Instantiate(_levelPrefabs[_currentLevelIndex + 1], position, Quaternion.identity);
+        _nextLevelInstance = Instantiate(_levelPrefabs[currentLevelIndex + 1], position, Quaternion.identity);
     }
 
     IEnumerator DestroyPreviousLevelCoroutine(GameObject previousLevel)
@@ -106,7 +105,7 @@ public class LevelLoader : MonoBehaviour
     {
         StartCoroutine(DestroyPreviousLevelCoroutine(_currentLevelInstance));
         StartCoroutine(SetNewPLayerOriginPosition());
-        _currentLevelIndex++;
+        currentLevelIndex++;
         _currentLevelInstance = _nextLevelInstance;
         GameManager.singleton.LevelsManager.CurrentLevel = _currentLevelInstance;
         LoadNextLevel();

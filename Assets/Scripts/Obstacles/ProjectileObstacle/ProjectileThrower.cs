@@ -39,6 +39,7 @@ public class ProjectileThrower : BaseObstacle
 
     protected override void OnInitialized()
     {
+        Debug.Log("Je commence ma gueule.");
         _shootCoroutine = StartCoroutine(ShootProjectilesCoroutine());
     }
 
