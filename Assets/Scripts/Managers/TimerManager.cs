@@ -30,4 +30,14 @@ public class TimerManager
                 ts.Seconds);
     }
 
+    public void RemoveTime()
+    {
+        timer -= 5f;
+        var ts = TimeSpan.FromSeconds(timer);
+        timerText.text = string.Format("{0:D2}:{1:D2}",
+        ts.Minutes,
+        ts.Seconds);
+
+    }
+
 }

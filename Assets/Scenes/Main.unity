@@ -5631,6 +5631,14 @@ PrefabInstance:
       propertyPath: m_Parameters.widthMultiplier
       value: 0.056471493
       objectReference: {fileID: 0}
+    - target: {fileID: 4534217088585771477, guid: 6ac7ecab200513648b0550ee8f940c10, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0.01574659
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534217088585771477, guid: 6ac7ecab200513648b0550ee8f940c10, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.2710228
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ac7ecab200513648b0550ee8f940c10, type: 3}
 --- !u!1001 &3173706432540969065
