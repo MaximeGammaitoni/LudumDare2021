@@ -48,7 +48,6 @@ public class Spike : MonoBehaviour
             {
                 _TimeRemaining = 0;
                 TrapAnimator.SetBool("Play", true);
-                Debug.Log("Test");
                 StartCoroutine(Animation());
             }
             yield return new WaitForSeconds(1);

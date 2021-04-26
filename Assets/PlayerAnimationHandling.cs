@@ -13,6 +13,8 @@ public class PlayerAnimationHandling : MonoBehaviour
     public float speedMotion;
     private float lastSpeedMotion;
 
+    public float deathTime { get; set; }
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -80,7 +82,7 @@ public class PlayerAnimationHandling : MonoBehaviour
 
     IEnumerator WaitForRezCoroutine()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(deathTime);
         animator.SetBool("IsDead", false);
     }
 }

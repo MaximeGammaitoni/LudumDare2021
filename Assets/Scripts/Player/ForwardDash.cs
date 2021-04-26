@@ -48,7 +48,6 @@ public class ForwardDash : MonoBehaviour, IDashResponse
             if (hit.collider.CompareTag("Interrupteur"))
             {
                 maxDistance = Vector3.Distance(_playerMovement.RaycastOrigin.position, hit.transform.position);
-                // Debug.Log("Interrupteur Hit");
                 hit.collider.GetComponentInChildren<MeshRenderer>().enabled = false;
             }
         }

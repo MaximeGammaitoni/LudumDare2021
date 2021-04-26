@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
             LeaderBoardManager = new LeaderBoardManager();
             SfxManager = new SfxManager();
             //test
-            LeaderBoardManager.GetRequestAndInstantiateIntoCanvas();
+            // LeaderBoardManager.GetRequestAndInstantiateIntoCanvas();
         }
         catch (Exception e)
         {
@@ -73,7 +73,6 @@ public class GameManager : MonoBehaviour
 
     public void OnDefeat()
     {
-        Debug.Log($"DeafetUiHandler == null : {DeafetUiHandler == null}");
         DeafetUiHandler?.Invoke();
     }
     public void OnDisable()

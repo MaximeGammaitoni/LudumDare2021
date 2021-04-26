@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovementChecker : MonoBehaviour
 {
-    public Vector3? CheckMovement( Vector2 direction, float distanceToMove, LayerMask layer)
+    public Vector3? CheckMovement(Vector2 direction, float distanceToMove, LayerMask layer)
     {
         RaycastHit hit;
         Vector3 Direction3D = new Vector3(direction.x, 0, direction.y);
