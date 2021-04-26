@@ -31,6 +31,10 @@ public static class EventsManager
             eventDictionary.Add(eventName, thisEvent);
         }
     }
+    public static void StopListeningAll()
+    {
+        eventDictionary = null;
+    }
 
     public static void StopListening(string eventName, UnityAction<Args> listener)
     {
