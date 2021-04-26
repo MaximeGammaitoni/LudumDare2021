@@ -30,6 +30,7 @@ public class MainMenuStarter : MonoBehaviour
     GameObject TitleScreenTextGO;
     GameObject TitleGO;
     GameObject MusicMenu;
+    public Image Black;
 
     public GameObject LinePrefab;
     public GameObject LeaderBoardContent;
@@ -49,7 +50,6 @@ public class MainMenuStarter : MonoBehaviour
     private Vector2 direction;
     private int selectedButton;
     [SerializeField] public List<Button> menuButtons = new List<Button>();
-    private LeaderBoardManager leaderBoardManager;
     const string BaseUrl = "http://51.91.99.249"; //If you get this url to add your score manually, the Lord of the hell Paimon will come to you cheaty boy.
     const string GetAllEndPoint = "/leader_board/";
     public bool isLeaderBoardOpen;
@@ -57,6 +57,7 @@ public class MainMenuStarter : MonoBehaviour
 
     void Start()
     {
+        BlackFadeIn(false);
         menuCanvas = MainMenu.GetComponent<CanvasGroup>();
         InitializeMenu();
 
@@ -74,8 +75,6 @@ public class MainMenuStarter : MonoBehaviour
         playerControls = new PlayerControls();
         playerControls.Enable();
         playerControls.MenuNavigation.Movement.started += OnAxesChanged;
-
-        leaderBoardManager = new LeaderBoardManager();
     }
 
     private void OnAxesChanged(CallbackContext ctx)
@@ -196,10 +195,17 @@ public class MainMenuStarter : MonoBehaviour
 
     public void LaunchGame()
     {
+        BlackFadeIn(true);
+        StartCoroutine(LoadGameCo());
+        
 
+    }
+
+    IEnumerator LoadGameCo()
+    {
+        yield return new WaitForSeconds(0.5f);
         sceneLoader.allowSceneActivation = true;
         isLaunched = true;
-
     }
 
     public void ShowLeaderBoard()
@@ -283,6 +289,39 @@ public class MainMenuStarter : MonoBehaviour
         foreach(GameObject element in listofLines)
         {
             Destroy(element);
+        }
+    }
+
+    private void BlackFadeIn(bool value)
+    {
+        StartCoroutine(BlackFadeInCo(value));
+    }
+
+    IEnumerator BlackFadeInCo(bool value)
+    {
+        if(value)
+        {
+            float alpha = 0;
+            while(alpha <0.99)
+            {
+                alpha += 0.05f;
+                Color color = new Color(0, 0, 0, alpha);
+                Black.color = color;
+                yield return new WaitForEndOfFrame();
+            }
+            Black.color = new Color(0, 0, 0, 1);
+        }
+        else
+        {
+            float alpha = 0;
+            while (alpha < 0.99)
+            {
+                alpha += 0.01f;
+                Color color = new Color(0, 0, 0, 1 - alpha);
+                Black.color = color;
+                yield return new WaitForEndOfFrame();
+            }
+            Black.color = new Color(0, 0, 0, 0);
         }
     }
 }
