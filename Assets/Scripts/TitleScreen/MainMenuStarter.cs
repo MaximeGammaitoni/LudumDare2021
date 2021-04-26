@@ -23,6 +23,7 @@ public class MainMenuStarter : MonoBehaviour
     public Button Play;
     public Button Ladder;
     public Button Quit;
+    public Button CloseLeaderBoard;
 
     public List<Text> StarterTexts;
     List<string> StarterTextsContents;
@@ -51,7 +52,8 @@ public class MainMenuStarter : MonoBehaviour
     private LeaderBoardManager leaderBoardManager;
     const string BaseUrl = "http://51.91.99.249"; //If you get this url to add your score manually, the Lord of the hell Paimon will come to you cheaty boy.
     const string GetAllEndPoint = "/leader_board/";
-
+    public bool isLeaderBoardOpen;
+    private List<GameObject> listofLines = new List<GameObject>();
 
     void Start()
     {
@@ -109,10 +111,23 @@ public class MainMenuStarter : MonoBehaviour
         selectedButton = 0;
     }
 
-    private void FixedUpdate()
+    public void LeaderOpen()
+    {
+        isLeaderBoardOpen = !isLeaderBoardOpen;
+    }
+
+    private void Update()
     {
         // (EventSystem.current)
+        if ( isLeaderBoardOpen)
+        {
+            CloseLeaderBoard.Select();
+        }
+    }
 
+    public void SelectPlay()
+    {
+        Play.Select();
     }
 
     private void SelectButton(int number)
@@ -177,11 +192,7 @@ public class MainMenuStarter : MonoBehaviour
         //InitializeMenu();
     }
 
-    private void Update()
-    {
-        //Debug.Log("scene loader is null: " + sceneLoader);
-        //Debug.Log(selectedButton);
-    }
+    
 
     public void LaunchGame()
     {
@@ -194,6 +205,13 @@ public class MainMenuStarter : MonoBehaviour
     public void ShowLeaderBoard()
     {
         LeaderBoard.SetActive(true);
+        GetRequestAndInstantiateIntoCanvas();
+        Debug.Log("ShowingLeaderBoard");
+    }
+
+    public void HideLeaderBoard()
+    {
+        LeaderBoard.SetActive(false);
         GetRequestAndInstantiateIntoCanvas();
         Debug.Log("ShowingLeaderBoard");
     }
@@ -242,6 +260,7 @@ public class MainMenuStarter : MonoBehaviour
                 foreach (LeadBoardData lb in leadBoardData.lead_boards)
                 {
                     var Go = Instantiate(LinePrefab);
+                    listofLines.Add(Go);
                     Go.transform.SetParent(LeaderBoardContent.transform, false);
                     var CurrentLine = Go.GetComponent<LeaderBoardUIElement>();
 
@@ -256,6 +275,14 @@ public class MainMenuStarter : MonoBehaviour
                     i++;
                 }
             }
+        }
+    }
+
+    public void DestroyLeaderBoardComponents()
+    {
+        foreach(GameObject element in listofLines)
+        {
+            Destroy(element);
         }
     }
 }
