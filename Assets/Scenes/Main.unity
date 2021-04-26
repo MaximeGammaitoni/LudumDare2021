@@ -1411,6 +1411,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7033847913936462899, guid: 11837e18db31ed349a7a5c050dbc38e9, type: 3}
   m_PrefabInstance: {fileID: 833493929}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &876330183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 876330185}
+  - component: {fileID: 876330184}
+  m_Layer: 10
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &876330184
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876330183}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 46.973175, y: 13.818859, z: 1}
+  m_Center: {x: 1.088028, y: 6.4094296, z: 0}
+--- !u!4 &876330185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876330183}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.9525847, y: 0.1102972, z: -4.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &917480159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3868,6 +3912,14 @@ PrefabInstance:
     - target: {fileID: 4534217088585771477, guid: 6ac7ecab200513648b0550ee8f940c10, type: 3}
       propertyPath: m_Parameters.widthMultiplier
       value: 0.056471493
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534217088585771477, guid: 6ac7ecab200513648b0550ee8f940c10, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0.01574659
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534217088585771477, guid: 6ac7ecab200513648b0550ee8f940c10, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.2710228
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ac7ecab200513648b0550ee8f940c10, type: 3}
