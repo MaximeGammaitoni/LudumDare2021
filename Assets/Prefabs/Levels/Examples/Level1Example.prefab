@@ -438,6 +438,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6991883302096382134, guid: 6f3a28282d1ae584ca2f57144975bac1, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f3a28282d1ae584ca2f57144975bac1, type: 3}
 --- !u!4 &120072689726885016 stripped
@@ -617,6 +621,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7933046674775993636}
     m_Modifications:
+    - target: {fileID: 338698415923414732, guid: bca55f10304af784ab8f3702c33b7847, type: 3}
+      propertyPath: _onTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8560585127621825764}
+    - target: {fileID: 338698415923414732, guid: bca55f10304af784ab8f3702c33b7847, type: 3}
+      propertyPath: _onTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 2216465602020292896, guid: bca55f10304af784ab8f3702c33b7847, type: 3}
       propertyPath: m_Name
       value: BrainSwitch
@@ -665,11 +677,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 885892558752287659, guid: bca55f10304af784ab8f3702c33b7847, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bca55f10304af784ab8f3702c33b7847, type: 3}
 --- !u!4 &2913444607745973074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5078219265838981148, guid: bca55f10304af784ab8f3702c33b7847, type: 3}
+  m_PrefabInstance: {fileID: 7933046672997317454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8560585127621825764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1790912277629464490, guid: bca55f10304af784ab8f3702c33b7847, type: 3}
   m_PrefabInstance: {fileID: 7933046672997317454}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7933046673043898690
