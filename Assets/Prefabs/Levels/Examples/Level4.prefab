@@ -4721,7 +4721,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3682039499008682431, guid: c81cd4be43be5454683ab9c5561a25d8, type: 3}
+  - {fileID: 2100000, guid: 113e5997cf27d1f46ac8f94155eb835c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8448,7 +8448,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3682039499008682431, guid: c81cd4be43be5454683ab9c5561a25d8, type: 3}
+  - {fileID: 2100000, guid: db76aac0a666abd47a68a3ac21f89876, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9431,7 +9431,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3682039499008682431, guid: c81cd4be43be5454683ab9c5561a25d8, type: 3}
+  - {fileID: 2100000, guid: 113e5997cf27d1f46ac8f94155eb835c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12426,7 +12426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6409860938677540183}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 11.89, z: 0}
+  m_LocalPosition: {x: -3.993, y: 11.89, z: -3.995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 52345819977594342}
@@ -12444,9 +12444,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.8862745, g: 0.62352943, b: 0.82351696, a: 1}
-  m_Intensity: 12925.29
+  m_Intensity: 9632.686
   m_Range: 13.89
-  m_SpotAngle: 48.1
+  m_SpotAngle: 35.7
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -12514,7 +12514,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 7049.998
+  m_Intensity: 2913.4854
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 19.5
@@ -12533,7 +12533,7 @@ MonoBehaviour:
   m_ShapeRadius: 0.025
   m_SoftnessScale: 1
   m_UseCustomSpotLightShadowCone: 0
-  m_CustomSpotLightShadowCone: 30
+  m_CustomSpotLightShadowCone: 24.7
   m_MaxSmoothness: 0.99
   m_ApplyRangeAttenuation: 1
   m_DisplayAreaLightEmissiveMesh: 0
@@ -14071,7 +14071,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3682039499008682431, guid: c81cd4be43be5454683ab9c5561a25d8, type: 3}
+  - {fileID: 2100000, guid: db76aac0a666abd47a68a3ac21f89876, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16058,7 +16058,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3682039499008682431, guid: c81cd4be43be5454683ab9c5561a25d8, type: 3}
+  - {fileID: 2100000, guid: 113e5997cf27d1f46ac8f94155eb835c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17595,7 +17595,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3682039499008682431, guid: c81cd4be43be5454683ab9c5561a25d8, type: 3}
+  - {fileID: 2100000, guid: db76aac0a666abd47a68a3ac21f89876, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17951,7 +17951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7148554685413528801, guid: a3336f5432675114f94ef2c035981b12, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.056
       objectReference: {fileID: 0}
     - target: {fileID: 7148554685413528801, guid: a3336f5432675114f94ef2c035981b12, type: 3}
       propertyPath: m_LocalPosition.z
