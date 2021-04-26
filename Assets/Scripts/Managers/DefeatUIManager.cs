@@ -47,5 +47,6 @@ public class DefeatUIManager
         Debug.Log(nameof(DefeateAction));
         Debug.Log(DefeatPanel.name);
         DefeatPanel.SetActive(true);
+        RetryButton.Select();
     }
 }
