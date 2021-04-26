@@ -11,6 +11,7 @@ public class ForwardDash : MonoBehaviour, IDashResponse
     private float _dashDistance;
     private MovementChecker _movementChecker;
     private PlayerMovement _playerMovement;
+    private PlayerAnimationHandling _animatorHandler;
 
     private void Awake()
     {
@@ -24,7 +25,12 @@ public class ForwardDash : MonoBehaviour, IDashResponse
         {
             Debug.LogError("PlayerMovement is not found");
         }
-        
+
+        _animatorHandler = GetComponentInChildren<PlayerAnimationHandling>();
+        if (_animatorHandler == null)
+        {
+            Debug.LogError("_animatorHandler is not found");
+        }
     }
     public IEnumerator Dash(Vector2 playerMovement)
     {
@@ -47,7 +53,9 @@ public class ForwardDash : MonoBehaviour, IDashResponse
             }
         }
         Vector3 initialPos = transform.position;
-       
+        _animatorHandler.HasDashed(false);
+        _animatorHandler.IsDashing(true);
+        Debug.Log("isdashing");
         while (_dashTime > 0)
         {
             Vector3 nextPos = _SpeedDash * transform.forward * Time.fixedDeltaTime;
@@ -61,6 +69,11 @@ public class ForwardDash : MonoBehaviour, IDashResponse
         }
         _dashTime = _DashTime;
         _playerMovement._isDashing = false;
+        _animatorHandler.IsDashing(false);
+        _animatorHandler.HasDashed(true);
+
+        Debug.Log("Stopped Dashing");
+
         //Debug.Log("is not Dashing " + _playerMovement._isDashing);
 
         yield return null;
