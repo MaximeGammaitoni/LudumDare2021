@@ -13,6 +13,9 @@ public class LevelExit : MonoBehaviour
     [SerializeField]
     UnityEvent _onOpened = null;
 
+    [SerializeField]
+    UnityEvent _onClosed = null;
+
     #endregion
 
     #region private members
@@ -48,6 +51,26 @@ public class LevelExit : MonoBehaviour
     #endregion
 
     #region private methods
+    private void OnDestroy()
+    {
+        EventsManager.StopListening("OnPlayerHit", PlayerHit);
+    }
+
+    private void Awake()
+    {
+        EventsManager.StartListening("OnPlayerHit", PlayerHit);
+    }
+
+    void PlayerHit(Args args)
+    {
+        _opened = false;
+        _exited = false;
+        _triggerPushedCount = 0;
+        _onClosed?.Invoke();
+        doorBehaviour._isOpened = false;
+
+    }
+
     private void OnEnable()
     {
         doorBehaviour = GetComponentInChildren<AnusDoorBehaviour>();
