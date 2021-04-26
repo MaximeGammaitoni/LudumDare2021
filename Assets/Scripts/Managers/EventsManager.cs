@@ -4,20 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public abstract class Args
+public static class EventsManager
 {
+    private static Dictionary<string, UnityCustomEvents<Args>> eventDictionary = new Dictionary<string, UnityCustomEvents<Args>>();
 
-}
-public class UnityCustomEvents<T> : UnityEvent<T>
-{
-
-}
-public class EventsManager
-{
-
-    private Dictionary<string, UnityCustomEvents<Args>> eventDictionary;
-
-    public EventsManager()
+    public static void Init()
     {
         if (eventDictionary == null)
         {
@@ -25,8 +16,9 @@ public class EventsManager
         }
     }
 
-    public void StartListening(string eventName, UnityAction<Args> listener)
+    public static void StartListening(string eventName, UnityAction<Args> listener)
     {
+        if (listener == null) return;
         UnityCustomEvents<Args> thisEvent = null;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
@@ -39,10 +31,14 @@ public class EventsManager
             eventDictionary.Add(eventName, thisEvent);
         }
     }
-
-    public void StopListening(string eventName, UnityAction<Args> listener)
+    public static void StopListeningAll()
     {
-        if (this == null) return;
+        eventDictionary = null;
+    }
+
+    public static void StopListening(string eventName, UnityAction<Args> listener)
+    {
+
         UnityCustomEvents<Args> thisEvent = null;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
@@ -50,15 +46,17 @@ public class EventsManager
         }
     }
 
-    public void TriggerEvent(string eventName, Args args)
+    public static void TriggerEvent(string eventName, Args args = null)
     {
+        if (args == null) args = new Args();
         UnityCustomEvents<Args> thisEvent = null;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.Invoke(args);
         }
     }
-
-
-
+    public static void EmptyListener(Args args)
+    {
+        Debug.Log("you try to call an emptu listner");
+    }
 }

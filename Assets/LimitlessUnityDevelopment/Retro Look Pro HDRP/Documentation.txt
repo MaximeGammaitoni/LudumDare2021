@@ -1,0 +1,94 @@
+Retro Look Pro v2.5 Manual. 
+
+
+THANK YOU
+
+Thank you for purchasing Retro Look Pro - you've made my day! Take your time to play with it, but
+please take a moment, when you're ready to return to store and add a short Review or rating on
+the product page - taking just a couple of minutes to help with this will be greatly appreciated!
+Your review will help others make informed decisions and help to support me in the development! "https://assetstore.unity.com/packages/slug/133193"
+
+///
+[Intro]
+
+Retro Look Pro is a Post-processing effect. It emulates screen bleeding , artefacts , noise , interlacing, shake, glitches and other effects.
+It is the best and complete solution for retro like games and apps, 80's/90's/Retro/VHS/Glitch/TV look, security cameras.
+///
+
+
+///
+
+[SRP support]
+
+LWRP: full support of Lightweight Render Pipeline.
+
+URP: full support of Universal Render Pipeline.
+
+NOTE: Retro Look pro LWRP Example scenes won't work in URP. Use Retro Look pro effects in your own project.
+
+(HDRP) Retro Look pro includes custom Post-processing effects pack for HDRP integrated post-processing system.
+
+HDRP: full support of High definition Render Pipeline from 7.1.1+ version. Unity Editor version should be 2019.3+.
+To use effects in your Post-processing volume  "Add Override/Post-processing/RetroLookPro/Needed efect"
+Note that by default, your Retro Look Pro effects does not run if you just add them to a Volume. You also need to add the effect to your Project's list of supported effects. (it's the same list used to order the effect, see the Effect Ordering section).
+
+///
+
+[HDRP Effect ordering]
+
+HDRP allows you to customize the order of your custom post-processing effect at each injection point. To order your effects:
+
+    1. Go to Edit > Project Settings and select the HDRP Default Settings tab.
+
+    2. Scroll down until you find the Custom Post Process Orders section. This section contains three lists, one for each injection point.
+
+    3. Add Retro Look Pro effects to these lists so that HDRP can render them.
+
+///
+
+Color Palette IMPORTANT NOTE : To use presets please open "\Assets\LimitlessUnityDevelopment\RetroLookPro\Resources\ColormapPresets.unitypackage" and import it. Then fill RetroLookProColorPaletePresetsList\presetslist with all presets from "\Assets\LimitlessUnityDevelopment\RetroLookPro\Resources\Colormap Presets".
+
+///
+
+[Clean project]
+
+If you want keep your project assets clean and reduce package size, you have following options:
+
+1. Open RetroLookProColorPaletePresetsList.asset ("\Assets\LimitlessUnityDevelopment\Resources") and remove unnecessary items from the list. Then remove unneeded colormap presets from  "\Assets\LimitlessUnityDevelopment\Resources\Colormap Presets".
+2. Resources folder (Assets\LimitlessUnityDevelopment\Resources) remove unneeded Noise Textures.
+3. readme folder and asset can be removed.
+4. ThirdPartyAssets folder can be removed.
+5. Example Scenes folder can be removed.
+
+///
+
+
+[Manipulating Retro look pro effects variables]
+
+Online API and Manipulating effects script examples - https://limitless-development.xyz/documentation
+
+///
+
+[Contact]
+///
+
+If you want to leave a feedback or ask for new feature, use Asset related forum thread.
+https://forum.unity.com/threads/released-retro-look.583285/
+
+If you run into any issues or have questions, please do not hesitate to reach out ! I will do my best to respond as soon as I can.
+
+Contact email: limitlessunitydevelopment@gmail.com
+
+Please keep in mind that I’m in the UTC+5 timezone and usually reserve weekends for personal time.
+///
+
+Credits: 
+
+used Assets:
+Measured Materials Library
+https://github.com/Unity-Technologies/MeasuredMaterialLibraryHDRP/tree/master/Assets/Measured%20Materials%20Library
+Noise textures :
+https://www.deviantart.com/hxwlett/art/01-TEXTURES-PACK-VHS-601861083
+https://www.deviantart.com/xpegasvs/art/Pack-VHS-Vol-01-520737993
+https://www.deviantart.com/natieditions00/art/-VHS-TEXTURES-5--543052599
+Shader Calibration Scene - https://assetstore.unity.com/packages/essentials/tutorial-projects/shader-calibration-scene-25422

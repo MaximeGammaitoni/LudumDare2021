@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using States;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,12 +9,14 @@ public class PlayerEvents
 {
     public PlayerEvents()
     {
-        //OnPlayerDeath += PlayerDeath;
-        //OnPlayerDeath += Test;
-        GameManager.singleton.EventsManager.StartListening(nameof(OnPlayerDeath), PlayerDeathHandler);
-        Debug.Log(GameManager.singleton.ScoreManager?.MyString);
-        GameManager.GameUpdateHandler += PlayerUpdate;
-        PlayerIsDead();
+        PlayerDeathHandler += OnPlayerDeath;
+        EventsManager.StartListening("OnPlayerDeath", PlayerDeathHandler);
+
+        PlayerHitHandler += OnPlayerHit;
+        EventsManager.StartListening("OnPlayerHit", PlayerHitHandler);
+
+
+        GameManager.singleton.StatesEvents.OnBeginIn += test;
     }
 
     public UnityAction<Args> PlayerDeathHandler;
@@ -26,22 +29,39 @@ public class PlayerEvents
         if (args.GetType() != typeof(PlayerEvents.PlayerDeathArgs))
             throw new Exception("argument must be a PlayerDeathArgs");
         PlayerEvents.PlayerDeathArgs _args = ((PlayerEvents.PlayerDeathArgs)args);
-        Debug.Log("lolilolk");
-
-    }
-    private static void Test(Args args)
-    {
-        if (args.GetType() != typeof(PlayerEvents.PlayerDeathArgs))
-            throw new Exception("argument must be a PlayerDeathArgs");
-        GameObject GO = ((PlayerDeathArgs)args).PlayerGo;
-        GameManager.Instantiate(GO, Vector3.zero, Quaternion.identity);
     }
     public void PlayerIsDead()
     {
-        GameManager.singleton.EventsManager.TriggerEvent("OnPlayerDeath", new PlayerDeathArgs { PlayerGo = new GameObject("test") });
+        // not False  or not False
+        if (!(GameManager.singleton.StatesManager.CurrentState is End) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Win) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Pause) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Landing) &&
+            !(GameManager.singleton.StatesManager.CurrentState is Falling))
+        {
+            EventsManager.TriggerEvent("OnPlayerDeath", new PlayerDeathArgs());
+            GameManager.singleton.StatesManager.CurrentState = new States.End();
+            GameManager.singleton.OnDefeat();
+        }
+
     }
-    public void PlayerUpdate()
+
+    public UnityAction<Args> PlayerHitHandler;
+    private static void OnPlayerHit(Args args)
     {
+
+    }
+
+    public void PlayerHit()
+    {
+        GameManager.singleton.TimerManager.RemoveTime();
+        PlayerMovement.player.transform.position = GameManager.singleton.ResourcesLoaderManager.LevelLoader._playerOriginPosition;
+        EventsManager.TriggerEvent("OnPlayerHit", new PlayerDeathArgs());
+    }
+
+    public void test(Args args)
+    {
+        Debug.Log("fsedfsdfs");
     }
 
 }

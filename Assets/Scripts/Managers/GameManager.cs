@@ -1,4 +1,5 @@
-﻿using System;
+﻿using States;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,20 +19,26 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static event GameEventManager GameUpdateHandler;
     [HideInInspector] public static event GameEventManager GameFixedUpdateHandler;
 
+    [HideInInspector] public static event GameEventManager DeafetUiHandler;
 
     // Declare all your service here
     [HideInInspector] public ResourcesLoaderManager ResourcesLoaderManager;
-    [HideInInspector] public EventsManager EventsManager { get; set; }
     [HideInInspector] public PlayerEvents PlayerEvents { get; set; }
-    
-    [HideInInspector] public ScoreManager ScoreManager { get; set; }
+
+    [HideInInspector] public TimerManager TimerManager { get; set; }
+    [HideInInspector] public StatesManager StatesManager { get; set; }
+    [HideInInspector] public StatesEvents StatesEvents { get; set; }
+    [HideInInspector] public PauseManager PauseManager { get; set; }
+    [HideInInspector] public DefeatUIManager DefeatUIManager { get; set; }
+    [HideInInspector] public LeaderBoardManager LeaderBoardManager { get; set; }
+    [HideInInspector] public LevelsManager LevelsManager { get; set; }
 
     public void Awake()
     {
         GameUpdateHandler = null;
+        DeafetUiHandler = null;
         GameFixedUpdateHandler = null;
         singleton = this;
-        Debug.Log("singleton:" + singleton.ToString() + " is created");
         StartGameManager();
     }
     private void StartGameManager()
@@ -39,15 +46,32 @@ public class GameManager : MonoBehaviour
         try
         {
             ResourcesLoaderManager = transform.GetComponentInChildren<ResourcesLoaderManager>();
+            ResourcesLoaderManager.Init();
+            EventsManager.Init();
 
-            EventsManager = new EventsManager();
-            ScoreManager = new ScoreManager();
+            StatesEvents = new StatesEvents();
+            StatesManager = new StatesManager();
+
+            StatesManager.ChangeCurrentState(new Begin());
+            StatesManager.ChangeCurrentState(new Run());
             PlayerEvents = new PlayerEvents();
+            TimerManager = new TimerManager();
+            PauseManager = new PauseManager();
+            DefeatUIManager = new DefeatUIManager();
+            LevelsManager = new LevelsManager();
+            LeaderBoardManager = new LeaderBoardManager();
+            //test
+            LeaderBoardManager.GetRequestAndInstantiateIntoCanvas();
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
+    }
+
+    public void OnDefeat()
+    {
+        DeafetUiHandler?.Invoke();
     }
     public void OnDisable()
     {
@@ -138,7 +162,16 @@ public class GameManager : MonoBehaviour
 
     private void DestroyAllManagers()
     {
-        // define your services here
+        ResourcesLoaderManager = null;
+        PlayerEvents = null;
+
+        TimerManager = null;
+        StatesManager = null;
+        StatesEvents = null;
+        PauseManager = null;
+        DefeatUIManager = null;
+        LeaderBoardManager = null;
+        LevelsManager = null;
     }
     private void DestroyAllClients()
     {
@@ -147,7 +180,12 @@ public class GameManager : MonoBehaviour
 
     private void DestroyAllListeners()
     {
-
+        ApplicationQuitHandler = null;
+        ApplicationPauseHandler = null;
+        ApplicationFocusHandler = null;
+        GameUpdateHandler = null;
+        GameFixedUpdateHandler = null;
+        DeafetUiHandler = null;
     }
     public GameObject InstantiateInGameManager(UnityEngine.Object original, Vector3 position, Quaternion rotation)
     {
