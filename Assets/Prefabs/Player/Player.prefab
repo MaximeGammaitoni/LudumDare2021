@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 8985092941389305340}
   - component: {fileID: 8985092941389305219}
   - component: {fileID: 8985092941389305218}
+  - component: {fileID: 4816055384505928182}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -163,6 +164,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4816055384505928182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8985092941389305343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf498046e253fe74d919dfaedcfe30fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8985092941400187739
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +188,7 @@ GameObject:
   - component: {fileID: 8985092941400187737}
   - component: {fileID: 4016137543252049274}
   - component: {fileID: 8401897562686959876}
+  - component: {fileID: 175739474880113757}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -210,6 +224,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
+  _isDashable: 1
+  _MovementChecker: {fileID: 4816055384505928182}
+  _WallLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  RaycastOrigin: {fileID: 8985092941389305340}
+  DashCooldownTime: 0.2
+  _isDashing: 0
 --- !u!136 &4016137543252049274
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -240,3 +262,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &175739474880113757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8985092941400187739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1c53607ac7a3649aef262af2a5eaf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SpeedDash: 30
+  _DashTime: 0.1
+  offset: 0.1
