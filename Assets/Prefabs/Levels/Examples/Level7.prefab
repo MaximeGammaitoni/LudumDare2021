@@ -166205,7 +166205,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3256090058268901501, guid: f96b2b91402222a47a1ab4c72c6fa401, type: 3}
       propertyPath: _cadency
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3256090058754074321, guid: f96b2b91402222a47a1ab4c72c6fa401, type: 3}
       propertyPath: m_Name
@@ -166333,7 +166333,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3256090058268901501, guid: f96b2b91402222a47a1ab4c72c6fa401, type: 3}
       propertyPath: _cadency
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3256090058754074321, guid: f96b2b91402222a47a1ab4c72c6fa401, type: 3}
       propertyPath: m_Name
@@ -166399,7 +166399,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3256090058268901501, guid: f96b2b91402222a47a1ab4c72c6fa401, type: 3}
       propertyPath: _cadency
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3256090058754074321, guid: f96b2b91402222a47a1ab4c72c6fa401, type: 3}
       propertyPath: m_Name
