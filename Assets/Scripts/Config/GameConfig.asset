@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e696f09884cd5984ca6a1659f1bd7239, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  RemainingTime: 10
+  RemainingTime: 500
