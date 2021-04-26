@@ -817,6 +817,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spike_Trap Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 860209524099949203, guid: f0836b5286a5444199a955bc54f3cf45, type: 3}
+      propertyPath: OPD.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1896123031}
+    - target: {fileID: 860209524099949203, guid: f0836b5286a5444199a955bc54f3cf45, type: 3}
+      propertyPath: OPD.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 860209524099949206, guid: f0836b5286a5444199a955bc54f3cf45, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.013
@@ -824,6 +832,10 @@ PrefabInstance:
     - target: {fileID: 860209524099949206, guid: f0836b5286a5444199a955bc54f3cf45, type: 3}
       propertyPath: m_LocalPosition.z
       value: -3.991
+      objectReference: {fileID: 0}
+    - target: {fileID: 860209525079100257, guid: f0836b5286a5444199a955bc54f3cf45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.621
       objectReference: {fileID: 0}
     - target: {fileID: 1108998973403789521, guid: f0836b5286a5444199a955bc54f3cf45, type: 3}
       propertyPath: m_RootOrder
@@ -1509,6 +1521,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2219927357716725814, guid: 7d75fc05602e4354e8f4e2095b671663, type: 3}
   m_PrefabInstance: {fileID: 931136964}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &938168224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 860209525079100256, guid: f0836b5286a5444199a955bc54f3cf45, type: 3}
+  m_PrefabInstance: {fileID: 628149955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &938168226
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938168224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1066510835
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,7 +3303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2052576790
 MonoBehaviour:
   m_ObjectHideFlags: 0

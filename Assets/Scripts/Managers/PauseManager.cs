@@ -25,7 +25,7 @@ public class PauseManager
         EventsManager.StartListening(nameof(GameManager.singleton.StatesEvents.OnPauseIn), StartPause);
         EventsManager.StartListening(nameof(GameManager.singleton.StatesEvents.OnPauseOut), QuitPause);
         
-        playerControls.Main.Movement.started += OnAxesChanged;
+        playerControls.MenuNavigation.Movement.started += OnAxesChanged;
         GameManager.singleton.ResourcesLoaderManager.CanvasElements.PausePanel.SetActive(false);
         ResumeButton.onClick.AddListener(delegate {PauseGame();});
         QuitButton.onClick.AddListener(delegate { QuitGame();});

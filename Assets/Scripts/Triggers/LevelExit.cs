@@ -1,21 +1,29 @@
 using UnityEngine;
+using UnityEngine.Events;
+
+public class Lol
+{
+    public void Test(){}
+}
 
 public class LevelExit : MonoBehaviour
 {
     #region inspector
+
+    [SerializeField]
+    UnityEvent _onOpened = null;
+
     #endregion
 
     #region private members
-
-    Collider _collider = null;
-
-    Animator _animator = null;
 
     int _triggerPushedCount = 0;
 
     bool _opened = false;
 
     bool _exited = false;
+
+    AnusDoorBehaviour doorBehaviour;
     
     #endregion
 
@@ -32,6 +40,7 @@ public class LevelExit : MonoBehaviour
             if (_triggerPushedCount >= triggerCount)
             {
                 Open();
+
             }
         }
     }
@@ -39,14 +48,11 @@ public class LevelExit : MonoBehaviour
     #endregion
 
     #region private methods
-
-    void Awake()
+    private void OnEnable()
     {
-        _animator = GetComponent<Animator>();
-        _collider = GetComponent<Collider>();
-        _collider.enabled = false;
+        doorBehaviour = GetComponentInChildren<AnusDoorBehaviour>();
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
         if (_opened && !_exited && other.tag == "Player")
@@ -63,8 +69,8 @@ public class LevelExit : MonoBehaviour
             return;
         }
         _opened = true;
-        _animator?.SetTrigger("Opened");
-        _collider.enabled = true;
+        doorBehaviour._isOpened = true;
+        _onOpened?.Invoke();
     }
 
     void Exit()

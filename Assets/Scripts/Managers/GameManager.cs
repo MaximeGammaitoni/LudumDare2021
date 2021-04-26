@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static event GameEventManager GameUpdateHandler;
     [HideInInspector] public static event GameEventManager GameFixedUpdateHandler;
 
+    [HideInInspector] public static event GameEventManager DeafetUiHandler;
 
     // Declare all your service here
     [HideInInspector] public ResourcesLoaderManager ResourcesLoaderManager;
@@ -28,9 +29,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public StatesManager StatesManager { get; set; }
     [HideInInspector] public StatesEvents StatesEvents { get; set; }
     [HideInInspector] public PauseManager PauseManager { get; set; }
+    [HideInInspector] public DefeatUIManager DefeatUIManager { get; set; }
+    [HideInInspector] public LeaderBoardManager LeaderBoardManager { get; set; }
     public void Awake()
     {
         GameUpdateHandler = null;
+        DeafetUiHandler = null;
         GameFixedUpdateHandler = null;
         singleton = this;
         StartGameManager();
@@ -46,22 +50,25 @@ public class GameManager : MonoBehaviour
             StatesEvents = new StatesEvents();
             StatesManager = new StatesManager();
 
-            EventsManager.StartListening(nameof(StatesEvents.OnBeginIn), args => { Debug.Log("BEGIN GAME IN"); });
-            EventsManager.StartListening(nameof(StatesEvents.OnBeginOut), args => { Debug.Log("BEGIN GAME OUT"); });
-            EventsManager.StartListening(nameof(StatesEvents.OnRunIn), args => { Debug.Log("RUN IN"); });
-            EventsManager.StartListening(nameof(StatesEvents.OnRunOut), args => { Debug.Log("RUN OUT"); });
-
-
             StatesManager.ChangeCurrentState(new Begin());
             StatesManager.ChangeCurrentState(new Run());
             PlayerEvents = new PlayerEvents();
             TimerManager = new TimerManager();
             PauseManager = new PauseManager();
+            DefeatUIManager = new DefeatUIManager();
+            LeaderBoardManager = new LeaderBoardManager();
+            //test
+            LeaderBoardManager.GetRequestAndInstantiateIntoCanvas();
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
+    }
+
+    public void OnDefeat()
+    {
+        DeafetUiHandler?.Invoke();
     }
     public void OnDisable()
     {

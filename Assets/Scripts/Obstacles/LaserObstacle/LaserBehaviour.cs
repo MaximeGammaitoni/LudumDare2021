@@ -10,9 +10,11 @@ public class LaserBehaviour : MonoBehaviour
     public ILaserType _LaserType;
     public LayerMask _WallLayerMask;
     public UnityEvent _OnPlayerHit;
+    public float OriginSize = 30;
 
     // Variables
     private LineRenderer _laserRenderer;
+    
 
     private void Start()
     {
@@ -40,28 +42,33 @@ public class LaserBehaviour : MonoBehaviour
 
     private void GenerateRaycasts()
     {
-       
+
         int mask = _WallLayerMask.value;
 
         RaycastHit hit;
-        if(Physics.Raycast(this.transform.position, this.transform.forward,out hit, Mathf.Infinity, mask))
+        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, Mathf.Infinity, mask))
         {
+            GenerateLaser(new Vector3(0, 0, hit.point.z));
             CheckPlayerHit(hit);
-            GenerateLaser(hit);
         }
+        else
+        {
+            GenerateLaser(new Vector3(0, 0, OriginSize));
+        }
+        
     }
 
-    private void GenerateLaser(RaycastHit hit)
+    private void GenerateLaser(Vector3 position)
     {
-        _laserRenderer.SetPosition(0, transform.position);
-        _laserRenderer.SetPosition(1, hit.point);
+        //_laserRenderer.SetPosition(0, transform.position);
+        _laserRenderer.SetPosition(1, position);
     }
 
     private RaycastHit CheckPlayerHit(RaycastHit hit)
     {
         if (hit.transform.gameObject.CompareTag("Player"))
         {
-            _OnPlayerHit?.Invoke();
+            GameManager.singleton.PlayerEvents.PlayerIsDead();
         }
 
         return hit;
