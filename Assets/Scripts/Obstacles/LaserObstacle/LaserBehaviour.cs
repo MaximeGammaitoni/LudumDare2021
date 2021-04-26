@@ -48,7 +48,7 @@ public class LaserBehaviour : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, Mathf.Infinity, mask))
         {
-            GenerateLaser(new Vector3(0, 0, hit.point.z));
+            GenerateLaser(new Vector3(0, 0, Vector3.Distance(transform.position, hit.point)));
             CheckPlayerHit(hit);
         }
         else
