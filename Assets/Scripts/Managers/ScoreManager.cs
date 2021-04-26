@@ -16,6 +16,6 @@ public class ScoreManager
     public static int GetCurrentScore()
     {
         // TODO : implement this
-        return 0;
+        return 120;
     }
 }

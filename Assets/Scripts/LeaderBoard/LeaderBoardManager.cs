@@ -1,9 +1,12 @@
 using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
+
+using UObject = UnityEngine.Object;
 
 
 [System.Serializable]
@@ -24,6 +27,7 @@ public class LeaderBoardManager
 {
     private GameObject Line;
     private GameObject LeaderBoardContent;
+    GameObject LeaderBoardPanel;
 
     private Coroutine AllLeadBoard = null;
     const string BaseUrl = "http://51.91.99.249"; //If you get this url to add your score manually, the Lord of the hell Paimon will come to you cheaty boy.
@@ -34,6 +38,7 @@ public class LeaderBoardManager
     {
         Line = GameManager.singleton.ResourcesLoaderManager.UIElementsLoader.LeaderBoardUiElement;
         LeaderBoardContent = GameManager.singleton.ResourcesLoaderManager.CanvasElements.LeaderBoardContent;
+        LeaderBoardPanel = GameManager.singleton.ResourcesLoaderManager.CanvasElements.LeaderBoardPanel;
         EventsManager.StartListening(nameof(EnterName.OnNameEntered), OnNameEntered);
     }
 
@@ -55,7 +60,7 @@ public class LeaderBoardManager
         LeadBoardData data = null;
         yield return FetchLeaderBoardData(name, res => { data = res; });
         int currentScore = ScoreManager.GetCurrentScore();
-        if (data == null || currentScore > data.score)
+        if (data == null || currentScore < data.score)
         {
             // Post data
             LeadBoardData newData = new LeadBoardData()
@@ -65,7 +70,19 @@ public class LeaderBoardManager
             };
             yield return PostLeaderBoardData(newData);
         }
-        GetRequestAndInstantiateIntoCanvas();
+        DisplayLeaderBoard();
+    }
+
+    void DisplayLeaderBoard()
+    {
+        GameManager.singleton.StartCoroutine(DisplayLeaderBoardCoroutine());
+    }
+
+    IEnumerator DisplayLeaderBoardCoroutine()
+    {
+        yield return GetRequestAndInstantiateIntoCanvasCorout();
+        // TODO : display leader board object...
+        LeaderBoardPanel?.SetActive(true);
     }
 
     IEnumerator FetchLeaderBoardData(string name, Action<LeadBoardData> callback)
@@ -79,7 +96,7 @@ public class LeaderBoardManager
             {
                 Debug.Log("Error: "  + webRequest.error);
             }
-            else
+            else if (webRequest.result == UnityWebRequest.Result.Success)
             {
                 try
                 {
@@ -99,9 +116,31 @@ public class LeaderBoardManager
     IEnumerator PostLeaderBoardData(LeadBoardData data)
     {
         string json = JsonUtility.ToJson(data);
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(BaseUrl + GetAllEndPoint, json))
+        using (UnityWebRequest webRequest = new UnityWebRequest(BaseUrl + GetAllEndPoint, "POST"))
         {
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
             yield return webRequest.SendWebRequest();
+            if (webRequest.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError(webRequest.error);
+            }
+        }
+    }
+
+    void ClearLeaderBoardContent()
+    {
+        List<Transform> children = new List<Transform>();
+        foreach (Transform child in LeaderBoardContent.transform)
+        {
+            children.Add(child);
+        }
+
+        foreach (Transform child in children)
+        {
+            UObject.Destroy(child.gameObject);
         }
     }
 
@@ -119,7 +158,8 @@ public class LeaderBoardManager
             {
                 GetLeadBoardResult leadBoardData = JsonUtility.FromJson<GetLeadBoardResult>(webRequest.downloadHandler.text);
                 int i = 1;
-                leadBoardData.lead_boards.OrderByDescending(x => x.score);
+                leadBoardData.lead_boards.Sort((d1, d2) => d1.score.CompareTo(d2.score));
+                ClearLeaderBoardContent();
                 foreach (LeadBoardData lb in leadBoardData.lead_boards)
                 {
                     var Go = GameManager.Instantiate(Line);

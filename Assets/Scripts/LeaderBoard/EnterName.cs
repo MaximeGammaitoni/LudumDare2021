@@ -11,9 +11,14 @@ public class NameArgs : Args
 public class EnterName : MonoBehaviour
 {
     #region inspector
+    [SerializeField]
     TMP_InputField _nameField = null;
 
+    [SerializeField]
     Button _confirmButton = null;
+
+    [SerializeField]
+    UnityEvent _onConfirmed = null;
     #endregion
 
     #region public members
@@ -32,6 +37,10 @@ public class EnterName : MonoBehaviour
         if (!string.IsNullOrEmpty(prefName))
         {
             _nameField.text = prefName;
+        }
+        else
+        {
+            _confirmButton.interactable = false;
         }
     }
 
@@ -56,6 +65,8 @@ public class EnterName : MonoBehaviour
         EventsManager.TriggerEvent(nameof(OnNameEntered), new NameArgs() {
             name = name
         });
+        _onConfirmed?.Invoke();
+        gameObject.SetActive(false);
     }
 
     #endregion

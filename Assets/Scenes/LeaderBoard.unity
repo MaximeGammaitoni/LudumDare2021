@@ -1034,6 +1034,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 402cb3bb1cb224d429c81a1d0bd8c771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nameField: {fileID: 95215167}
+  _confirmButton: {fileID: 1870529644}
+  _onConfirmed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &675571309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,6 +1909,7 @@ MonoBehaviour:
   Canvas: {fileID: 376337931}
   TopPanel: {fileID: 675571309}
   TimerPanel: {fileID: 1732694014}
+  LeaderBoardPanel: {fileID: 1178991826}
   LeaderBoardContent: {fileID: 1439066528}
   TimerText: {fileID: 1980256918}
   PausePanel: {fileID: 1482131332}
@@ -2744,7 +2750,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1870529645}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 654516402}
+        m_TargetAssemblyTypeName: EnterName, Assembly-CSharp
+        m_MethodName: Confirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1870529645
 MonoBehaviour:
   m_ObjectHideFlags: 0
