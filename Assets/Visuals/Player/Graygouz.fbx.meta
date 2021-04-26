@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: e957e2b7b9618ed4195af2951f9b4a06
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -887982601649841707
+    second: metarig|metarigAction
   externalObjects:
   - first:
       type: UnityEngine:Material
