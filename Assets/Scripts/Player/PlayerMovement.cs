@@ -160,14 +160,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (_falling && Mathf.Approximately(_collider.attachedRigidbody.velocity.y, 0f))
-        {
-            _landing = true;
-        }
-    }
-
     void FixedUpdate()
     {
         //Debug.Log("is dashing is " + _isDashing);
@@ -202,6 +194,7 @@ public class PlayerMovement : MonoBehaviour
         _landing = false;
         Rigidbody rb = _collider.attachedRigidbody;
         rb.useGravity = true;
+        _collider.enabled = false;
         yield return new WaitForSeconds(4f);
         gameObject.SetActive(false);
     }
@@ -226,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitUntil(() => transform.position.y <= targetHeight);
         _collider.enabled = true;
         // Wait for the player to fall on the ground.
-        yield return new WaitUntil(() => _landing);
+        yield return new WaitUntil(() => Mathf.Approximately(rb.velocity.y, 0f));
         Debug.Log("LANDING");
         _falling = false;
         _landing = false;
