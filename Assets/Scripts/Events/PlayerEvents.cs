@@ -52,7 +52,6 @@ public class PlayerEvents
     public void PlayerHit()
     {
         //GameManager.singleton.TimerManager.RemoveTime();
-        PlayerMovement.player.transform.position = GameManager.singleton.ResourcesLoaderManager.LevelLoader._playerOriginPosition;
         EventsManager.TriggerEvent("OnPlayerHit", new PlayerDeathArgs());
     }
 

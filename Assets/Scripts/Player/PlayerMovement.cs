@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
         animationHandler = GetComponent<PlayerAnimationHandling>();
         EventsManager.StartListening("OnPlayerHit", WaitTimer);
-
+        animationHandler.deathTime = DeathTimer;
     }
 
     void OnDestroy()
@@ -164,24 +164,23 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Debug.Log("is dashing is " + _isDashing);
-        if (!GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
+        if (!GameManager.singleton.StatesManager.CurrentState.ElementsCanMove || 
+            _isDashing || _isDead || _MovementChecker == null)
         {
             return;
         }
-        if (!_isDashing && !_isDead)
+        
+        Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
+        animationHandler.speedMotion = movement.magnitude;
+        if (!_MovementChecker.CheckMovement(_movementDirection, _speed * movement.magnitude * Time.fixedDeltaTime, _WallLayerMask).HasValue)
         {
-            Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
-            animationHandler.speedMotion = movement.magnitude;
-            if (!_MovementChecker.CheckMovement(_movementDirection, _speed * movement.magnitude * Time.fixedDeltaTime, _WallLayerMask).HasValue)
-            {
-                //Debug.Log("Moving");
-                transform.position += _speed * movement * Time.fixedDeltaTime;
-            }
-            if (movement != Vector3.zero)
-            {
-                transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
-            }
-        } 
+            //Debug.Log("Moving");
+            transform.position += _speed * movement * Time.fixedDeltaTime;
+        }
+        if (movement != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
+        }
     }
 
     IEnumerator FallThenDisapearCoroutine()
@@ -229,8 +228,6 @@ public class PlayerMovement : MonoBehaviour
         GameManager.singleton.StatesManager.CurrentState = new Run();
     }
 
-
-
     IEnumerator DashCoroutine()
     {
         _isDashable = false;
@@ -249,6 +246,9 @@ public class PlayerMovement : MonoBehaviour
     {
         _isDead = true;
         yield return new WaitForSeconds(DeathTimer);
+        Vector3 origin = GameManager.singleton.ResourcesLoaderManager.LevelLoader._playerOriginPosition;
+        origin.y = transform.position.y;
+        transform.position = origin;
         _isDead = false;
     }
 
