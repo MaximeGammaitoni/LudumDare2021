@@ -12,4 +12,10 @@ public class ScoreManager
         MainObject = GameObject.Find("ScorePanel");
         Debug.Log("Score manager created");
     }
+
+    public static int GetCurrentScore()
+    {
+        // TODO : implement this
+        return 120;
+    }
 }
