@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ProjectileThrower : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class ProjectileThrower : MonoBehaviour
     [SerializeField]
     [Tooltip("The shoot cadency in seconds.")]
     float _cadency = 1f;
+
+    [SerializeField]
+    UnityEvent _onShoot = null;
 
     #endregion
 
@@ -48,6 +52,7 @@ public class ProjectileThrower : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(_cadency);
+            _onShoot?.Invoke();
             Instantiate(_projectilePrefab, _spawnOrigin.position, _spawnOrigin.rotation);
         }
     }
