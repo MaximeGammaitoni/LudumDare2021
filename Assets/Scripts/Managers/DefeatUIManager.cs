@@ -28,6 +28,8 @@ public class DefeatUIManager
     private void Retry()
     {
         DefeatPanel.SetActive(false);
+        GameManager.singleton.PauseManager.playerControls.Disable();
+        GameManager.singleton.DestroyServices();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
