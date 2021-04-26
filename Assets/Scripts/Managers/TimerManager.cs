@@ -43,6 +43,7 @@ public class TimerManager
         {
             StopUpdate();
             timer = 0f;
+            GameManager.singleton.SfxManager.PlayLose();
             GameManager.singleton.PlayerEvents.PlayerIsDead();
         }
         timerText.text = string.Format("{0:D2}:{1:D2}",

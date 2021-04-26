@@ -82,6 +82,7 @@ public class LevelExit : MonoBehaviour
         {
             _exited = true;
             Exit();
+            GameManager.singleton.SfxManager.PlayExitOpen();
         }
     }
 
