@@ -32,6 +32,13 @@ public class PlayerEvents
         GameObject GO = ((PlayerDeathArgs)args).PlayerGo;
         GameManager.Instantiate(GO, Vector3.zero, Quaternion.identity);
     }
+
+    public void PlayerHit()
+    {
+        GameManager.singleton.TimerManager.RemoveTime();
+        GameObject.Find("Player").transform.position = GameManager.singleton.ResourcesLoaderManager.LevelLoader._playerOriginPosition;
+    }
+
     public void PlayerIsDead()
     {
         // not False  or not False

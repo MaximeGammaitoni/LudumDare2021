@@ -32,7 +32,7 @@ public class Spike : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            GameManager.singleton.PlayerEvents.PlayerIsDead();
+            GameManager.singleton.PlayerEvents.PlayerHit();
         }
     }
 

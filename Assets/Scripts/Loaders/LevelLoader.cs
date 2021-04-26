@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using States;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class LevelLoader : MonoBehaviour
     [SerializeField]
     float _heightBetweenLevels = 5f;
 
+    [SerializeField]
+    public Vector3 _playerOriginPosition = new Vector3(0, 0, 0);
+
     #endregion
 
     #region private members
@@ -25,6 +29,7 @@ public class LevelLoader : MonoBehaviour
     GameObject _currentLevelInstance = null;
 
     GameObject _nextLevelInstance = null;
+    GameObject _playerGo;
 
     #endregion
 
@@ -38,6 +43,8 @@ public class LevelLoader : MonoBehaviour
         Vector3 position = _firstLevelOrigin?.position ?? Vector3.zero;
         _currentLevelInstance = Instantiate(_levelPrefabs[_currentLevelIndex], position, Quaternion.identity);
         GameManager.singleton.LevelsManager.CurrentLevel = _currentLevelInstance;
+        _playerGo = GameObject.Find("Player");
+        _playerGo.transform.position = _playerOriginPosition;
         LoadNextLevel();
     }
 
@@ -72,6 +79,15 @@ public class LevelLoader : MonoBehaviour
         Destroy(previousLevel);
     }
 
+    IEnumerator SetNewPLayerOriginPosition()
+    {
+        while (GameManager.singleton.StatesManager.CurrentState is States.Falling)
+        {
+            yield return null;
+        }
+        _playerOriginPosition = _playerGo.transform.position;
+    }
+
     #endregion
 
     #region public methods
@@ -79,6 +95,7 @@ public class LevelLoader : MonoBehaviour
     public void MoveToNextLevel()
     {
         StartCoroutine(DestroyPreviousLevelCoroutine(_currentLevelInstance));
+        StartCoroutine(SetNewPLayerOriginPosition());
         _currentLevelIndex++;
         _currentLevelInstance = _nextLevelInstance;
         GameManager.singleton.LevelsManager.CurrentLevel = _currentLevelInstance;

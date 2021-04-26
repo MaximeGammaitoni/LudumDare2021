@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DefeatUIManager
 {
@@ -27,7 +28,7 @@ public class DefeatUIManager
     private void Retry()
     {
         DefeatPanel.SetActive(false);
-        GameManager.singleton.StatesManager.CurrentState = new States.Run();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void MainMenu()
