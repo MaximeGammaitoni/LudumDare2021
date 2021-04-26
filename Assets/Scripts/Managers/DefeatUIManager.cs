@@ -22,7 +22,11 @@ public class DefeatUIManager
 
     private void Quit()
     {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        #endif
     }
 
     private void Retry()
@@ -40,6 +44,8 @@ public class DefeatUIManager
 
     private void DefeateAction()
     {
+        Debug.Log(nameof(DefeateAction));
+        Debug.Log(DefeatPanel.name);
         DefeatPanel.SetActive(true);
     }
 }

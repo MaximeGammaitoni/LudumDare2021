@@ -23,6 +23,9 @@ public class ProjectileThrower : BaseObstacle
     [SerializeField]
     UnityEvent _onShoot = null;
 
+    [SerializeField]
+    bool _waitLevelLoadToShoot = true;
+
     #endregion
 
     #region private members
@@ -37,9 +40,20 @@ public class ProjectileThrower : BaseObstacle
 
     #region private methods
 
+    protected override void Awake()
+    {
+        if (_waitLevelLoadToShoot)
+        {
+            base.Awake();
+        }
+        else
+        {
+            OnInitialized();
+        }
+    }
+
     protected override void OnInitialized()
     {
-        Debug.Log("Je commence ma gueule.");
         _shootCoroutine = StartCoroutine(ShootProjectilesCoroutine());
     }
 

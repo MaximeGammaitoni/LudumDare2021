@@ -32,6 +32,7 @@ public class PlayerEvents
     }
     public void PlayerIsDead()
     {
+        Debug.Log("Player is dead");
         // not False  or not False
         if (!(GameManager.singleton.StatesManager.CurrentState is End) &&
             !(GameManager.singleton.StatesManager.CurrentState is Win) &&
@@ -39,6 +40,7 @@ public class PlayerEvents
             !(GameManager.singleton.StatesManager.CurrentState is Landing) &&
             !(GameManager.singleton.StatesManager.CurrentState is Falling))
         {
+            Debug.Log("Ta mere la chauve.");
             EventsManager.TriggerEvent("OnPlayerDeath", new PlayerDeathArgs());
             GameManager.singleton.StatesManager.CurrentState = new States.End();
             GameManager.singleton.OnDefeat();
@@ -54,7 +56,7 @@ public class PlayerEvents
 
     public void PlayerHit()
     {
-        GameManager.singleton.TimerManager.RemoveTime();
+        //GameManager.singleton.TimerManager.RemoveTime();
         PlayerMovement.player.transform.position = GameManager.singleton.ResourcesLoaderManager.LevelLoader._playerOriginPosition;
         EventsManager.TriggerEvent("OnPlayerHit", new PlayerDeathArgs());
     }
