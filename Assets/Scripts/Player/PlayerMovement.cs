@@ -101,19 +101,23 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerControls?.Enable();
         // Suscribe to state events.
-        EventsManager.StartListening(nameof(StatesManager.OnStateChanged), OnStateChanged);
+        EventsManager.StartListening(nameof(StatesEvents.OnFallingIn), OnFalling);
     }
 
     void OnDisable()
     {
         _playerControls?.Disable();
         // unsuscribe to state events.
-        EventsManager.StopListening(nameof(StatesManager.OnStateChanged), OnStateChanged);
+        EventsManager.StopListening(nameof(StatesEvents.OnFallingIn), OnFalling);
     }
 
-    void OnStateChanged(Args args)
+    void OnFalling(Args args)
     {
-        if (args is StateChangedArgs stateArgs && stateArgs.newState is Falling)
+        if (LevelLoader.currentLevelIndex >= LevelLoader.levelCount - 1)
+        {
+            StartCoroutine(FallThenDisapearCoroutine());
+        }
+        else
         {
             StartCoroutine(FallThroughGroundCoroutine());
         }
@@ -133,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDash(CallbackContext ctx)
     {
-        if (_isDashing)
+        if (_isDashing || !GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
         {
             return;
         }
@@ -154,14 +158,6 @@ public class PlayerMovement : MonoBehaviour
         }
         
 
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-        if (_falling && Mathf.Approximately(_collider.attachedRigidbody.velocity.y, 0f))
-        {
-            _landing = true;
-        }
     }
 
     void FixedUpdate()
@@ -187,6 +183,22 @@ public class PlayerMovement : MonoBehaviour
         } 
     }
 
+    IEnumerator FallThenDisapearCoroutine()
+    {
+        if (_falling)
+        {
+            yield break;
+        }
+        _isDashing = false;
+        _falling = true;
+        _landing = false;
+        Rigidbody rb = _collider.attachedRigidbody;
+        rb.useGravity = true;
+        _collider.enabled = false;
+        yield return new WaitForSeconds(4f);
+        gameObject.SetActive(false);
+    }
+
     IEnumerator FallThroughGroundCoroutine()
     {
         if (_falling)
@@ -207,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitUntil(() => transform.position.y <= targetHeight);
         _collider.enabled = true;
         // Wait for the player to fall on the ground.
-        yield return new WaitUntil(() => _landing);
+        yield return new WaitUntil(() => Mathf.Approximately(rb.velocity.y, 0f));
         Debug.Log("LANDING");
         _falling = false;
         _landing = false;

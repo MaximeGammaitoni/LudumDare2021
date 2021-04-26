@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
 
     void OnPlayerHit()
     {
-        GameManager.singleton?.PlayerEvents.PlayerIsDead();
+        GameManager.singleton?.PlayerEvents.PlayerHit();
     }
 
     void OnCollisionEnter(Collision other)

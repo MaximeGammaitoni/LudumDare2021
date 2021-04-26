@@ -15,14 +15,32 @@ public class TimerManager
         remainingTime = GameManager.singleton.ResourcesLoaderManager.GameConfig.RemainingTime;
         timer = remainingTime;
         GameManager.GameUpdateHandler += UpdateTimer;
+        EventsManager.StartListening(nameof(LevelLoader.OnGameFinished), StopUpdate);
+    }
+
+    ~TimerManager()
+    {
+        EventsManager.StopListening(nameof(LevelLoader.OnGameFinished), StopUpdate);
+    }
+
+    void StopUpdate(Args args = null)
+    {
+        GameManager.GameUpdateHandler -= UpdateTimer;
     }
 
     private void UpdateTimer()
     {
+        if (timer <= 0f)
+        {
+            return;
+        }
+        
         timer -= Time.deltaTime * Time.timeScale;
         var ts = TimeSpan.FromSeconds(timer);
         if (timer <= 0f)
         {
+            StopUpdate();
+            timer = 0f;
             GameManager.singleton.PlayerEvents.PlayerIsDead();
         }
         timerText.text = string.Format("{0:D2}:{1:D2}",
@@ -39,5 +57,7 @@ public class TimerManager
         ts.Seconds);
 
     }
+
+    public int timeLeft => Mathf.Max(0, (int)timer);
 
 }
