@@ -221,7 +221,6 @@ public class PlayerMovement : MonoBehaviour
         _collider.enabled = true;
         // Wait for the player to fall on the ground.
         yield return new WaitUntil(() => Mathf.Approximately(rb.velocity.y, 0f));
-        Debug.Log("LANDING");
         _falling = false;
         _landing = false;
         rb.useGravity = oldGravityState;

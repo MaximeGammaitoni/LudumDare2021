@@ -55,7 +55,6 @@ public class LevelLoader : MonoBehaviour
         isInit = true;
         Vector3 position = _firstLevelOrigin?.position ?? Vector3.zero;
         _currentLevelInstance = Instantiate(_levelPrefabs[currentLevelIndex], position, Quaternion.identity);
-        Debug.Log($"GameManager.singleton == null : {GameManager.singleton == null}");
         GameManager.singleton.LevelsManager.CurrentLevel = _currentLevelInstance;
         _playerGo = GameObject.FindGameObjectWithTag("Player");
         _playerGo.transform.position = _playerOriginPosition;

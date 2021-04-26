@@ -27,7 +27,6 @@ public class RotationalLaser : BaseObstacle, ILaserType
     public void LaserMovement()
     {
         float angle = Mathf.Sin(Time.time * _RotationalSpeed) * _Range + originalRotation;
-        Debug.Log("angle is = " +angle);
         transform.rotation = Quaternion.identity;
         //transform.rotation =  Quaternion.AngleAxis(angle * Mathf.Deg2Rad, _RotationAxis) * transform.rotation;
         transform.Rotate(_RotationAxis, angle);

@@ -44,8 +44,6 @@ public class DefeatUIManager
 
     private void DefeateAction()
     {
-        Debug.Log(nameof(DefeateAction));
-        Debug.Log(DefeatPanel.name);
         DefeatPanel.SetActive(true);
     }
 }
