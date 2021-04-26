@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public PauseManager PauseManager { get; set; }
     [HideInInspector] public DefeatUIManager DefeatUIManager { get; set; }
     [HideInInspector] public LeaderBoardManager LeaderBoardManager { get; set; }
+    [HideInInspector] public SfxManager SfxManager { get; set; }
     [HideInInspector] public LevelsManager LevelsManager { get; set; }
 
     public void Awake()
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
             DefeatUIManager = new DefeatUIManager();
             LevelsManager = new LevelsManager();
             LeaderBoardManager = new LeaderBoardManager();
+            SfxManager = new SfxManager();
             //test
             LeaderBoardManager.GetRequestAndInstantiateIntoCanvas();
         }

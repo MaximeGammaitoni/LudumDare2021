@@ -149,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("is Dashing" + _isDashing);
             if (DashReponse != null)
             {
+                GameManager.singleton.SfxManager.PlayDash();
                 StartCoroutine(DashCoroutine());
             }
             else
