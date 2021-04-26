@@ -393,6 +393,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2319894809489275885}
     m_Modifications:
+    - target: {fileID: 3203485931797435795, guid: 54a84bd3c0bad504e9af5d63515d78cb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8257288050337224167, guid: 54a84bd3c0bad504e9af5d63515d78cb, type: 3}
       propertyPath: m_Name
       value: LasersStatic
