@@ -33,6 +33,14 @@ public class LevelLoader : MonoBehaviour
 
     #endregion
 
+    #region public members
+
+    public static int currentLevelIndex => GameManager.singleton.ResourcesLoaderManager.LevelLoader._currentLevelIndex;
+
+    public static bool isInit { get; private set; }
+
+    #endregion
+
     #region private methods
 
     void OnEnable()
@@ -40,11 +48,13 @@ public class LevelLoader : MonoBehaviour
         EventsManager.StartListening(nameof(StatesEvents.OnLandingIn), TriggerPreviousLevelDestruction);
         // Load 1st level.
         _currentLevelIndex = 0;
+        isInit = true;
         Vector3 position = _firstLevelOrigin?.position ?? Vector3.zero;
         _currentLevelInstance = Instantiate(_levelPrefabs[_currentLevelIndex], position, Quaternion.identity);
         GameManager.singleton.LevelsManager.CurrentLevel = _currentLevelInstance;
         _playerGo = GameObject.Find("Player");
         _playerGo.transform.position = _playerOriginPosition;
+        isInit = false;
         LoadNextLevel();
     }
 

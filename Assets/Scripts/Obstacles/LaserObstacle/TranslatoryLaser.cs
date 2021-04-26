@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TranslatoryLaser : MonoBehaviour, ILaserType
+public class TranslatoryLaser : BaseObstacle, ILaserType
 {
     public Transform _StartObject;
     public Transform _TargetObject;

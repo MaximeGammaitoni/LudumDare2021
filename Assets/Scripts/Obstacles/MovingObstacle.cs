@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MovingObstacle : MonoBehaviour
+public class MovingObstacle : BaseObstacle
 {
     #region inspector
 
@@ -37,7 +37,7 @@ public class MovingObstacle : MonoBehaviour
 
     #region private methods
 
-    void OnEnable()
+    protected override void OnInitialized()
     {
         _movingCoroutine = StartCoroutine(MovingCoroutine());
     }

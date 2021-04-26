@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(LineRenderer))]
 
-public class LaserBehaviour : MonoBehaviour
+public class LaserBehaviour : BaseObstacle
 {
     // Inspector
     public Material _LaserMaterial;
