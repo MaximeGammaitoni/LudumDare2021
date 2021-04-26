@@ -9,6 +9,7 @@ public class TimerManager
     private readonly TextMeshProUGUI timerText;
     private readonly int remainingTime;
     private float timer;
+    bool updateHasStopped = false;
     public TimerManager()
     {
         timerText = GameManager.singleton.ResourcesLoaderManager.CanvasElements.TimerText;
@@ -25,6 +26,7 @@ public class TimerManager
 
     void StopUpdate(Args args = null)
     {
+        updateHasStopped = true;
         GameManager.GameUpdateHandler -= UpdateTimer;
     }
 
@@ -50,7 +52,18 @@ public class TimerManager
 
     public void RemoveTime()
     {
+        if (timer <= 0f)
+        {
+            return;
+        }
+
         timer -= 5f;
+        if (timer <= 0f)
+        {
+            StopUpdate();
+            timer = 0f;
+            GameManager.singleton.PlayerEvents.PlayerIsDead();
+        }
         var ts = TimeSpan.FromSeconds(timer);
         timerText.text = string.Format("{0:D2}:{1:D2}",
         ts.Minutes,

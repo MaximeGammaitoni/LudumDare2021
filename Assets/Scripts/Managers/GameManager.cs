@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void OnDefeat()
     {
+        Debug.Log($"DeafetUiHandler == null : {DeafetUiHandler == null}");
         DeafetUiHandler?.Invoke();
     }
     public void OnDisable()
