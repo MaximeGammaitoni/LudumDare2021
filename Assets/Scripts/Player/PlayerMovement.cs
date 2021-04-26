@@ -183,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
         {
             yield break;
         }
+        _isDashing = false;
         _falling = true;
         _landing = false;
         float playerHeight = _collider.bounds.size.y;

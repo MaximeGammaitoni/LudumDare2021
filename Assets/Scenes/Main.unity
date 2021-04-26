@@ -511,6 +511,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8985092941400187737, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: RaycastOrigin
+      value: 
+      objectReference: {fileID: 352156360}
+    - target: {fileID: 8985092941400187737, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: DashCooldownTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985092941400187737, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: _MovementChecker
+      value: 
+      objectReference: {fileID: 352156362}
+    - target: {fileID: 8985092941400187737, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: _WallLayerMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 8985092941400187739, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -521,6 +537,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+--- !u!4 &352156360 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8985092941389305340, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+  m_PrefabInstance: {fileID: 352156359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &352156361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8985092941389305343, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+  m_PrefabInstance: {fileID: 352156359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &352156362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352156361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf498046e253fe74d919dfaedcfe30fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &354237725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1626,7 @@ MonoBehaviour:
   LeaderBoardTable: {fileID: 0}
   VFXLoader: {fileID: 11400000, guid: 1b2699281fba4034cbd8ee981a0eb09b, type: 2}
   EnnemiesLoader: {fileID: 11400000, guid: 35920113fb12fec428a244567540df52, type: 2}
+  UIElementsLoader: {fileID: 0}
   CanvasElements: {fileID: 0}
   LevelLoader: {fileID: 0}
 --- !u!114 &1066510838
@@ -1605,10 +1644,15 @@ MonoBehaviour:
   Canvas: {fileID: 2052576789}
   TopPanel: {fileID: 1619493608}
   TimerPanel: {fileID: 1097911852}
+  LeaderBoardContent: {fileID: 0}
   TimerText: {fileID: 2065212878}
   PausePanel: {fileID: 2005195776}
   QuitGameButton: {fileID: 1282039027}
   ResumeGameButton: {fileID: 1646484071}
+  DefeatPanel: {fileID: 0}
+  DefeatPanelQuitButton: {fileID: 0}
+  DefeatPanelRetryButton: {fileID: 0}
+  DefeatPanelMainMenuButton: {fileID: 0}
 --- !u!1 &1097911852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,6 +2991,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8985092941400187739, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
   m_PrefabInstance: {fileID: 352156359}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1896123032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896123031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1c53607ac7a3649aef262af2a5eaf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SpeedDash: 30
+  _DashTime: 0.1
+  offset: 0.1
 --- !u!4 &1896123035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8985092941400187736, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
