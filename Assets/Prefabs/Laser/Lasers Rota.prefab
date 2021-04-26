@@ -109,6 +109,7 @@ MonoBehaviour:
   _RotationCenter: {fileID: 3001535442088390808}
   _Range: 45
   _RotationalSpeed: 10
+  originalRotation: 0
   _RotationAxis: {x: 0, y: 1, z: 0}
 --- !u!1 &3155492706330342507
 GameObject:
@@ -274,7 +275,7 @@ LineRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bd7da056431beb84f80445f93ae467b3, type: 2}
+  - {fileID: 2100000, guid: 7209ed80c66d8f148ae029c12a02b5d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -300,13 +301,13 @@ LineRenderer:
   - {x: 0, y: 0, z: 68.4}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.39560285
+    widthMultiplier: 0.6
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.007873055
-        value: 0.056072235
+        time: 0.0018725358
+        value: 0.22564316
         inSlope: 0
         outSlope: 0
         tangentMode: 0
