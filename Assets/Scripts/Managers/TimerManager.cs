@@ -40,4 +40,6 @@ public class TimerManager
 
     }
 
+    public int timeLeft => Mathf.Max(0, (int)timer);
+
 }

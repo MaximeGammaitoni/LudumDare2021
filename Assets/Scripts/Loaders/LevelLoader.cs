@@ -35,6 +35,8 @@ public class LevelLoader : MonoBehaviour
 
     public static int currentLevelIndex { get; private set; }
 
+    public static int levelCount { get; private set; }
+
     public static bool isInit { get; private set; }
 
     #endregion
@@ -43,6 +45,7 @@ public class LevelLoader : MonoBehaviour
 
     void OnEnable()
     {
+        levelCount = _levelPrefabs.Length;
         EventsManager.StartListening(nameof(StatesEvents.OnLandingIn), TriggerPreviousLevelDestruction);
         // Load 1st level.
         currentLevelIndex = 0;
@@ -97,12 +100,28 @@ public class LevelLoader : MonoBehaviour
         _playerOriginPosition = _playerGo.transform.position;
     }
 
+    IEnumerator FinishGameCoroutine(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        GameManager.singleton.StatesManager.CurrentState = new Win();
+    }
+
+    void FinishGame()
+    {
+        StartCoroutine(FinishGameCoroutine(5f));
+    }
+
     #endregion
 
     #region public methods
     
     public void MoveToNextLevel()
     {
+        if (currentLevelIndex >= levelCount - 1)
+        {
+            FinishGame();
+            return;
+        }
         StartCoroutine(DestroyPreviousLevelCoroutine(_currentLevelInstance));
         StartCoroutine(SetNewPLayerOriginPosition());
         currentLevelIndex++;

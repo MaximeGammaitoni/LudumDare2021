@@ -59,8 +59,8 @@ public class LeaderBoardManager
     {
         LeadBoardData data = null;
         yield return FetchLeaderBoardData(name, res => { data = res; });
-        int currentScore = ScoreManager.GetCurrentScore();
-        if (data == null || currentScore < data.score)
+        int currentScore = GameManager.singleton.TimerManager.timeLeft;
+        if (data == null || currentScore > data.score)
         {
             // Post data
             LeadBoardData newData = new LeadBoardData()
@@ -158,7 +158,7 @@ public class LeaderBoardManager
             {
                 GetLeadBoardResult leadBoardData = JsonUtility.FromJson<GetLeadBoardResult>(webRequest.downloadHandler.text);
                 int i = 1;
-                leadBoardData.lead_boards.Sort((d1, d2) => d1.score.CompareTo(d2.score));
+                leadBoardData.lead_boards.Sort((d1, d2) => d2.score.CompareTo(d1.score));
                 ClearLeaderBoardContent();
                 foreach (LeadBoardData lb in leadBoardData.lead_boards)
                 {

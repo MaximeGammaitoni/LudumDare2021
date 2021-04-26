@@ -95,19 +95,23 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerControls?.Enable();
         // Suscribe to state events.
-        EventsManager.StartListening(nameof(StatesManager.OnStateChanged), OnStateChanged);
+        EventsManager.StartListening(nameof(StatesEvents.OnFallingIn), OnFalling);
     }
 
     void OnDisable()
     {
         _playerControls?.Disable();
         // unsuscribe to state events.
-        EventsManager.StopListening(nameof(StatesManager.OnStateChanged), OnStateChanged);
+        EventsManager.StopListening(nameof(StatesEvents.OnFallingIn), OnFalling);
     }
 
-    void OnStateChanged(Args args)
+    void OnFalling(Args args)
     {
-        if (args is StateChangedArgs stateArgs && stateArgs.newState is Falling)
+        if (LevelLoader.currentLevelIndex >= LevelLoader.levelCount - 1)
+        {
+            StartCoroutine(FallThenDisapearCoroutine());
+        }
+        else
         {
             StartCoroutine(FallThroughGroundCoroutine());
         }
@@ -179,6 +183,21 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(movement, Vector3.up);
             }
         } 
+    }
+
+    IEnumerator FallThenDisapearCoroutine()
+    {
+        if (_falling)
+        {
+            yield break;
+        }
+        _isDashing = false;
+        _falling = true;
+        _landing = false;
+        Rigidbody rb = _collider.attachedRigidbody;
+        rb.useGravity = true;
+        yield return new WaitForSeconds(4f);
+        gameObject.SetActive(false);
     }
 
     IEnumerator FallThroughGroundCoroutine()

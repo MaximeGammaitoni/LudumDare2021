@@ -48,14 +48,14 @@ public class ForwardDash : MonoBehaviour, IDashResponse
             if (hit.collider.CompareTag("Interrupteur"))
             {
                 maxDistance = Vector3.Distance(_playerMovement.RaycastOrigin.position, hit.transform.position);
-                Debug.Log("Interrupteur Hit");
+                // Debug.Log("Interrupteur Hit");
                 hit.collider.GetComponentInChildren<MeshRenderer>().enabled = false;
             }
         }
         Vector3 initialPos = transform.position;
         _animatorHandler.HasDashed(false);
         _animatorHandler.IsDashing(true);
-        Debug.Log("isdashing");
+        // Debug.Log("isdashing");
         while (_dashTime > 0)
         {
             Vector3 nextPos = _SpeedDash * transform.forward * Time.fixedDeltaTime;
@@ -72,7 +72,7 @@ public class ForwardDash : MonoBehaviour, IDashResponse
         _animatorHandler.IsDashing(false);
         _animatorHandler.HasDashed(true);
 
-        Debug.Log("Stopped Dashing");
+        // Debug.Log("Stopped Dashing");
 
         //Debug.Log("is not Dashing " + _playerMovement._isDashing);
 
