@@ -513,6 +513,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175739474880113757, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: offset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 175739474880113757, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: _DashTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 175739474880113757, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: _SpeedDash
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766819167896686933, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.63380694
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766819167896686933, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.63380694
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766819167896686933, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.63380694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016137543252049274, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8401897562686959876, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
       propertyPath: m_UseGravity
       value: 1
@@ -593,7 +621,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4016137543252049274, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
 --- !u!1 &354237725
 GameObject:
@@ -1282,6 +1311,7 @@ MonoBehaviour:
   Canvas: {fileID: 2052576789}
   TopPanel: {fileID: 1619493608}
   TimerPanel: {fileID: 1097911852}
+  LeaderBoardPanel: {fileID: 0}
   LeaderBoardContent: {fileID: 428092208}
   TimerText: {fileID: 2065212878}
   PausePanel: {fileID: 2005195776}
@@ -1309,6 +1339,7 @@ MonoBehaviour:
   - {fileID: 8003346944951677055, guid: c3752f63b7582114eb9dac82e308a642, type: 3}
   _firstLevelOrigin: {fileID: 1247628245}
   _heightBetweenLevels: 15
+  _playerOriginPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1097911852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,8 +2585,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8993212dbd0d59d448b55af03c54fdc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SpeedDash: 20
-  _DashTime: 0.1
+  _SpeedDash: 5
+  _DashTime: 0.15
+--- !u!65 &1896123033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896123031}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.75794697, y: 1.3223183, z: 1.0607986}
+  m_Center: {x: -0.003083229, y: 0.88840735, z: -0.3946643}
 --- !u!4 &1896123035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8985092941400187736, guid: 586d92e016c9e994c8ef0f3c9163675d, type: 3}
