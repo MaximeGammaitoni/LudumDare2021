@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class LevelTrigger : MonoBehaviour
 {
     #region inspector
-
+    [SerializeField]
+    private GameObject _particleSystem;
     [SerializeField]
     UnityEvent _onTriggered = null;
 
@@ -41,10 +42,13 @@ public class LevelTrigger : MonoBehaviour
     private void OnDestroy()
     {
         EventsManager.StopListening("OnPlayerHit", PlayerHit);
+
     }
 
     void PlayerHit(Args args)
     {
+        _particleSystem.SetActive(false);
+        _particleSystem.GetComponent<AutoDisable>().Timer =0 ;
         _onReset?.Invoke();
         _triggered = false;
     }
@@ -62,6 +66,7 @@ public class LevelTrigger : MonoBehaviour
     void OnTriggered()
     {
         // Trigger animation.
+        _particleSystem.SetActive(true);
         _onTriggered?.Invoke();
         if (_exit != null)
         {

@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float DashCooldownTime;
 
+    public float DeathTimer;
+
     #endregion
 
     #region private members
@@ -41,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     bool _landing = false;
 
     public bool _isDashing = false;
+
+    public bool _isDead = false;
 
     private IDashResponse DashReponse;
 
@@ -77,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animationHandler = GetComponent<PlayerAnimationHandling>();
+        EventsManager.StartListening("OnPlayerHit", WaitTimer);
+
     }
 
     void OnDestroy()
@@ -169,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        if (!_isDashing)
+        if (!_isDashing && !_isDead)
         {
             Vector3 movement = Vector3.right * _movementDirection.x + Vector3.forward * _movementDirection.y;
             animationHandler.speedMotion = movement.magnitude;
@@ -239,6 +245,18 @@ public class PlayerMovement : MonoBehaviour
         //_isDashing = false;
         yield return new WaitForSeconds(DashCooldownTime);
         _isDashable = true;
+    }
+
+    public void WaitTimer(Args args)
+    {
+        StartCoroutine(WaitDeathTimerCoroutine());
+    }
+
+    IEnumerator WaitDeathTimerCoroutine()
+    {
+        _isDead = true;
+        yield return new WaitForSeconds(DeathTimer);
+        _isDead = false;
     }
 
 
