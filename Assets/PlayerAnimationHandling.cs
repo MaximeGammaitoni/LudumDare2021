@@ -68,12 +68,14 @@ public class PlayerAnimationHandling : MonoBehaviour
 
     public void IsExit(Args args)
     {
-        animator.SetBool("IsExit", true);
+        Debug.Log("IsExit");
+        animator.SetBool("IsExiting", true);
+        Debug.Log("IsExit is " + animator.GetBool("IsExiting"));
     }
 
     public void IsStarting(Args args)
     {
-        animator.SetBool("IsExit", true);
+        animator.SetBool("IsExiting", false);
     }
 
     IEnumerator WaitForRezCoroutine()
