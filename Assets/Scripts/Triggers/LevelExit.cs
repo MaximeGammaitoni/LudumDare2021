@@ -22,6 +22,8 @@ public class LevelExit : MonoBehaviour
     bool _opened = false;
 
     bool _exited = false;
+
+    AnusDoorBehaviour doorBehaviour;
     
     #endregion
 
@@ -38,6 +40,7 @@ public class LevelExit : MonoBehaviour
             if (_triggerPushedCount >= triggerCount)
             {
                 Open();
+
             }
         }
     }
@@ -45,7 +48,11 @@ public class LevelExit : MonoBehaviour
     #endregion
 
     #region private methods
-    
+    private void OnEnable()
+    {
+        doorBehaviour = GetComponentInChildren<AnusDoorBehaviour>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (_opened && !_exited && other.tag == "Player")
@@ -62,6 +69,7 @@ public class LevelExit : MonoBehaviour
             return;
         }
         _opened = true;
+        doorBehaviour._isOpened = true;
         _onOpened?.Invoke();
     }
 
