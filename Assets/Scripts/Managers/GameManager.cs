@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // Declare all your service here
     [HideInInspector] public ResourcesLoaderManager ResourcesLoaderManager;
     [HideInInspector] public PlayerEvents PlayerEvents { get; set; }
-    
+
     [HideInInspector] public TimerManager TimerManager { get; set; }
     [HideInInspector] public StatesManager StatesManager { get; set; }
     [HideInInspector] public StatesEvents StatesEvents { get; set; }
@@ -161,7 +161,16 @@ public class GameManager : MonoBehaviour
 
     private void DestroyAllManagers()
     {
-        // define your services here
+        ResourcesLoaderManager = null;
+        PlayerEvents = null;
+
+        TimerManager = null;
+        StatesManager = null;
+        StatesEvents = null;
+        PauseManager = null;
+        DefeatUIManager = null;
+        LeaderBoardManager = null;
+        LevelsManager = null;
     }
     private void DestroyAllClients()
     {
@@ -170,7 +179,12 @@ public class GameManager : MonoBehaviour
 
     private void DestroyAllListeners()
     {
-
+        ApplicationQuitHandler = null;
+        ApplicationPauseHandler = null;
+        ApplicationFocusHandler = null;
+        GameUpdateHandler = null;
+        GameFixedUpdateHandler = null;
+        DeafetUiHandler = null;
     }
     public GameObject InstantiateInGameManager(UnityEngine.Object original, Vector3 position, Quaternion rotation)
     {

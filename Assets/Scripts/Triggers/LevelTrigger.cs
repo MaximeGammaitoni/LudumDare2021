@@ -10,10 +10,13 @@ public class LevelTrigger : MonoBehaviour
     [SerializeField]
     UnityEvent _onTriggered = null;
 
+    [SerializeField]
+    UnityEvent _onReset = null;
+
     #endregion
 
     #region private members
-    
+
     LevelExit _exit = null;
 
     bool _triggered = false;
@@ -28,10 +31,22 @@ public class LevelTrigger : MonoBehaviour
     void Awake()
     {
         _exit = transform.root?.GetComponentInChildren<LevelExit>();
+        EventsManager.StartListening("OnPlayerHit", PlayerHit);
         if (_exit != null)
         {
             _exit.triggerCount++;
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventsManager.StopListening("OnPlayerHit", PlayerHit);
+    }
+
+    void PlayerHit(Args args)
+    {
+        _onReset?.Invoke();
+        _triggered = false;
     }
 
     void OnCollisionEnter(Collision other)

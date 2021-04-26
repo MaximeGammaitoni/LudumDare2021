@@ -11,6 +11,11 @@ public class PlayerEvents
     {
         PlayerDeathHandler += OnPlayerDeath;
         EventsManager.StartListening("OnPlayerDeath", PlayerDeathHandler);
+
+        PlayerHitHandler += OnPlayerHit;
+        EventsManager.StartListening("OnPlayerHit", PlayerHitHandler);
+
+
         GameManager.singleton.StatesEvents.OnBeginIn += test;
     }
 
@@ -25,20 +30,6 @@ public class PlayerEvents
             throw new Exception("argument must be a PlayerDeathArgs");
         PlayerEvents.PlayerDeathArgs _args = ((PlayerEvents.PlayerDeathArgs)args);
     }
-    private static void Test(Args args)
-    {
-        if (args.GetType() != typeof(PlayerEvents.PlayerDeathArgs))
-            throw new Exception("argument must be a PlayerDeathArgs");
-        GameObject GO = ((PlayerDeathArgs)args).PlayerGo;
-        GameManager.Instantiate(GO, Vector3.zero, Quaternion.identity);
-    }
-
-    public void PlayerHit()
-    {
-        GameManager.singleton.TimerManager.RemoveTime();
-        GameObject.Find("Player").transform.position = GameManager.singleton.ResourcesLoaderManager.LevelLoader._playerOriginPosition;
-    }
-
     public void PlayerIsDead()
     {
         // not False  or not False
@@ -52,8 +43,22 @@ public class PlayerEvents
             GameManager.singleton.StatesManager.CurrentState = new States.End();
             GameManager.singleton.OnDefeat();
         }
-        
+
     }
+
+    public UnityAction<Args> PlayerHitHandler;
+    private static void OnPlayerHit(Args args)
+    {
+
+    }
+
+    public void PlayerHit()
+    {
+        GameManager.singleton.TimerManager.RemoveTime();
+        PlayerMovement.player.transform.position = GameManager.singleton.ResourcesLoaderManager.LevelLoader._playerOriginPosition;
+        EventsManager.TriggerEvent("OnPlayerHit", new PlayerDeathArgs());
+    }
+
     public void test(Args args)
     {
         Debug.Log("fsedfsdfs");

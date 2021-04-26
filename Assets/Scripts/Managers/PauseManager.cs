@@ -8,7 +8,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class PauseManager
 {
-    private PlayerControls playerControls;
+    public PlayerControls playerControls;
     private Vector2 direction;
     private Button QuitButton;
     private Button ResumeButton;
@@ -30,6 +30,7 @@ public class PauseManager
         ResumeButton.onClick.AddListener(delegate {PauseGame();});
         QuitButton.onClick.AddListener(delegate { QuitGame();});
     }
+
     private void QuitGame()
     {
         Application.Quit();

@@ -10,6 +10,8 @@ public class AnusDoorBehaviour : MonoBehaviour
 
     private void Start()
     {
+
+        EventsManager.StartListening("OnPlayerDeath", PlayerDeath);
         _anusAnimator = GetComponent<Animator>();
     }
 
@@ -23,6 +25,11 @@ public class AnusDoorBehaviour : MonoBehaviour
         {
             _anusAnimator.SetFloat("Blend", 0f, 0.2f, Time.deltaTime);
         }
+    }
+
+    private void PlayerDeath(Args args)
+    {
+        _isOpened = false;
     }
 
     public void IsOpened()

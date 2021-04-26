@@ -47,7 +47,6 @@ public class Projectile : MonoBehaviour
 
     void OnPlayerHit()
     {
-        Debug.Log("Player was hit !");
         GameManager.singleton?.PlayerEvents.PlayerIsDead();
     }
 
@@ -62,6 +61,10 @@ public class Projectile : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_isDestroying)
+        {
+            return;
+        }
         transform.position += transform.forward * _speed * Time.fixedDeltaTime;
     }
 
