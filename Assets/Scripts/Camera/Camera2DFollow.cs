@@ -28,8 +28,17 @@ namespace UnityStandardAssets._2D
             transform.parent = null;
             EventsManager.StartListening(nameof(StatesEvents.OnLandingIn),ChangeTarget);
             EventsManager.StartListening(nameof(StatesEvents.OnFallingIn), StartAnim);
-            target = GameManager.singleton.LevelsManager.CurrentLevel.transform.Find("CameraTarget");
+            UpdateTarget();
             player = GameObject.Find("Player");
+        }
+
+        void UpdateTarget()
+        {
+            Transform newTarget = GameManager.singleton.LevelsManager.CurrentLevel.transform.Find("CameraTarget");
+            if (newTarget != null)
+            {
+                target = newTarget;
+            }
         }
 
         private void ChangeTarget(Args args)
@@ -59,7 +68,7 @@ namespace UnityStandardAssets._2D
                 
             }
             interpolation = 0f;
-            target = GameManager.singleton.LevelsManager.CurrentLevel.transform.Find("CameraTarget");
+            UpdateTarget();
             while (gameObject.transform.position.y >= target.transform.position.y)
             {
 

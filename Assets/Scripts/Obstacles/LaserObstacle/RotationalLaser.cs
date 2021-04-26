@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotationalLaser : MonoBehaviour, ILaserType
+public class RotationalLaser : BaseObstacle, ILaserType
 {
     public Transform _RotationCenter;
     //public float _Offset;

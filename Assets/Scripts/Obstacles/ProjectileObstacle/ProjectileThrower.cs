@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ProjectileThrower : MonoBehaviour
+public class ProjectileThrower : BaseObstacle
 {
     #region inspector
 
@@ -16,6 +16,9 @@ public class ProjectileThrower : MonoBehaviour
     [SerializeField]
     [Tooltip("The shoot cadency in seconds.")]
     float _cadency = 1f;
+
+    [SerializeField]
+    float _delay = 0f;
 
     [SerializeField]
     UnityEvent _onShoot = null;
@@ -34,8 +37,9 @@ public class ProjectileThrower : MonoBehaviour
 
     #region private methods
 
-    void OnEnable()
+    protected override void OnInitialized()
     {
+        Debug.Log("Je commence ma gueule.");
         _shootCoroutine = StartCoroutine(ShootProjectilesCoroutine());
     }
 
@@ -49,6 +53,7 @@ public class ProjectileThrower : MonoBehaviour
 
     IEnumerator ShootProjectilesCoroutine()
     {
+        yield return new WaitForSeconds(_delay);
         while (true)
         {
             yield return new WaitForSeconds(_cadency);
