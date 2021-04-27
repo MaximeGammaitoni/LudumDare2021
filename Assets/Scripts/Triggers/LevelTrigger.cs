@@ -64,6 +64,20 @@ public class LevelTrigger : MonoBehaviour
         }
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        Debug.Log("GO BRRR !!!");
+        Rigidbody rb = other.attachedRigidbody;
+        GameObject go = rb?.gameObject;
+        if (!_triggered && go != null && go.tag == "Player" && 
+            PlayerMovement.player != null && PlayerMovement.player.isDashing)
+        {
+            _triggered = true;
+            OnTriggered();
+            GameManager.singleton.SfxManager.PlayBoom();
+        }
+    }
+
     void OnTriggered()
     {
         // Trigger animation.
