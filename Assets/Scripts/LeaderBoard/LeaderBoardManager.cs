@@ -83,6 +83,8 @@ public class LeaderBoardManager
         yield return GetRequestAndInstantiateIntoCanvasCorout();
         // TODO : display leader board object...
         LeaderBoardPanel?.SetActive(true);
+        yield return new WaitForSeconds(2);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     IEnumerator FetchLeaderBoardData(string name, Action<LeadBoardData> callback)
