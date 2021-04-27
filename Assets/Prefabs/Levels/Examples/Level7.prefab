@@ -166524,6 +166524,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TransparentWall
       objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Size.x
+      value: 2.177819
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.x
+      value: -0.101830125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.z
+      value: 0.013387263
+      objectReference: {fileID: 0}
     - target: {fileID: 4495006723010455416, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_RootOrder
       value: 7

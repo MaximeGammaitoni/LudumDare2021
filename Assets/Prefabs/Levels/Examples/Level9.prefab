@@ -2478,6 +2478,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TransparentWall (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Size.x
+      value: 2.7245088
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.x
+      value: 0.34933388
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.z
+      value: 0.013387248
+      objectReference: {fileID: 0}
     - target: {fileID: 4495006723010455416, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -2663,6 +2675,18 @@ PrefabInstance:
     - target: {fileID: 1956408244229724844, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_Name
       value: TransparentWall (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Size.x
+      value: 3.101577
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.x
+      value: -0.56370926
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.z
+      value: 0.013387248
       objectReference: {fileID: 0}
     - target: {fileID: 4495006723010455416, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_RootOrder
@@ -3408,6 +3432,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TransparentWall (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5612938
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.x
+      value: -0.29356778
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.z
+      value: 0.013387248
+      objectReference: {fileID: 0}
     - target: {fileID: 4495006723010455416, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_RootOrder
       value: 36
@@ -3593,6 +3629,18 @@ PrefabInstance:
     - target: {fileID: 1956408244229724844, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_Name
       value: TransparentWall (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Size.x
+      value: 2.296088
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.x
+      value: 0.13512337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.z
+      value: 0.013387248
       objectReference: {fileID: 0}
     - target: {fileID: 4495006723010455416, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_RootOrder
@@ -3903,6 +3951,18 @@ PrefabInstance:
     - target: {fileID: 1956408244229724844, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_Name
       value: TransparentWall (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Size.x
+      value: 2.6337993
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.x
+      value: -0.3298205
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.z
+      value: 0.013387248
       objectReference: {fileID: 0}
     - target: {fileID: 4495006723010455416, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_RootOrder
