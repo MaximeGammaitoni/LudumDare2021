@@ -70,7 +70,7 @@ public class MainMenuStarter : MonoBehaviour
             MainMenu.SetActive(true);
             menuCanvas.alpha = 1;
         }
-        StartCoroutine(LoadScene());
+        //StartCoroutine(LoadScene());
 
         playerControls = new PlayerControls();
         playerControls.Enable();
@@ -195,17 +195,17 @@ public class MainMenuStarter : MonoBehaviour
 
     public void LaunchGame()
     {
-        BlackFadeIn(true);
+        Play.interactable = false;
+        Ladder.interactable = false;
+        Quit.interactable = false;
         StartCoroutine(LoadGameCo());
-        
-
     }
 
     IEnumerator LoadGameCo()
     {
+        yield return BlackFadeInCo(true);
         yield return new WaitForSeconds(0.5f);
-        sceneLoader.allowSceneActivation = true;
-        isLaunched = true;
+        yield return LoadScene();
     }
 
     public void ShowLeaderBoard()
@@ -224,7 +224,11 @@ public class MainMenuStarter : MonoBehaviour
 
     public void QuitGame()
     {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        #endif
         Debug.Log("Quitting");
     }
 
@@ -232,56 +236,13 @@ public class MainMenuStarter : MonoBehaviour
     {
         Debug.Log("Started Loading");
         sceneLoader = SceneManager.LoadSceneAsync(1);
-        sceneLoader.allowSceneActivation = false;
-        while (sceneLoader.progress < 0.95)
-        {
-            //Debug.Log(sceneLoader.progress);
-            yield return null;
-        }
-        Debug.Log("sceneLoader is rdy");
-        _isReadyToLaunch = true;
-        yield return null;
-
+        yield return sceneLoader;
+        Debug.Log("Scene loaded");
     }
 
     public void GetRequestAndInstantiateIntoCanvas()
     {
-        StartCoroutine(GetRequestAndInstantiateIntoCanvasCorout());
-    }
-    IEnumerator GetRequestAndInstantiateIntoCanvasCorout()
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(BaseUrl + GetAllEndPoint))
-        {
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.result == UnityWebRequest.Result.ConnectionError)
-            {
-                Debug.Log("Error: " + webRequest.error);
-            }
-            else
-            {
-                GetLeadBoardResult leadBoardData = JsonUtility.FromJson<GetLeadBoardResult>(webRequest.downloadHandler.text);
-                int i = 1;
-                leadBoardData.lead_boards.OrderByDescending(x => x.score);
-                foreach (LeadBoardData lb in leadBoardData.lead_boards)
-                {
-                    var Go = Instantiate(LinePrefab);
-                    listofLines.Add(Go);
-                    Go.transform.SetParent(LeaderBoardContent.transform, false);
-                    var CurrentLine = Go.GetComponent<LeaderBoardUIElement>();
-
-                    CurrentLine.Position.SetText(i.ToString());
-                    CurrentLine.Name.SetText(lb.name);
-                    var ts = TimeSpan.FromSeconds(lb.score);
-                    var formatTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
-                            ts.Hours,
-                            ts.Minutes,
-                            ts.Seconds);
-                    CurrentLine.Score.SetText(formatTime);
-                    i++;
-                }
-            }
-        }
+        StartCoroutine(LeaderBoardManager.GetRequestAndInstantiateIntoCanvasCorout(LeaderBoardContent, LinePrefab));
     }
 
     public void DestroyLeaderBoardComponents()
@@ -299,29 +260,28 @@ public class MainMenuStarter : MonoBehaviour
 
     IEnumerator BlackFadeInCo(bool value)
     {
-        if(value)
+        float fadeTime = 0.5f;
+        float t = 0f;
+        Color from, to;
+
+        if (value)
         {
-            float alpha = 0;
-            while(alpha <0.99)
-            {
-                alpha += 0.05f;
-                Color color = new Color(0, 0, 0, alpha);
-                Black.color = color;
-                yield return new WaitForEndOfFrame();
-            }
-            Black.color = new Color(0, 0, 0, 1);
+            from = Color.clear;
+            to = Color.black;
         }
         else
         {
-            float alpha = 0;
-            while (alpha < 0.99)
-            {
-                alpha += 0.01f;
-                Color color = new Color(0, 0, 0, 1 - alpha);
-                Black.color = color;
-                yield return new WaitForEndOfFrame();
-            }
-            Black.color = new Color(0, 0, 0, 0);
+            to = Color.clear;
+            from = Color.black;
         }
+
+        while (t < fadeTime)
+        {
+            Black.color = Color.Lerp(from, to, t / fadeTime);
+            yield return new WaitForEndOfFrame();
+            t += Time.deltaTime;
+        }
+        Black.color = to;
+        yield return new WaitForSeconds(0.25f);
     }
 }

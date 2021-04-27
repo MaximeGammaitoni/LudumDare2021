@@ -152,6 +152,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        DestroyServices();
+    }
+
     public void DestroyServices()
     {
         StopAllCoroutines();
@@ -170,6 +175,7 @@ public class GameManager : MonoBehaviour
         TimerManager = null;
         StatesManager = null;
         StatesEvents = null;
+        PauseManager.Destroy();
         PauseManager = null;
         DefeatUIManager = null;
         LeaderBoardManager = null;

@@ -8,7 +8,7 @@ using static UnityEngine.InputSystem.InputAction;
 using UnityEngine.SceneManagement;
 
 
-public class PauseManager
+public class PauseManager : IManager
 {
     public PlayerControls playerControls;
     private Vector2 direction;
@@ -20,7 +20,7 @@ public class PauseManager
     {
         playerControls = new PlayerControls();
         playerControls.Enable();
-        playerControls.Main.Pause.performed += cb => PauseGame();
+        playerControls.Main.Pause.started += OnPausePressed;
         EventsManager.StartListening(nameof(LevelLoader.OnGameFinished), DisableWASD);
 
         QuitButton = GameManager.singleton.ResourcesLoaderManager.CanvasElements.QuitGameButton;
@@ -36,7 +36,29 @@ public class PauseManager
 
     ~PauseManager()
     {
+        Debug.Log("GOODBYE !");
+        // playerControls.Disable();
+        // playerControls.Dispose();
+        // EventsManager.StopListening(nameof(LevelLoader.OnGameFinished), DisableWASD);
+        // EventsManager.StopListening(nameof(GameManager.singleton.StatesEvents.OnPauseIn), StartPause);
+        // EventsManager.StopListening(nameof(GameManager.singleton.StatesEvents.OnPauseOut), QuitPause);
+    }
+
+    public void Destroy()
+    {
+        Debug.Log("Destroy PauseManager");
+        playerControls.Main.Pause.started -= OnPausePressed;
+        playerControls.Disable();
+        playerControls.Dispose();
         EventsManager.StopListening(nameof(LevelLoader.OnGameFinished), DisableWASD);
+        EventsManager.StopListening(nameof(GameManager.singleton.StatesEvents.OnPauseIn), StartPause);
+        EventsManager.StopListening(nameof(GameManager.singleton.StatesEvents.OnPauseOut), QuitPause);
+    }
+
+    void OnPausePressed(CallbackContext ctx)
+    {
+        Debug.Log("Pause ?");
+        PauseGame();
     }
 
     void DisableWASD(Args args = null)
@@ -46,6 +68,7 @@ public class PauseManager
 
     private void QuitGame()
     {
+        Time.timeScale = 1f;
         //Application.Quit();
         SceneManager.LoadScene(0);
     }
