@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 5851304502361852449}
-  - {fileID: 6197606685610674136}
+  - {fileID: 4017248523165275346}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -224,7 +224,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &6200871665798548342
+--- !u!1001 &4021604120093169788
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -233,7 +233,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1891972527774278, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: m_Name
-      value: RibbonSmoke
+      value: RibbonSmoke (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4426206747036846, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: m_RootOrder
@@ -280,28 +280,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: EmissionModule.enabled
-      value: 1
+      propertyPath: lengthInSec
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: TrailModule.ribbonCount
+      propertyPath: NoiseModule.scrollSpeed.scalar
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.atime0
-      value: 15613
-      objectReference: {fileID: 0}
-    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.ctime0
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxGradient.atime0
@@ -309,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxGradient.atime1
-      value: 7517
+      value: 6746
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxGradient.key0.a
@@ -329,27 +317,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].time
-      value: 0.0056610107
-      objectReference: {fileID: 0}
-    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].time
-      value: 0.9981079
-      objectReference: {fileID: 0}
-    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].value
-      value: 0.1428566
-      objectReference: {fileID: 0}
-    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].value
-      value: 0.16882443
-      objectReference: {fileID: 0}
-    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].inSlope
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].value
+      value: 0.1702137
+      objectReference: {fileID: 0}
+    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].value
+      value: 0.27659348
+      objectReference: {fileID: 0}
+    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
+      propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].inSlope
+      value: 0.10637978
+      objectReference: {fileID: 0}
+    - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].inSlope
-      value: 0.21503514
+      value: 0.10637978
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].inWeight
@@ -357,19 +345,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].outSlope
-      value: 0
+      value: 0.10637978
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].inWeight
-      value: 0.091250196
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].outSlope
-      value: 0.21503514
+      value: 0.10637978
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].outWeight
-      value: 0
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].outWeight
@@ -377,24 +365,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].tangentMode
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[1].tangentMode
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
-    - target: {fileID: 199571606667392342, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 55e5dd3c85d37bf4da30b7854694516f, type: 2}
     - target: {fileID: 199571606667392342, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 55e5dd3c85d37bf4da30b7854694516f, type: 2}
+      objectReference: {fileID: 2100000, guid: 85320f50710fcfb4d886bc56151bea1b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
---- !u!4 &6197606685610674136 stripped
+--- !u!4 &4017248523165275346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4426206747036846, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
-  m_PrefabInstance: {fileID: 6200871665798548342}
+  m_PrefabInstance: {fileID: 4021604120093169788}
   m_PrefabAsset: {fileID: 0}
