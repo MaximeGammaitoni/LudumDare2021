@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDash(CallbackContext ctx)
     {
-        if (_isDashing || !GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
+        if (_isDashing || _isDead || !GameManager.singleton.StatesManager.CurrentState.ElementsCanMove)
         {
             return;
         }
@@ -245,10 +245,12 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator WaitDeathTimerCoroutine()
     {
         _isDead = true;
-        yield return new WaitForSeconds(DeathTimer);
+        float time = 0.5f * DeathTimer;
+        yield return new WaitForSeconds(time);
         Vector3 origin = GameManager.singleton.ResourcesLoaderManager.LevelLoader._playerOriginPosition;
         origin.y = transform.position.y;
         transform.position = origin;
+        yield return new WaitForSeconds(time);
         _isDead = false;
     }
 

@@ -66,10 +66,12 @@ public class PauseManager
 
     private void StartPause(Args args)
     {
+        Time.timeScale = 0f;
         GameManager.singleton.ResourcesLoaderManager.CanvasElements.PausePanel.SetActive(true);
     }
     private void QuitPause(Args args)
     {
+        Time.timeScale = 1f;
         GameManager.singleton.ResourcesLoaderManager.CanvasElements.PausePanel.SetActive(false);
     }
     private void OnAxesChanged(CallbackContext ctx)
