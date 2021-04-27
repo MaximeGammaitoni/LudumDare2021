@@ -1717,6 +1717,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Size.x
+      value: 2.4246335
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.x
+      value: -0.22523737
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556173119852336913, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
+      propertyPath: m_Center.z
+      value: 0.013387248
+      objectReference: {fileID: 0}
     - target: {fileID: 3146408653426839909, guid: 1735654e5cca1794ca3246e4a74aa5d4, type: 3}
       propertyPath: m_Layer
       value: 10
