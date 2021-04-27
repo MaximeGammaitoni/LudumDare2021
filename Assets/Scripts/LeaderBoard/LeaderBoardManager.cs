@@ -44,7 +44,7 @@ public class LeaderBoardManager
 
     public void GetRequestAndInstantiateIntoCanvas()
     {
-        GameManager.singleton.StartCoroutine(GetRequestAndInstantiateIntoCanvasCorout());
+        GameManager.singleton.StartCoroutine(GetRequestAndInstantiateIntoCanvasCorout(LeaderBoardContent, Line));
     }
 
     void OnNameEntered(Args args)
@@ -80,7 +80,7 @@ public class LeaderBoardManager
 
     IEnumerator DisplayLeaderBoardCoroutine()
     {
-        yield return GetRequestAndInstantiateIntoCanvasCorout();
+        yield return GetRequestAndInstantiateIntoCanvasCorout(LeaderBoardContent, Line);
         // TODO : display leader board object...
         LeaderBoardPanel?.SetActive(true);
         yield return new WaitForSeconds(2);
@@ -132,7 +132,7 @@ public class LeaderBoardManager
         }
     }
 
-    void ClearLeaderBoardContent()
+    static void ClearLeaderBoardContent(GameObject LeaderBoardContent)
     {
         List<Transform> children = new List<Transform>();
         foreach (Transform child in LeaderBoardContent.transform)
@@ -146,7 +146,7 @@ public class LeaderBoardManager
         }
     }
 
-    IEnumerator GetRequestAndInstantiateIntoCanvasCorout()
+    public static IEnumerator GetRequestAndInstantiateIntoCanvasCorout(GameObject LeaderBoardContent, GameObject Line)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(BaseUrl + GetAllEndPoint))
         {
@@ -161,7 +161,7 @@ public class LeaderBoardManager
                 GetLeadBoardResult leadBoardData = JsonUtility.FromJson<GetLeadBoardResult>(webRequest.downloadHandler.text);
                 int i = 1;
                 leadBoardData.lead_boards.Sort((d1, d2) => d2.score.CompareTo(d1.score));
-                ClearLeaderBoardContent();
+                ClearLeaderBoardContent(LeaderBoardContent);
                 foreach (LeadBoardData lb in leadBoardData.lead_boards)
                 {
                     var Go = GameManager.Instantiate(Line);
