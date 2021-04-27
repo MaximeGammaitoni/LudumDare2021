@@ -52,7 +52,7 @@ public class SfxManager
 
     public void PlayExitOpen()
     {
-        _mainSfx.PlayOneShot(_exitOpen);
+        //_mainSfx.PlayOneShot(_exitOpen);
     }
 
 
