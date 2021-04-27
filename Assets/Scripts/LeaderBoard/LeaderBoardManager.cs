@@ -60,7 +60,7 @@ public class LeaderBoardManager
         LeadBoardData data = null;
         yield return FetchLeaderBoardData(name, res => { data = res; });
         int currentScore = GameManager.singleton.TimerManager.timeLeft;
-        if (data == null || currentScore > data.score)
+        if (data == null)
         {
             // Post data
             LeadBoardData newData = new LeadBoardData()
@@ -69,6 +69,17 @@ public class LeaderBoardManager
                 score = currentScore
             };
             yield return PostLeaderBoardData(newData);
+        }
+        else if (currentScore > data.score)
+        {
+            // Update data
+            LeadBoardData newData = new LeadBoardData()
+            {
+                id = data.id,
+                name = name,
+                score = currentScore
+            };
+            yield return UpdateLeaderBoardData(newData);
         }
         DisplayLeaderBoard();
     }
@@ -113,6 +124,26 @@ public class LeaderBoardManager
         }
         callback?.Invoke(data);
         yield return null;
+    }
+
+    IEnumerator UpdateLeaderBoardData(LeadBoardData data)
+    {
+        string json = JsonUtility.ToJson(data);
+        string url = BaseUrl + GetAllEndPoint + data.id;
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+        using (UnityWebRequest webRequest = UnityWebRequest.Put(url, bodyRaw))
+        {
+            webRequest.method = "PATCH";
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+            webRequest.SetRequestHeader("Content-length", (bodyRaw.Length.ToString()));
+            //webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
+            yield return webRequest.SendWebRequest();
+            if (webRequest.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError(webRequest.error);
+            }
+        }
     }
 
     IEnumerator PostLeaderBoardData(LeadBoardData data)
