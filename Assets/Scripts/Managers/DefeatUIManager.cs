@@ -39,7 +39,7 @@ public class DefeatUIManager
 
     private void MainMenu()
     {
-
+        SceneManager.LoadScene(0);
     }
 
     private void DefeateAction()

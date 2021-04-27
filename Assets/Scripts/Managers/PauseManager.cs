@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.SceneManagement;
+
 
 public class PauseManager
 {
@@ -44,7 +46,8 @@ public class PauseManager
 
     private void QuitGame()
     {
-        Application.Quit();
+        //Application.Quit();
+        SceneManager.LoadScene(0);
     }
     private void PauseGame()
     {
